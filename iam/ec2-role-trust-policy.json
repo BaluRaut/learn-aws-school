@@ -1,0 +1,11 @@
+{
+  "_comment": "Trust policy 🎩 (lesson 04): WHO may wear this hat? This one says: 'the EC2 service may put this role on instances'. The permissions themselves are attached separately — trust and permissions are two different documents.",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": { "Service": "ec2.amazonaws.com" },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}

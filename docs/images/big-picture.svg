@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    .band1 { fill: #fff; stroke: #7c3aed; stroke-width: 3; }
+    .band2 { fill: #fff; stroke: #ea580c; stroke-width: 3; }
+    .bx  { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; }
+    .bxp { fill: #fff; stroke: #7c3aed; stroke-width: 2.5; }
+    .bxo { fill: #fff; stroke: #ea580c; stroke-width: 2.5; }
+    .dead { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 8 7; }
+    .tip  { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 1.5; }
+    .win  { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; }
+    .title { font-size: 36px; font-weight: 800; fill: #0f172a; }
+    .bandt { font-size: 26px; font-weight: 800; }
+    .t  { font-size: 19px; font-weight: 600; fill: #0f172a; }
+    .s  { font-size: 15px; fill: #475569; }
+    .m  { text-anchor: middle; }
+    .arr  { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arw); }
+    .dash { stroke-dasharray: 8 7; }
+    .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
+  </style>
+
+  <rect x="0" y="0" width="1920" height="1160" fill="#ffffff"/>
+  <text class="title m" x="960" y="52">The Big Picture — IAM decides IF you may · EC2 is WHERE it runs</text>
+
+  <!-- ═══ BAND 1: IAM ═══ -->
+  <rect class="band1" x="40" y="80" width="1840" height="460" rx="20"/>
+  <text class="bandt" x="70" y="122" fill="#7c3aed">🪪 PART 1 — IAM: who may do what (lessons 1–6)</text>
+
+  <rect class="dead" x="70" y="170" width="270" height="140" rx="14"/>
+  <text class="t m" x="205" y="205">🗝️ root account</text>
+  <text class="s m" x="205" y="233">can do EVERYTHING, forever</text>
+  <text class="s m" x="205" y="257">→ MFA + locked in the safe,</text>
+  <text class="s m" x="205" y="281">used ~once a year</text>
+  <g transform="translate(70,170)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">1</text></g>
+
+  <rect class="bxp" x="400" y="170" width="300" height="140" rx="14"/>
+  <text class="t m" x="550" y="203">🪪 users → 👩‍🏫 groups</text>
+  <text class="s m" x="550" y="231">every person gets a card;</text>
+  <text class="s m" x="550" y="255">cards join lists ("teachers");</text>
+  <text class="s m" x="550" y="279">permissions attach to the LIST</text>
+  <g transform="translate(400,170)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">2</text></g>
+
+  <rect class="bxp" x="760" y="170" width="310" height="140" rx="14"/>
+  <text class="t m" x="915" y="203">📝 policies — permission slips</text>
+  <text class="s m" x="915" y="231">Effect · Action · Resource</text>
+  <text class="s m" x="915" y="255">default DENY · explicit Deny wins</text>
+  <text class="s m" x="915" y="279">least privilege = exact slips only</text>
+  <g transform="translate(760,170)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">3</text></g>
+  <line class="arr" x1="760" y1="240" x2="704" y2="240"/>
+
+  <rect class="bxp" x="1130" y="170" width="330" height="140" rx="14"/>
+  <text class="t m" x="1295" y="203">🎩 roles — hats, not people</text>
+  <text class="s m" x="1295" y="231">trust policy: who may wear it</text>
+  <text class="s m" x="1295" y="255">assume → ⏳ temp creds (~1h)</text>
+  <text class="s m" x="1295" y="279">audit shows person AND hat</text>
+  <g transform="translate(1130,170)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="bxp" x="1520" y="170" width="330" height="140" rx="14"/>
+  <text class="t m" x="1685" y="203">🤖 machine identities</text>
+  <text class="s m" x="1685" y="231">EC2 wears a role (instance profile)</text>
+  <text class="s m" x="1685" y="255">CI assumes one via OIDC</text>
+  <text class="s m" x="1685" y="279">long-lived AKIA keys: last resort ❌</text>
+  <g transform="translate(1520,170)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">5</text></g>
+  <line class="arr" x1="1520" y1="240" x2="1464" y2="240"/>
+
+  <rect class="tip" x="70" y="390" width="430" height="110" rx="14"/>
+  <text class="t m" x="285" y="430">📱 MFA everywhere</text>
+  <text class="s m" x="285" y="460">root + every human — a stolen</text>
+  <text class="s m" x="285" y="484">password alone opens nothing</text>
+  <rect class="tip" x="530" y="390" width="430" height="110" rx="14"/>
+  <text class="t m" x="745" y="430">🤏 least privilege</text>
+  <text class="s m" x="745" y="460">exact Actions on exact Resources;</text>
+  <text class="s m" x="745" y="484">AdministratorAccess is a smell</text>
+  <rect class="tip" x="990" y="390" width="430" height="110" rx="14"/>
+  <text class="t m" x="1205" y="430">🎩 roles over keys</text>
+  <text class="s m" x="1205" y="460">temporary beats forever —</text>
+  <text class="s m" x="1205" y="484">machines never get passwords</text>
+  <rect class="tip" x="1450" y="390" width="400" height="110" rx="14"/>
+  <text class="t m" x="1650" y="430">🧾 CloudTrail on</text>
+  <text class="s m" x="1650" y="460">every API call logged:</text>
+  <text class="s m" x="1650" y="484">who, what, when — audit free</text>
+  <g transform="translate(70,390)"><circle r="13" fill="#7c3aed"/><text class="ntb" dy="5">6</text></g>
+
+  <!-- ═══ divider ═══ -->
+  <text class="t m" x="960" y="580" fill="#475569">every other course rides on both: ECR logins 🏦 · EKS nodes ☸️ · CI deploys 📮 — all IAM cards on EC2 desks</text>
+
+  <!-- ═══ BAND 2: EC2 ═══ -->
+  <rect class="band2" x="40" y="600" width="1840" height="520" rx="20"/>
+  <text class="bandt" x="70" y="642" fill="#ea580c">🖥️ PART 2 — EC2: the rented computers (lessons 7–12)</text>
+
+  <rect class="bxo" x="70" y="680" width="500" height="250" rx="16"/>
+  <text class="t m" x="320" y="712">🌏 region ap-south-1 — the district</text>
+  <rect class="bx" x="95" y="730" width="220" height="175" rx="12"/>
+  <text class="s m" x="205" y="755">🏫 AZ-a — one building</text>
+  <rect class="bxo" x="115" y="770" width="180" height="115" rx="10"/>
+  <text class="t m" x="205" y="800">🖥️ your desk</text>
+  <text class="s m" x="205" y="824">t3.micro · pay/second</text>
+  <text class="s m" x="205" y="846">no screen — network only</text>
+  <text class="s m" x="205" y="868">disposable on purpose</text>
+  <rect class="bx" x="330" y="730" width="220" height="175" rx="12"/>
+  <text class="s m" x="440" y="755">🏫 AZ-b — another building</text>
+  <text class="s m" x="440" y="805">spread desks across</text>
+  <text class="s m" x="440" y="827">buildings, so one fire</text>
+  <text class="s m" x="440" y="849">≠ everything down</text>
+  <g transform="translate(70,680)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">1</text></g>
+
+  <rect class="bxo" x="630" y="680" width="310" height="115" rx="14"/>
+  <text class="t m" x="785" y="710">🚪 security group — the gatekeeper</text>
+  <text class="s m" x="785" y="736">✅ 22 only from YOUR IP · ✅ 80 for all</text>
+  <text class="s m" x="785" y="760">❌ everything else: silence (default deny)</text>
+  <g transform="translate(630,680)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">2</text></g>
+  <line class="arr" x1="630" y1="740" x2="574" y2="780"/>
+
+  <rect class="bxo" x="630" y="820" width="310" height="110" rx="14"/>
+  <text class="t m" x="785" y="850">🔑 connecting</text>
+  <text class="s m" x="785" y="876">SSH key pair (the door key), or better:</text>
+  <text class="s m" x="785" y="900">🛗 SSM — no open door, fully audited</text>
+  <g transform="translate(630,820)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">3</text></g>
+
+  <rect class="bxo" x="1000" y="680" width="400" height="115" rx="14"/>
+  <text class="t m" x="1200" y="710">🗄️ EBS → 📸 snapshot → 🖼️ AMI</text>
+  <text class="s m" x="1200" y="736">drawer survives · photocopy to S3 ·</text>
+  <text class="s m" x="1200" y="760">template stamps out identical desks</text>
+  <g transform="translate(1000,680)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="bxo" x="1000" y="820" width="400" height="110" rx="14"/>
+  <text class="t m" x="1200" y="850">📋 user-data + 🎩 metadata badge</text>
+  <text class="s m" x="1200" y="876">boot checklist sets the desk up alone;</text>
+  <text class="s m" x="1200" y="900">metadata hands it its IAM role — no keys!</text>
+  <g transform="translate(1000,820)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">5</text></g>
+
+  <rect class="bxo" x="1460" y="680" width="390" height="250" rx="16"/>
+  <text class="t m" x="1655" y="712">👯 fleets — the payoff</text>
+  <text class="s m" x="1655" y="742">Auto Scaling Group: "always N desks"</text>
+  <text class="s m" x="1655" y="766">(a Deployment, for computers)</text>
+  <rect class="bx" x="1485" y="790" width="340" height="115" rx="12"/>
+  <text class="s m" x="1655" y="820">☸️ EKS "nodes" = exactly these</text>
+  <text class="s m" x="1655" y="844">desks in exactly such a group —</text>
+  <text class="s m" x="1655" y="868">k8s pods sit on desks you</text>
+  <text class="s m" x="1655" y="890">now fully understand 🎓</text>
+  <g transform="translate(1460,680)"><circle r="13" fill="#ea580c"/><text class="ntb" dy="5">6</text></g>
+
+  <rect class="win" x="70" y="980" width="560" height="110" rx="14"/>
+  <text class="t m" x="350" y="1020">💳 pricing lanes (lesson 08)</text>
+  <text class="s m" x="350" y="1050">on-demand: flexible · savings plan: season ticket (–70%)</text>
+  <text class="s m" x="350" y="1074">spot: standby seat (–90%, 2-min reclaim warning)</text>
+  <rect class="win" x="670" y="980" width="560" height="110" rx="14"/>
+  <text class="t m" x="950" y="1020">🧠 the mental model</text>
+  <text class="s m" x="950" y="1050">desks are cattle, not pets — templates + checklists</text>
+  <text class="s m" x="950" y="1074">rebuild them; drawers &amp; snapshots hold what's precious</text>
+  <rect class="win" x="1270" y="980" width="580" height="110" rx="14"/>
+  <text class="t m" x="1560" y="1020">🧹 the lab rule</text>
+  <text class="s m" x="1560" y="1050">IAM is free · a lab t3.micro is ~1¢/hour —</text>
+  <text class="s m" x="1560" y="1074">ALWAYS terraform destroy before you sleep</text>
+</svg>

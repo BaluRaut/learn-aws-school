@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before &amp; trade-offs — Learn AWS School</title>
+<meta name="description" content="For IAM and EC2: what the world looked like before them, their merits and demerits, and where to use each vs where not.">
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
+    --line: #e2e8f0; --accent: #7c3aed; --ok: #16a34a; --blue: #2563eb; --bad: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b1220; --card: #131c2e; --ink: #e2e8f0; --muted: #94a3b8; --line: #253349; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
+  a { color: var(--blue); }
+  h1 { font-size: 1.9rem; line-height: 1.25; }
+  .sub { color: var(--muted); max-width: 74ch; }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 6px; }
+  .toc a { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; font-size: .82rem; color: var(--muted); text-decoration: none; }
+  .toc a:hover { color: var(--ink); border-color: var(--muted); }
+  .term { background: var(--card); border: 1px solid var(--line); border-top: 6px solid var(--c, var(--accent)); border-radius: 16px; padding: 22px; margin-top: 26px; scroll-margin-top: 16px; }
+  .term h2 { font-size: 1.3rem; margin-bottom: 10px; }
+  .hist { background: var(--bg); border-left: 5px solid var(--c, var(--accent)); border-radius: 10px; padding: 14px 16px; margin: 10px 0 14px; }
+  .hist b { display: block; margin-bottom: 4px; }
+  .hist p { color: var(--muted); font-size: .95rem; }
+  .quad { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .q { border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .q h4 { margin-bottom: 6px; font-size: .98rem; }
+  .q ul { margin-left: 18px; color: var(--muted); font-size: .92rem; }
+  .q.merit  { border-top: 4px solid var(--ok); }
+  .q.demerit{ border-top: 4px solid var(--bad); }
+  .q.use    { border-top: 4px solid var(--blue); }
+  .q.avoid  { border-top: 4px solid #f59e0b; }
+  .foot { margin-top: 10px; font-size: .92rem; }
+  footer { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: .88rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>⏮️ Before &amp; trade-offs</h1>
+  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere.
+  For each big idea in this course: what life was like <b>before</b> it, its honest
+  <b>merits ✅ and demerits ❌</b>, and <b>where to use it 👍 vs where not 👎</b>.</p>
+  <nav class="toc">
+    <a href="#iam">🪪 IAM</a><a href="#roles">🎩 Roles vs keys</a><a href="#ec2">🖥️ EC2</a>
+    <a href="#spot">🎟️ Spot</a><a href="#ssm">🛗 SSM vs SSH</a>
+  </nav>
+</header>
+
+<section class="term" id="iam" style="--c:#7c3aed">
+  <h2>🪪 IAM — identity &amp; access management (lessons 01–06)</h2>
+  <div class="hist"><b>⏮️ Before IAM (launched 2011)</b>
+    <p>Early AWS accounts had essentially <b>one login: root</b>. Teams shared that password in a
+    spreadsheet or chat. Everyone was all-powerful; nobody was accountable ("who deleted the
+    bucket?" — silence); leaving employees meant rotating THE password for everyone. On-prem
+    before that: shared admin accounts and sticky notes. IAM brought per-person identity,
+    per-action permission, and an audit trail.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul>
+      <li>every person/robot has its own checked identity</li>
+      <li>least privilege possible at all (slips per action)</li>
+      <li>audit: every call attributable (with CloudTrail)</li>
+      <li>free — no excuse not to use it fully</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>policy JSON gets complex fast (ARNs, conditions)</li>
+      <li>debugging "AccessDenied" can eat an afternoon</li>
+      <li>easy to over-grant out of frustration (Admin*)</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul>
+      <li>always — from your first day on AWS</li>
+      <li>separate identities even for a solo account (you + CI)</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
+      <li>…never. But DO avoid: daily root use, shared users,
+          and one mega-policy for everything</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l01">Diagram ↗</a></p>
+</section>
+
+<section class="term" id="roles" style="--c:#7c3aed">
+  <h2>🎩 Roles (temporary credentials) vs long-lived access keys (lessons 04–05)</h2>
+  <div class="hist"><b>⏮️ Before roles &amp; STS</b>
+    <p>Machines authenticated with <b>AKIA… access keys</b> — permanent passwords pasted into config
+    files, CI settings, and (tragically often) git repos. Key leaks are still the #1 cause of AWS
+    account compromises; the crypto-mining bill arrives before the apology. Roles flipped the
+    model: identities you <i>wear</i> briefly, credentials that expire in an hour.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits (roles)</h4><ul>
+      <li>credentials expire — a leak has a 1-hour blast radius</li>
+      <li>nothing to store: EC2/EKS get theirs from metadata</li>
+      <li>CI via OIDC: zero secrets in pipeline settings</li>
+      <li>audit shows person AND hat worn</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>trust policies are one more document to reason about</li>
+      <li>role-chaining/debugging takes practice</li>
+      <li>local laptops still need SSO or (careful) keys</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Roles, when</h4><ul>
+      <li>every machine: EC2, EKS, Lambda, CI — no exceptions</li>
+      <li>humans via IAM Identity Center (SSO) sessions</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Keys only when</h4><ul>
+      <li>a third-party tool truly can't assume roles</li>
+      <li>…then: minimal policy, rotation, and regret 😄</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l04">Diagrams ↗</a></p>
+</section>
+
+<section class="term" id="ec2" style="--c:#ea580c">
+  <h2>🖥️ EC2 — rented computers (lessons 07–12)</h2>
+  <div class="hist"><b>⏮️ Before EC2 (2006)</b>
+    <p><b>Buying servers.</b> Capacity planning a year ahead, purchase orders, waiting weeks for
+    delivery, racking hardware, and paying for it whether used or not. A startup's first expense
+    was a server room. EC2's radical idea: a computer in minutes, by the hour, hand it back
+    anytime — compute as a utility, like electricity.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul>
+      <li>minutes to get one, seconds-based billing</li>
+      <li>every size from scooter to truck, GPUs included</li>
+      <li>full control: your OS, your software, your kernel</li>
+      <li>the substrate everything else (EKS!) runs on</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>YOU patch, secure and babysit the OS</li>
+      <li>idle instances bill silently (the classic bill shock)</li>
+      <li>pets accumulate unless you enforce cattle discipline</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul>
+      <li>you need full OS control or special software</li>
+      <li>steady, predictable workloads (with savings plans)</li>
+      <li>as managed-service underlay (EKS nodes) — mostly invisible</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
+      <li>an event-driven script → Lambda (no server at all)</li>
+      <li>a containerized web app → Fargate/Cloud Run style</li>
+      <li>you'd rather never SSH again → managed everything</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l07">Diagram ↗</a></p>
+</section>
+
+<section class="term" id="spot" style="--c:#ea580c">
+  <h2>🎟️ Spot instances (lesson 08)</h2>
+  <div class="hist"><b>⏮️ Before spot</b>
+    <p>AWS's spare desks sat empty; your batch jobs paid full price. Spot (2009) auctions the
+    empty seats: up to ~90% off, with one catch — AWS may take the seat back with a two-minute
+    warning when a full-fare customer arrives.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul>
+      <li>~60–90% cheaper than on-demand</li>
+      <li>perfect for k8s: pods just reschedule (lesson 03 of ☸️)</li>
+      <li>huge scale available in bursts</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>can vanish with 2 minutes' notice</li>
+      <li>capacity varies by type/AZ/time</li>
+      <li>needs interruption-tolerant design (checkpoints, queues)</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul>
+      <li>batch jobs, CI runners, rendering, big data</li>
+      <li>stateless k8s workers mixed with on-demand base</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
+      <li>databases or anything stateful-and-singular</li>
+      <li>latency-critical singletons that can't move</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l08">Diagram ↗</a></p>
+</section>
+
+<section class="term" id="ssm" style="--c:#ea580c">
+  <h2>🛗 SSM Session Manager vs SSH (lesson 09)</h2>
+  <div class="hist"><b>⏮️ Before SSM</b>
+    <p>Everyone SSH'd: port 22 open to the office IP (or worse, the world), key files passed
+    around when people joined and left, bastion hosts to maintain, and zero record of who typed
+    what. Session Manager (2018) routes the shell through AWS's API — no open port, no shared
+    keys, every session loggable.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ SSM merits</h4><ul>
+      <li>no inbound port at all — nothing to scan</li>
+      <li>access via IAM (revoke a person, not a key file)</li>
+      <li>sessions auditable/recordable</li>
+      <li>works without public IPs or bastions</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ SSM demerits</h4><ul>
+      <li>needs the agent + instance role set up</li>
+      <li>a hair slower; file transfer is clunkier</li>
+      <li>one more AWS-specific thing to learn</li>
+    </ul></div>
+    <div class="q use"><h4>👍 SSH still fine when</h4><ul>
+      <li>quick personal labs (like this course's — from YOUR IP only)</li>
+      <li>rsync/scp-heavy workflows</li>
+      <li>non-AWS machines (SSM is AWS-shaped)</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Avoid entirely</h4><ul>
+      <li>port 22 open to 0.0.0.0/0 — the classic honeypot</li>
+      <li>team-shared private key files</li>
+      <li>long-lived bastions nobody patches</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l09">Diagram ↗</a></p>
+</section>
+
+<footer>
+  Learn AWS School · <a href="index.html">Course home</a> ·
+  <a href="lesson-diagrams.html">Lesson diagrams</a> ·
+  <a href="https://github.com/BaluRaut/learn-aws-school">github.com/BaluRaut/learn-aws-school</a>
+</footer>
+
+</div>
+</body>
+</html>

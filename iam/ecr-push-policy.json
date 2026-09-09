@@ -1,0 +1,26 @@
+{
+  "_comment": "Permission slip 📝 (lesson 03): EXACTLY what a CI robot needs to push images to ONE ECR repo — least privilege in practice. Compare with the lazy (dangerous) alternative: AdministratorAccess.",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LoginToTheBank",
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
+      "Sid": "PushPullOnlyHelloSchool",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload",
+        "ecr:PutImage",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+      ],
+      "Resource": "arn:aws:ecr:ap-south-1:123456789012:repository/hello-school"
+    }
+  ]
+}
