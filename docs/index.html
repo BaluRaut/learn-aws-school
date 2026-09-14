@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learn AWS the school way — IAM &amp; EC2</title>
-<meta name="description" content="12 branch-by-branch lessons on AWS foundations: IAM (users, policies, roles, machine identities) and EC2 (instances, security groups, EBS, spot) — ELI5 school analogies, diagrams and hands-on labs.">
-<meta property="og:title" content="Learn AWS the school way — IAM &amp; EC2">
-<meta property="og:description" content="12 branch-by-branch lessons on AWS foundations: IAM (users, policies, roles, machine identities) and EC2 (instances, security groups, EBS, spot) — ELI5 school analogies, diagrams and hands-on labs.">
+<title>Learn AWS the school way — IAM, EC2 &amp; the campus</title>
+<meta name="description" content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs.">
+<meta property="og:title" content="Learn AWS the school way — IAM, EC2 &amp; the campus">
+<meta property="og:description" content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs.">
 <meta property="og:image" content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -77,15 +77,16 @@
 <div class="wrap">
 
   <header>
-    <h1>🪪 Learn AWS the school way — IAM &amp; EC2</h1>
+    <h1>🪪 Learn AWS the school way — IAM, EC2 &amp; the campus</h1>
     <p class="sub">The <b>foundations course</b> of the school series: the two AWS ideas every other
     course stands on. <b>IAM</b> is the ID-card office — who may do what. <b>EC2</b> is the rented
     computer — the desk everything ultimately runs on. ECR logins, EKS nodes, CI roles: it's all
-    these two, wearing different costumes.</p>
+    these two, wearing different costumes. And in <b>Part 3</b> the campus itself appears:
+    network, storage, traffic, names, state, eyes, errands — and the bill. 🧾</p>
     <div class="chips">
       <span class="chip">🪪 users &amp; groups</span><span class="chip">📝 policies</span>
       <span class="chip">🎩 roles</span><span class="chip">🖥️ instances</span>
-      <span class="chip">🚪 security groups</span><span class="chip">🗄️ EBS &amp; AMIs</span>
+      <span class="chip">🚪 security groups</span><span class="chip">🗄️ EBS &amp; AMIs</span><span class="chip">🏫 VPC</span><span class="chip">🪣 S3</span><span class="chip">🛎️ ALB</span><span class="chip">📈 CloudWatch</span><span class="chip">⚡ Lambda</span>
     </div>
   </header>
 
@@ -108,13 +109,30 @@
         <li>drawers, photocopies, desk templates — EBS &amp; AMIs 🗄️</li>
       </ul>
     </div>
+    <div class="vcol" style="border-top: 5px solid #0d9488">
+      <h3>🏫 Part 3 — the campus &amp; the services</h3>
+      <ul>
+        <li>campus walls, wings, and the one-way postbox 📮</li>
+        <li>the infinite locker room &amp; visitor passes 🗄️🎟️</li>
+        <li>reception, phonebook, record office 🛎️☎️🗃️</li>
+        <li>report cards, on-call helpers, the meter 📈⚡🧾</li>
+      </ul>
+    </div>
   </div>
 
   <h2 id="big-picture">🗺️ The big picture — one diagram, both worlds</h2>
-  <p class="sub">The whole course on one canvas: IAM (purple, lessons 1–6) and EC2 (orange,
-  lessons 7–12). Click it for the <a href="images/big-picture-4k.png">4K version</a>.</p>
+  <p class="sub">The whole course on one canvas: IAM (purple, lessons 1–6), EC2 (orange, lessons 7–12),
+  and the campus &amp; services (teal, lessons 13–20). Click it for the <a href="images/big-picture-4k.png">4K version</a>.</p>
   <figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
     <a href="images/big-picture-4k.png"><img src="images/big-picture.svg" alt="The big picture: IAM decides who may do what; EC2 is the rented computers everything runs on" loading="lazy" style="width:100%;height:auto;border-radius:8px;background:#fff"></a>
+  </figure>
+
+  <h2 id="campus-map">🗺️ The campus map — where everything stands</h2>
+  <p class="sub">Part 3 on one canvas: the VPC campus with its wings and gates, and the services
+  around it — each with a REQUIRED/OPTIONAL badge and its analogy. Click for the
+  <a href="images/campus-map-4k.png">4K version</a>.</p>
+  <figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
+    <a href="images/campus-map-4k.png"><img src="images/campus-map.svg" alt="The campus map: VPC with public and private wings across two AZs, IGW, NAT, ALB, and the regional services — S3, Route 53, RDS, CloudWatch, Lambda" loading="lazy" style="width:100%;height:auto;border-radius:8px;background:#fff"></a>
   </figure>
 
   <h2 id="part1">🪪 Part 1 — IAM: who may do what (lessons 1–6)</h2>
@@ -143,6 +161,23 @@
     <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">12</span><h3>🤖 EC2 in real life</h3></div><span class="ana">Boot checklists, role badges, fleets — and EKS nodes revealed.</span><code>lesson-12-ec2-in-real-life</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l12">See the diagram ↗</a></div>
   </div>
 
+
+  <h2 id="part3">🏫 Part 3 — the campus &amp; the services (lessons 13–20)</h2>
+  <p class="sub">Where the desks actually stand — and everything the school rents around them:
+  network, storage, traffic, names, state, eyes, errands, and <b>the meter</b>. VPC/S3/Lambda labs
+  are ~free; the ALB/RDS labs cost pennies <b>if you destroy</b> — which is lesson 20's whole point.</p>
+
+  <div class="grid">
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">13</span><h3>🏫 VPC</h3></div><span class="ana">The campus walls — wings, one gate, corridor signs.</span><code>lesson-13-vpc</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l13">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">14</span><h3>🗄️ S3</h3></div><span class="ana">The infinite locker room — boxes, passes, three buildings.</span><code>lesson-14-s3</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l14">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">15</span><h3>🛎️ Load balancers</h3></div><span class="ana">The reception that splits crowds — health checks decide.</span><code>lesson-15-load-balancers</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l15">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">16</span><h3>☎️ Route 53</h3></div><span class="ana">The phonebook — names to reception, failover included.</span><code>lesson-16-route53</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l16">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">17</span><h3>🗃️ RDS</h3></div><span class="ana">The record office you rent — clerk, mirror, photocopies.</span><code>lesson-17-rds</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l17">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">18</span><h3>📈 CloudWatch</h3></div><span class="ana">Report cards, diaries, alarm bells — wired to actions.</span><code>lesson-18-cloudwatch</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l18">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">19</span><h3>⚡ Lambda</h3></div><span class="ana">The helper who exists only while called — pay per errand.</span><code>lesson-19-lambda</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l19">See the diagram ↗</a></div>
+    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">20</span><h3>🧾 The bill</h3></div><span class="ana">Reading the meter — four meters, four classic surprises.</span><code>lesson-20-the-bill</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l20">See the diagram ↗</a></div>
+  </div>
+
   <pre><code># take the course locally (AWS CLI configured; IAM part is 100% free):
 git clone https://github.com/BaluRaut/learn-aws-school.git
 cd learn-aws-school
@@ -157,7 +192,7 @@ git checkout lesson-01-why-iam          # then open lessons/01-why-iam/README.md
 
   <h2 id="diagrams">📐 The lesson diagrams — follow the numbers</h2>
   <p class="sub">Every lesson as one numbered box-and-arrow diagram, one after another —
-  readable right here (purple = IAM, orange = EC2). Also on a
+  readable right here (purple = IAM, orange = EC2, teal = the campus). Also on a
   <a href="lesson-diagrams.html">standalone page</a> with jump navigation.</p>
 
 <!-- 01 -->
@@ -559,8 +594,339 @@ git checkout lesson-01-why-iam          # then open lessons/01-why-iam/README.md
   <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">Read full lesson 12 →</a></p>
 </section>
 
+<!-- 13 -->
+<section class="dsec" id="l13" style="--c:#0d9488">
+  <h2><span class="ln">13</span> 🏫 VPC — the campus walls</h2>
+  <p class="d">Desks never stood in an open field: a fenced campus with wings, one gate, and corridor signs deciding who can reach the street.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="The internet reaches the VPC through the internet gateway into the public wing; private wings reach out only via NAT; route tables decide everything">
+
+    <rect class="soft" x="40" y="110" width="150" height="80" rx="12"/>
+    <text class="t m" x="115" y="145">🌍 the street</text>
+    <text class="s m" x="115" y="168">(internet)</text>
+    <rect class="box" x="240" y="110" width="150" height="80" rx="12"/>
+    <text class="t m" x="315" y="145">🚧 IGW</text>
+    <text class="s m" x="315" y="168">the main gate</text>
+    <line class="arr" x1="190" y1="150" x2="236" y2="150"/>
+    <g transform="translate(213,133)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="soft" x="440" y="40" width="460" height="250" rx="16"/>
+    <text class="t" x="460" y="70">🏫 VPC 10.0.0.0/16 — the fenced campus</text>
+    <rect class="box" x="465" y="90" width="190" height="95" rx="12"/>
+    <text class="t m" x="560" y="115">🚪 public wing</text>
+    <text class="s m" x="560" y="138">10.0.1.0/24 · AZ-a</text>
+    <text class="s m" x="560" y="160">📮 NAT postbox here</text>
+    <rect class="box" x="685" y="90" width="190" height="95" rx="12"/>
+    <text class="t m" x="780" y="115">🔒 private wing</text>
+    <text class="s m" x="780" y="138">10.0.101.0/24 · AZ-a</text>
+    <text class="s m" x="780" y="160">🖥️ your desks live here</text>
+    <line class="arr" x1="390" y1="150" x2="461" y2="137"/>
+    <g transform="translate(425,128)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <line class="arr dash" x1="685" y1="160" x2="659" y2="160"/>
+    <g transform="translate(672,143)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="soft" x="465" y="205" width="410" height="70" rx="10"/>
+    <text class="s m" x="670" y="232">🪧 corridor signs (route tables):</text>
+    <text class="s m" x="670" y="254">public: 0.0.0.0/0 → gate · private: 0.0.0.0/0 → NAT (out only)</text>
+    <g transform="translate(465,205)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <text class="s m" x="470" y="318">"public" just means: this wing's sign points at the gate — that's the whole trick 🪧</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">Read full lesson 13 →</a></p>
+</section>
+
+<!-- 14 -->
+<section class="dsec" id="l14" style="--c:#0d9488">
+  <h2><span class="ln">14</span> 🗄️ S3 — the infinite locker room</h2>
+  <p class="d">Boxes with labels, photocopied to three buildings, opened by ID card — or by a visitor pass that expires.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="An app puts an object into a bucket; S3 replicates it across three availability zones; a presigned URL lets a visitor fetch it until it expires">
+
+    <rect class="box" x="40" y="60" width="180" height="80" rx="12"/>
+    <text class="t m" x="130" y="95">🖥️ app / CLI</text>
+    <text class="s m" x="130" y="118">signs every call 🪪</text>
+    <rect class="box" x="300" y="50" width="260" height="120" rx="14"/>
+    <text class="t m" x="430" y="82">🪣 bucket: school-files</text>
+    <rect class="soft" x="325" y="98" width="210" height="50" rx="8"/>
+    <text class="s m" x="430" y="120">📦 key: 2026/class-3A/</text>
+    <text class="s m" x="430" y="138">photo.jpg (no real folders)</text>
+    <line class="arr" x1="220" y1="100" x2="296" y2="100"/>
+    <g transform="translate(258,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="soft" x="640" y="50" width="260" height="90" rx="12"/>
+    <text class="t m" x="770" y="85">🏢🏢🏢 three buildings</text>
+    <text class="s m" x="770" y="110">every box photocopied — 11 nines</text>
+    <line class="arr" x1="560" y1="95" x2="636" y2="95"/>
+    <g transform="translate(598,78)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="300" y="210" width="260" height="80" rx="12"/>
+    <text class="t m" x="430" y="242">🧑 visitor with 🎟️ pass</text>
+    <text class="s m" x="430" y="265">presigned URL, expires ⏰</text>
+    <line class="arr" x1="130" y1="140" x2="130" y2="250"/>
+    <line class="arr" x1="130" y1="250" x2="296" y2="250"/>
+    <g transform="translate(213,233)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <line class="arr" x1="430" y1="210" x2="430" y2="174"/>
+    <g transform="translate(447,192)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <rect class="dead" x="640" y="210" width="260" height="80" rx="12"/>
+    <text class="t m" x="770" y="242">🛡️ no pass, no entry</text>
+    <text class="s m" x="770" y="265">Block Public Access: ON → 403</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">Read full lesson 14 →</a></p>
+</section>
+
+<!-- 15 -->
+<section class="dsec" id="l15" style="--c:#0d9488">
+  <h2><span class="ln">15</span> 🛎️ Load balancers — the reception that splits crowds</h2>
+  <p class="d">One address for the whole town; a signboard routes by path; only desks that answer the health check get visitors.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="The town connects to the ALB in public subnets; listener rules route to target groups; health checks decide which private instances receive traffic">
+
+    <rect class="soft" x="40" y="60" width="150" height="80" rx="12"/>
+    <text class="t m" x="115" y="95">🧑‍🧑‍🧒 the town</text>
+    <text class="s m" x="115" y="118">one address</text>
+    <rect class="box" x="240" y="50" width="220" height="100" rx="14"/>
+    <text class="t m" x="350" y="82">🛎️ ALB — reception</text>
+    <text class="s m" x="350" y="105">public wings, AZ-a + AZ-b</text>
+    <text class="s m" x="350" y="127">🔐 HTTPS cert at the door</text>
+    <line class="arr" x1="190" y1="100" x2="236" y2="100"/>
+    <g transform="translate(213,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="soft" x="510" y="50" width="180" height="100" rx="12"/>
+    <text class="t m" x="600" y="82">🪧 signboard</text>
+    <text class="s m" x="600" y="105">/api/* → api desks</text>
+    <text class="s m" x="600" y="127">else → web desks</text>
+    <line class="arr" x1="460" y1="100" x2="506" y2="100"/>
+    <g transform="translate(483,83)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="740" y="55" width="170" height="90" rx="12"/>
+    <text class="t m" x="825" y="87">📋 target group</text>
+    <text class="s m" x="825" y="110">🙋 "ready to answer?"</text>
+    <text class="s m" x="825" y="130">every few seconds</text>
+    <line class="arr" x1="690" y1="100" x2="736" y2="100"/>
+    <g transform="translate(713,83)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="box" x="600" y="220" width="140" height="70" rx="12"/>
+    <text class="t m" x="670" y="250">🖥️ desk AZ-a</text>
+    <text class="s m" x="670" y="272">private wing</text>
+    <rect class="box" x="770" y="220" width="140" height="70" rx="12"/>
+    <text class="t m" x="840" y="250">🖥️ desk AZ-b</text>
+    <text class="s m" x="840" y="272">private wing</text>
+    <rect class="dead" x="420" y="220" width="150" height="70" rx="12"/>
+    <text class="t m" x="495" y="250">😴 failing checks</text>
+    <text class="s m" x="495" y="272">skipped, not restarted</text>
+    <line class="arr" x1="800" y1="145" x2="690" y2="216"/>
+    <line class="arr" x1="835" y1="145" x2="843" y2="216"/>
+    <g transform="translate(760,190)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <line class="arr dash" x1="740" y1="130" x2="530" y2="216"/>
+    <text class="s m" x="220" y="250">🚄 NLB = the pneumatic tube:</text>
+    <text class="s m" x="220" y="272">raw packets, wire speed (L4)</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">Read full lesson 15 →</a></p>
+</section>
+
+<!-- 16 -->
+<section class="dsec" id="l16" style="--c:#0d9488">
+  <h2><span class="ln">16</span> ☎️ Route 53 — the school's phonebook</h2>
+  <p class="d">Names become reception desks; the phonebook health-checks reception and answers with the backup campus when it must.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="A browser asks Route 53 for school.com; an ALIAS record answers with the ALB; health checks watch it and fail over to a backup">
+
+    <rect class="soft" x="40" y="60" width="170" height="90" rx="12"/>
+    <text class="t m" x="125" y="95">🧒 browser</text>
+    <text class="s m" x="125" y="118">"school.com?"</text>
+    <rect class="box" x="270" y="50" width="240" height="110" rx="14"/>
+    <text class="t m" x="390" y="82">☎️ Route 53 — hosted zone 📖</text>
+    <text class="s m" x="390" y="105">ALIAS: school.com → reception</text>
+    <text class="s m" x="390" y="127">(no IP written down — it changes!)</text>
+    <line class="arr" x1="210" y1="105" x2="266" y2="105"/>
+    <g transform="translate(238,88)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="box" x="580" y="60" width="180" height="90" rx="12"/>
+    <text class="t m" x="670" y="95">🛎️ ALB</text>
+    <text class="s m" x="670" y="118">(lesson 15)</text>
+    <line class="arr" x1="510" y1="105" x2="576" y2="105"/>
+    <g transform="translate(543,88)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="soft" x="580" y="215" width="180" height="80" rx="12"/>
+    <text class="t m" x="670" y="247">🩺 health check</text>
+    <text class="s m" x="670" y="270">/health · every 30 s</text>
+    <line class="arr dash" x1="670" y1="215" x2="670" y2="154"/>
+    <g transform="translate(687,185)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="dead" x="270" y="215" width="240" height="80" rx="12"/>
+    <text class="t m" x="390" y="247">🏫 backup campus</text>
+    <text class="s m" x="390" y="270">(another region, asleep)</text>
+    <line class="arr dash" x1="390" y1="160" x2="390" y2="211"/>
+    <g transform="translate(407,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <text class="s m" x="125" y="200">⏰ TTL = how long callers may</text>
+    <text class="s m" x="125" y="222">remember the answer</text>
+    <text class="s m" x="125" y="244">(lower it BEFORE you move)</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">Read full lesson 16 →</a></p>
+</section>
+
+<!-- 17 -->
+<section class="dsec" id="l17" style="--c:#0d9488">
+  <h2><span class="ln">17</span> 🗃️ RDS — the record office you rent</h2>
+  <p class="d">A database with the clerk included: nightly photocopies, a synced mirror in the next building, and an endpoint name that never changes.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="The app dials the endpoint DNS which points at the primary; a standby mirrors it synchronously in another AZ; backups and read replicas hang off the primary">
+
+    <rect class="box" x="40" y="60" width="160" height="80" rx="12"/>
+    <text class="t m" x="120" y="95">🖥️ app</text>
+    <text class="s m" x="120" y="118">private wing</text>
+    <rect class="soft" x="250" y="60" width="230" height="80" rx="12"/>
+    <text class="t m" x="365" y="90">☎️ endpoint (DNS)</text>
+    <text class="s m" x="365" y="115">always the current primary</text>
+    <line class="arr" x1="200" y1="100" x2="246" y2="100"/>
+    <g transform="translate(223,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="box" x="540" y="40" width="180" height="110" rx="14"/>
+    <text class="t m" x="630" y="72">🗃️ primary office</text>
+    <text class="s m" x="630" y="95">AZ-a · private subnet</text>
+    <text class="s m" x="630" y="117">SG: app desks only</text>
+    <line class="arr" x1="480" y1="100" x2="536" y2="100"/>
+    <g transform="translate(508,83)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="760" y="40" width="150" height="110" rx="14"/>
+    <text class="t m" x="835" y="72">🪞 standby</text>
+    <text class="s m" x="835" y="95">AZ-b · synced</text>
+    <text class="s m" x="835" y="117">invisible until needed</text>
+    <line class="arr" x1="720" y1="95" x2="756" y2="95"/>
+    <g transform="translate(738,78)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="soft" x="540" y="210" width="180" height="80" rx="12"/>
+    <text class="t m" x="630" y="242">📸 photocopies</text>
+    <text class="s m" x="630" y="265">nightly + point-in-time</text>
+    <line class="arr" x1="630" y1="150" x2="630" y2="206"/>
+    <g transform="translate(647,178)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <rect class="dead" x="760" y="210" width="150" height="80" rx="12"/>
+    <text class="t m" x="835" y="242">📚 read replicas</text>
+    <text class="s m" x="835" y="265">async · for reports</text>
+    <line class="arr dash" x1="740" y1="150" x2="810" y2="206"/>
+    <text class="s m" x="240" y="220">failover drill: primary floods →</text>
+    <text class="s m" x="240" y="242">the NAME flips to the mirror ~1 min</text>
+    <text class="s m" x="240" y="264">your app just… reconnects 🎩</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">Read full lesson 17 →</a></p>
+</section>
+
+<!-- 18 -->
+<section class="dsec" id="l18" style="--c:#0d9488">
+  <h2><span class="ln">18</span> 📈 CloudWatch — report cards, diaries, alarm bells</h2>
+  <p class="d">Numbers, text, and rules that DO things: text the teacher, or tell the fleet manager to add desks.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="Instances, load balancers and databases emit metrics and logs; an alarm watches a metric and triggers SNS or Auto Scaling actions">
+
+    <rect class="soft" x="40" y="50" width="200" height="110" rx="14"/>
+    <text class="t m" x="140" y="82">🖥️ 🛎️ 🗃️ everything</text>
+    <text class="s m" x="140" y="105">mails numbers &amp; text</text>
+    <text class="s m" x="140" y="127">every minute</text>
+    <rect class="box" x="300" y="40" width="180" height="80" rx="12"/>
+    <text class="t m" x="390" y="72">📊 metrics</text>
+    <text class="s m" x="390" y="95">CPUUtilization = 87%</text>
+    <rect class="box" x="300" y="150" width="180" height="80" rx="12"/>
+    <text class="t m" x="390" y="182">📔 diaries (logs)</text>
+    <text class="s m" x="390" y="205">app output · flow logs</text>
+    <line class="arr" x1="240" y1="80" x2="296" y2="80"/>
+    <line class="arr" x1="240" y1="130" x2="296" y2="180"/>
+    <g transform="translate(268,63)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="box" x="540" y="40" width="180" height="90" rx="12"/>
+    <text class="t m" x="630" y="72">🔔 alarm</text>
+    <text class="s m" x="630" y="95">CPU &gt; 80%</text>
+    <text class="s m" x="630" y="115">for 5 minutes</text>
+    <line class="arr" x1="480" y1="80" x2="536" y2="80"/>
+    <g transform="translate(508,63)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="770" y="30" width="150" height="80" rx="12"/>
+    <text class="t m" x="845" y="62">📱 SNS</text>
+    <text class="s m" x="845" y="85">text the teacher</text>
+    <rect class="box" x="770" y="140" width="150" height="90" rx="12"/>
+    <text class="t m" x="845" y="172">👯 ASG: +2 desks</text>
+    <text class="s m" x="845" y="195">the HPA's buses,</text>
+    <text class="s m" x="845" y="215">one floor down</text>
+    <line class="arr" x1="720" y1="70" x2="766" y2="70"/>
+    <g transform="translate(743,53)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <line class="arr" x1="720" y1="110" x2="766" y2="175"/>
+    <rect class="soft" x="540" y="180" width="180" height="80" rx="12"/>
+    <text class="t m" x="630" y="212">🔎 Logs Insights</text>
+    <text class="s m" x="630" y="235">grep the diaries at scale</text>
+    <line class="arr" x1="480" y1="200" x2="536" y2="215"/>
+    <g transform="translate(508,190)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <text class="s m" x="470" y="290">🫢 famous surprise: no memory metric without the CloudWatch agent — the desk must tell on itself</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">Read full lesson 18 →</a></p>
+</section>
+
+<!-- 19 -->
+<section class="dsec" id="l19" style="--c:#0d9488">
+  <h2><span class="ln">19</span> ⚡ Lambda — the helper who exists only while called</h2>
+  <p class="d">An event happens, a helper appears wearing exactly one hat, does one errand, and vanishes. Idle cost: zero.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="Events from S3, schedules or URLs invoke the function; it runs with its execution role, returns a result, and disappears">
+
+    <rect class="soft" x="40" y="50" width="200" height="110" rx="14"/>
+    <text class="t m" x="140" y="82">🔔 events</text>
+    <text class="s m" x="140" y="105">📦 S3 upload · ⏰ the bell</text>
+    <text class="s m" x="140" y="127">🌐 URL · 📨 queue</text>
+    <rect class="box" x="310" y="50" width="240" height="110" rx="14"/>
+    <text class="t m" x="430" y="82">⚡ helper appears 💨</text>
+    <text class="s m" x="430" y="105">runs hello.py · ≤ 15 min</text>
+    <text class="s m" x="430" y="127">billed per 100 ms</text>
+    <line class="arr" x1="240" y1="105" x2="306" y2="105"/>
+    <g transform="translate(273,88)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="soft" x="310" y="220" width="240" height="70" rx="12"/>
+    <text class="t m" x="430" y="248">🎩 execution role</text>
+    <text class="s m" x="430" y="270">this bucket + logs — nothing else</text>
+    <line class="arr" x1="430" y1="220" x2="430" y2="164"/>
+    <g transform="translate(447,192)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="620" y="60" width="140" height="90" rx="12"/>
+    <text class="t m" x="690" y="95">✅ result</text>
+    <text class="s m" x="690" y="118">→ S3 / response</text>
+    <line class="arr" x1="550" y1="105" x2="616" y2="105"/>
+    <g transform="translate(583,88)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="dead" x="800" y="60" width="110" height="90" rx="12"/>
+    <text class="t m" x="855" y="95">👻 gone</text>
+    <text class="s m" x="855" y="118">idle = $0</text>
+    <line class="arr dash" x1="760" y1="105" x2="796" y2="105"/>
+    <g transform="translate(778,88)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+    <text class="s m" x="700" y="230">🥶 cold start: a helper who hasn't run lately</text>
+    <text class="s m" x="700" y="252">spends ~100ms–2s putting their shoes on</text>
+    <text class="s m" x="700" y="274">(watch it in the diary's REPORT lines)</text>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">Read full lesson 19 →</a></p>
+</section>
+
+<!-- 20 -->
+<section class="dsec" id="l20" style="--c:#0d9488">
+  <h2><span class="ln">20</span> 🧾 The bill — reading the meter</h2>
+  <p class="d">Four meters, one itemized bill, and a $5 tripwire that has saved more students than any other feature.</p>
+  <svg viewBox="0 0 940 330" role="img" aria-label="Time, space, requests and egress feed the bill; Cost Explorer itemizes it; a budget alarm rings before it hurts">
+
+    <rect class="soft" x="40" y="35" width="200" height="55" rx="10"/>
+    <text class="t m" x="140" y="58">⏱️ time</text>
+    <text class="s m" x="140" y="78">desk-seconds · office-hours</text>
+    <rect class="soft" x="40" y="103" width="200" height="55" rx="10"/>
+    <text class="t m" x="140" y="126">📦 space</text>
+    <text class="s m" x="140" y="146">GB-months exist = pay</text>
+    <rect class="soft" x="40" y="171" width="200" height="55" rx="10"/>
+    <text class="t m" x="140" y="194">🔁 errands</text>
+    <text class="s m" x="140" y="214">per-request, tiny × huge</text>
+    <rect class="soft" x="40" y="239" width="200" height="55" rx="10"/>
+    <text class="t m" x="140" y="262">🚪 the gate (egress)</text>
+    <text class="s m" x="140" y="282">leaving costs, entering free</text>
+    <g transform="translate(40,35)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
+    <rect class="box" x="330" y="100" width="250" height="120" rx="14"/>
+    <text class="t m" x="455" y="135">🧾 Cost Explorer</text>
+    <text class="s m" x="455" y="160">the itemized bill:</text>
+    <text class="s m" x="455" y="182">by service · by day · by tag</text>
+    <line class="arr" x1="240" y1="62" x2="326" y2="120"/>
+    <line class="arr" x1="240" y1="130" x2="326" y2="150"/>
+    <line class="arr" x1="240" y1="198" x2="326" y2="175"/>
+    <line class="arr" x1="240" y1="266" x2="326" y2="200"/>
+    <g transform="translate(283,145)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
+    <rect class="box" x="660" y="100" width="250" height="120" rx="14"/>
+    <text class="t m" x="785" y="135">⏰ Budget alarm at $5</text>
+    <text class="s m" x="785" y="160">the tripwire — set it TODAY,</text>
+    <text class="s m" x="785" y="182">before any other lab</text>
+    <line class="arr" x1="580" y1="160" x2="656" y2="160"/>
+    <g transform="translate(618,143)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
+    <rect class="dead" x="330" y="255" width="580" height="60" rx="12"/>
+    <text class="s m" x="620" y="280">😱 the classics: NAT postbox · stopped desk's drawer (EBS) ·</text>
+    <text class="s m" x="620" y="302">orphan snapshots · idle ALB/RDS — labs that skip destroy become subscriptions</text>
+    <g transform="translate(330,255)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
+
+  </svg>
+  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">Read full lesson 20 →</a></p>
+</section>
+
   <a class="btn" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">Start Lesson 01 →</a>
-  <a class="btn alt" href="lesson-diagrams.html">📐 All 12 lesson diagrams</a>
+  <a class="btn alt" href="lesson-diagrams.html">📐 All 20 lesson diagrams</a>
   <a class="btn alt" href="quiz.html">🧪 Quiz</a>
   <a class="btn alt" href="study-plan.html">🗓️ Study plan</a>
   <a class="btn alt" href="before-and-tradeoffs.html">⏮️ Before &amp; trade-offs</a>

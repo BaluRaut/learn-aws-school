@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    .vpc { fill: #f0fdfa; stroke: #0d9488; stroke-width: 3.5; }
+    .az  { fill: #fff; stroke: #94a3b8; stroke-width: 2; }
+    .pub { fill: #fffbeb; stroke: #d97706; stroke-width: 2; }
+    .prv { fill: #f8fafc; stroke: #64748b; stroke-width: 2; }
+    .svc { fill: #fff; stroke: #0d9488; stroke-width: 2.5; }
+    .nd  { fill: #fff; stroke: #326ce5; stroke-width: 2; }
+    .tip { fill: #fff1f2; stroke: #be123c; stroke-width: 1.5; }
+    .req { fill: #16a34a; }
+    .opt { fill: #d97706; }
+    .bdg { font-size: 13px; font-weight: 800; fill: #fff; text-anchor: middle; }
+    .title { font-size: 36px; font-weight: 800; fill: #0f172a; }
+    .zt { font-size: 22px; font-weight: 800; }
+    .t  { font-size: 18px; font-weight: 600; fill: #0f172a; }
+    .s  { font-size: 14px; fill: #475569; }
+    .m  { text-anchor: middle; }
+    .arr  { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arw); }
+    .dash { stroke-dasharray: 7 6; }
+    .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
+  </style>
+
+  <rect x="0" y="0" width="1920" height="1160" fill="#ffffff"/>
+  <text class="title m" x="960" y="50">The Campus Map — where everything stands (lessons 13–20)</text>
+
+  <!-- the street -->
+  <rect class="tip" x="60" y="80" width="1240" height="60" rx="12"/>
+  <text class="t m" x="680" y="118">🌍 the street (internet) — the town, the parents, the visitors</text>
+
+  <!-- gate -->
+  <rect class="svc" x="600" y="170" width="160" height="60" rx="12"/>
+  <text class="t m" x="680" y="207">🚧 IGW gate</text>
+  <rect class="req" x="620" y="156" width="120" height="24" rx="12"/>
+  <text class="bdg" x="680" y="173">REQUIRED</text>
+  <line class="arr" x1="680" y1="140" x2="680" y2="166"/>
+  <g transform="translate(600,170)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">1</text></g>
+
+  <!-- VPC -->
+  <rect class="vpc" x="60" y="260" width="1240" height="700" rx="22"/>
+  <text class="zt" x="90" y="300" fill="#0d9488">🏫 VPC 10.0.0.0/16 — the fenced campus (L13) · free 🧒 the walls + the address plan</text>
+  <line class="arr" x1="680" y1="230" x2="680" y2="256"/>
+
+  <!-- AZ A -->
+  <rect class="az" x="90" y="330" width="580" height="600" rx="16"/>
+  <text class="zt" x="115" y="368" fill="#475569">🏢 building A (AZ-a)</text>
+  <!-- AZ B -->
+  <rect class="az" x="690" y="330" width="580" height="600" rx="16"/>
+  <text class="zt" x="715" y="368" fill="#475569">🏢 building B (AZ-b)</text>
+
+  <!-- public wings -->
+  <rect class="pub" x="115" y="395" width="530" height="220" rx="12"/>
+  <text class="t" x="135" y="428">🚪 public wing 10.0.1.0/24 — sign: 0.0.0.0/0 → gate 🪧</text>
+  <rect class="nd" x="140" y="450" width="230" height="130" rx="12"/>
+  <text class="t m" x="255" y="483">🛎️ ALB (L15)</text>
+  <text class="s m" x="255" y="508">the reception desk —</text>
+  <text class="s m" x="255" y="528">the ONLY street-facing thing</text>
+  <text class="s m" x="255" y="548">🧒 splits the sports-day crowd</text>
+  <rect class="req" x="160" y="436" width="120" height="24" rx="12"/>
+  <text class="bdg" x="220" y="453">REQUIRED</text>
+  <g transform="translate(140,450)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">2</text></g>
+  <rect class="nd" x="400" y="450" width="220" height="130" rx="12"/>
+  <text class="t m" x="510" y="483">📮 NAT (L13)</text>
+  <text class="s m" x="510" y="508">one-way postbox: private</text>
+  <text class="s m" x="510" y="528">wings mail out, nobody in</text>
+  <text class="s m" x="510" y="548">⚠️ ~$32/mo — the bill classic</text>
+  <rect class="opt" x="420" y="436" width="120" height="24" rx="12"/>
+  <text class="bdg" x="480" y="453">OPTIONAL</text>
+
+  <rect class="pub" x="715" y="395" width="530" height="220" rx="12"/>
+  <text class="t" x="735" y="428">🚪 public wing 10.0.2.0/24 — same sign, other building</text>
+  <rect class="nd" x="740" y="450" width="230" height="130" rx="12"/>
+  <text class="t m" x="855" y="483">🛎️ ALB (second leg)</text>
+  <text class="s m" x="855" y="508">reception stands in BOTH</text>
+  <text class="s m" x="855" y="528">buildings — one may burn 🔥</text>
+  <text class="s m" x="855" y="548">and the town never notices</text>
+  <rect class="req" x="760" y="436" width="120" height="24" rx="12"/>
+  <text class="bdg" x="820" y="453">REQUIRED</text>
+
+  <!-- private wings -->
+  <rect class="prv" x="115" y="640" width="530" height="270" rx="12"/>
+  <text class="t" x="135" y="673">🔒 private wing 10.0.101.0/24 — no street windows</text>
+  <rect class="nd" x="140" y="695" width="230" height="120" rx="12"/>
+  <text class="t m" x="255" y="728">🖥️ desks (ASG)</text>
+  <text class="s m" x="255" y="753">your app, lesson 12's fleet</text>
+  <text class="s m" x="255" y="773">🧒 SG: "reception only" 🚪</text>
+  <text class="s m" x="255" y="793">(EKS nodes stand HERE)</text>
+  <rect class="req" x="160" y="681" width="120" height="24" rx="12"/>
+  <text class="bdg" x="220" y="698">REQUIRED</text>
+  <g transform="translate(140,695)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">3</text></g>
+  <rect class="nd" x="400" y="695" width="220" height="120" rx="12"/>
+  <text class="t m" x="510" y="728">🗃️ RDS primary (L17)</text>
+  <text class="s m" x="510" y="753">the record office —</text>
+  <text class="s m" x="510" y="773">deepest, safest wing</text>
+  <text class="s m" x="510" y="793">🧒 clerk included</text>
+  <rect class="opt" x="420" y="681" width="120" height="24" rx="12"/>
+  <text class="bdg" x="480" y="698">OPTIONAL</text>
+  <g transform="translate(400,695)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="prv" x="715" y="640" width="530" height="270" rx="12"/>
+  <text class="t" x="735" y="673">🔒 private wing 10.0.102.0/24 — the mirror side</text>
+  <rect class="nd" x="740" y="695" width="230" height="120" rx="12"/>
+  <text class="t m" x="855" y="728">🖥️ desks (ASG)</text>
+  <text class="s m" x="855" y="753">same fleet, spread across</text>
+  <text class="s m" x="855" y="773">buildings by the manager</text>
+  <text class="s m" x="855" y="793">🧒 never all in one 🏫</text>
+  <rect class="req" x="760" y="681" width="120" height="24" rx="12"/>
+  <text class="bdg" x="820" y="698">REQUIRED</text>
+  <rect class="nd" x="1000" y="695" width="220" height="120" rx="12"/>
+  <text class="t m" x="1110" y="728">🪞 RDS standby</text>
+  <text class="s m" x="1110" y="753">synced every second,</text>
+  <text class="s m" x="1110" y="773">invisible until the flood —</text>
+  <text class="s m" x="1110" y="793">then the NAME flips here</text>
+  <rect class="opt" x="1020" y="681" width="120" height="24" rx="12"/>
+  <text class="bdg" x="1080" y="698">OPTIONAL</text>
+
+  <!-- flows inside vpc -->
+  <line class="arr" x1="255" y1="580" x2="255" y2="691"/>
+  <line class="arr" x1="855" y1="580" x2="855" y2="691"/>
+  <line class="arr" x1="370" y1="755" x2="396" y2="755"/>
+  <path class="arr dash" d="M 510 815 L 510 865 L 1110 865 L 1110 819" fill="none"/>
+  <text class="s m" x="808" y="855">sync, every second 🪞</text>
+
+  <!-- regional services (outside the VPC) -->
+  <text class="zt" x="1360" y="300" fill="#0d9488">☁️ regional services — outside the walls</text>
+
+  <rect class="svc" x="1340" y="330" width="520" height="130" rx="14"/>
+  <text class="t" x="1365" y="366">🗄️ S3 — the locker room (L14)</text>
+  <text class="s" x="1365" y="392">boxes photocopied to 3 buildings · visitor passes ⏰</text>
+  <text class="s" x="1365" y="414">🧒 not IN the campus — call it like a website, 🪪-signed</text>
+  <rect class="req" x="1720" y="346" width="120" height="24" rx="12"/>
+  <text class="bdg" x="1780" y="363">REQUIRED</text>
+  <g transform="translate(1340,330)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">5</text></g>
+
+  <rect class="svc" x="1340" y="480" width="520" height="130" rx="14"/>
+  <text class="t" x="1365" y="516">☎️ Route 53 — the phonebook (L16)</text>
+  <text class="s" x="1365" y="542">school.com → ALIAS → reception · TTL memory ⏰</text>
+  <text class="s" x="1365" y="564">🧒 health-checked: answers with the backup if reception dies</text>
+  <rect class="opt" x="1720" y="496" width="120" height="24" rx="12"/>
+  <text class="bdg" x="1780" y="513">OPTIONAL</text>
+  <g transform="translate(1340,480)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">6</text></g>
+
+  <rect class="svc" x="1340" y="630" width="520" height="130" rx="14"/>
+  <text class="t" x="1365" y="666">📈 CloudWatch — the eyes (L18)</text>
+  <text class="s" x="1365" y="692">report cards + diaries from EVERY box on this map</text>
+  <text class="s" x="1365" y="714">🧒 alarm bells that text teachers or add desks 🔔</text>
+  <rect class="req" x="1720" y="646" width="120" height="24" rx="12"/>
+  <text class="bdg" x="1780" y="663">REQUIRED</text>
+  <g transform="translate(1340,630)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">7</text></g>
+
+  <rect class="svc" x="1340" y="780" width="520" height="130" rx="14"/>
+  <text class="t" x="1365" y="816">⚡ Lambda — the on-call helper (L19)</text>
+  <text class="s" x="1365" y="842">no desk at all: appears per errand, vanishes, idle = $0</text>
+  <text class="s" x="1365" y="864">🧒 thumbnails, webhooks, midnight reports</text>
+  <rect class="opt" x="1720" y="796" width="120" height="24" rx="12"/>
+  <text class="bdg" x="1780" y="813">OPTIONAL</text>
+  <g transform="translate(1340,780)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">8</text></g>
+
+
+  <!-- meter strip -->
+  <rect class="tip" x="60" y="990" width="1800" height="120" rx="16"/>
+  <text class="t m" x="960" y="1030">🧾 and under it all: the meter (L20) — ⏱️ time · 📦 space · 🔁 errands · 🚪 egress (leaving the campus costs; entering is free)</text>
+  <text class="s m" x="960" y="1060">badge honesty: "REQUIRED" = every real web workload has one · "OPTIONAL" = add when the story needs it (custom domain, SQL state, glue errands, private-wing internet)</text>
+  <text class="s m" x="960" y="1084">the four bill classics live on THIS map: the 📮 postbox, stopped desks' drawers, orphan photocopies, and an idle 🛎️/🗃️ — set the $5 tripwire before your first lab ⏰</text>
+</svg>

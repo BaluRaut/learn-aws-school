@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1160" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1700" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
     <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
@@ -7,6 +7,9 @@
   <style>
     .band1 { fill: #fff; stroke: #7c3aed; stroke-width: 3; }
     .band2 { fill: #fff; stroke: #ea580c; stroke-width: 3; }
+    .band3 { fill: #fff; stroke: #0d9488; stroke-width: 3; }
+    .bxt { fill: #fff; stroke: #0d9488; stroke-width: 2.5; }
+    .tipt { fill: #f0fdfa; stroke: #0d9488; stroke-width: 1.5; }
     .bx  { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; }
     .bxp { fill: #fff; stroke: #7c3aed; stroke-width: 2.5; }
     .bxo { fill: #fff; stroke: #ea580c; stroke-width: 2.5; }
@@ -23,8 +26,8 @@
     .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
   </style>
 
-  <rect x="0" y="0" width="1920" height="1160" fill="#ffffff"/>
-  <text class="title m" x="960" y="52">The Big Picture — IAM decides IF you may · EC2 is WHERE it runs</text>
+  <rect x="0" y="0" width="1920" height="1700" fill="#ffffff"/>
+  <text class="title m" x="960" y="52">The Big Picture — IAM: IF you may · EC2: WHERE it runs · Part 3: the CAMPUS around it</text>
 
   <!-- ═══ BAND 1: IAM ═══ -->
   <rect class="band1" x="40" y="80" width="1840" height="460" rx="20"/>
@@ -156,4 +159,60 @@
   <text class="t m" x="1560" y="1020">🧹 the lab rule</text>
   <text class="s m" x="1560" y="1050">IAM is free · a lab t3.micro is ~1¢/hour —</text>
   <text class="s m" x="1560" y="1074">ALWAYS terraform destroy before you sleep</text>
+
+  <!-- ═══ divider ═══ -->
+  <text class="t m" x="960" y="1165" fill="#475569">then zoom out: the desks stand inside a campus, surrounded by everything the school rents 🏫</text>
+
+  <!-- ═══ BAND 3: THE CAMPUS ═══ -->
+  <rect class="band3" x="40" y="1185" width="1840" height="475" rx="20"/>
+  <text class="bandt" x="70" y="1227" fill="#0d9488">🏫 PART 3 — the campus &amp; the services (lessons 13–20)</text>
+
+  <rect class="bxt" x="70" y="1255" width="430" height="150" rx="14"/>
+  <text class="t m" x="285" y="1288">🏫 VPC — the campus walls (L13)</text>
+  <text class="s m" x="285" y="1316">public wings face the street via the 🚧 gate;</text>
+  <text class="s m" x="285" y="1340">desks hide in private wings; the 📮 NAT postbox</text>
+  <text class="s m" x="285" y="1364">mails out only — and costs real money</text>
+  <g transform="translate(70,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">1</text></g>
+
+  <rect class="bxt" x="1010" y="1255" width="410" height="150" rx="14"/>
+  <text class="t m" x="1215" y="1288">🛎️ reception &amp; ☎️ phonebook (L15–16)</text>
+  <text class="s m" x="1215" y="1316">ALB splits the crowd across buildings, asking</text>
+  <text class="s m" x="1215" y="1340">every desk "ready?" · Route 53 turns names into</text>
+  <text class="s m" x="1215" y="1364">reception — and fails over when it must</text>
+  <g transform="translate(1010,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">3</text></g>
+
+  <rect class="bxt" x="540" y="1255" width="430" height="150" rx="14"/>
+  <text class="t m" x="755" y="1288">🗄️ S3 — the locker room (L14)</text>
+  <text class="s m" x="755" y="1316">boxes with labels, photocopied to three</text>
+  <text class="s m" x="755" y="1340">buildings · visitor passes that expire ·</text>
+  <text class="s m" x="755" y="1364">strangers blocked by default 🛡️</text>
+  <g transform="translate(540,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">2</text></g>
+
+  <rect class="bxt" x="1460" y="1255" width="390" height="150" rx="14"/>
+  <text class="t m" x="1655" y="1288">🗃️ RDS — the record office (L17)</text>
+  <text class="s m" x="1655" y="1316">rented WITH the clerk: nightly photocopies,</text>
+  <text class="s m" x="1655" y="1340">a synced mirror next building, and an</text>
+  <text class="s m" x="1655" y="1364">endpoint NAME that never changes</text>
+  <g transform="translate(1460,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">4</text></g>
+
+  <rect class="bxt" x="70" y="1440" width="430" height="150" rx="14"/>
+  <text class="t m" x="285" y="1473">📈 CloudWatch — the eyes (L18)</text>
+  <text class="s m" x="285" y="1501">report cards (metrics) · diaries (logs) ·</text>
+  <text class="s m" x="285" y="1525">alarm bells that DO things: text the teacher</text>
+  <text class="s m" x="285" y="1549">or add desks — the HPA, one floor down</text>
+  <g transform="translate(70,1440)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">5</text></g>
+
+  <rect class="bxt" x="540" y="1440" width="430" height="150" rx="14"/>
+  <text class="t m" x="755" y="1473">⚡ Lambda — the on-call helper (L19)</text>
+  <text class="s m" x="755" y="1501">appears per errand, ≤15 min, per-100ms billing,</text>
+  <text class="s m" x="755" y="1525">vanishes — idle costs zero · third answer to</text>
+  <text class="s m" x="755" y="1549">"where does code run?" 🥶 mind the cold start</text>
+  <g transform="translate(540,1440)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">6</text></g>
+
+  <rect class="tipt" x="1010" y="1440" width="840" height="150" rx="14"/>
+  <text class="t m" x="1430" y="1473">🧾 the meter (L20) — the graduation skill</text>
+  <text class="s m" x="1430" y="1501">four meters: ⏱️ time · 📦 space · 🔁 errands · 🚪 egress (leaving costs, entering free)</text>
+  <text class="s m" x="1430" y="1525">classics: the NAT postbox · the stopped desk's drawer · orphan snapshots · idle ALB/RDS</text>
+  <text class="s m" x="1430" y="1549">set the $5 Budget tripwire TODAY — then labs stay cheaper than coffee ☕</text>
+  <g transform="translate(1010,1440)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">7</text></g>
 </svg>

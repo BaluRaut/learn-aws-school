@@ -224,6 +224,70 @@
   <p class="foot"><a href="lesson-diagrams.html#l09">Diagram ↗</a></p>
 </section>
 
+<section class="term" id="rds" style="--c:#0d9488">
+  <h2>🗃️ RDS — managed database vs running your own (lesson 17)</h2>
+  <div class="hist"><b>⏮️ Before managed databases</b>
+    <p>Every team ran Postgres/MySQL on its own machine: a DBA (or an unlucky developer) owned
+    backups, patches, replication, and 3 AM failovers. RDS (2009) rents you the database WITH
+    the clerk — the craft parts come tested and boring.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul>
+      <li>backups that actually restore (point-in-time)</li>
+      <li>Multi-AZ failover in ~a minute, no drama</li>
+      <li>patching, metrics, read replicas — included</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>bills hourly, idle or not (lesson 20!)</li>
+      <li>no OS access; extension list is curated</li>
+      <li>easy to outgrow the wallet before the engine</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul>
+      <li>state that must survive — almost always</li>
+      <li>small teams: buy the boring, build the special</li>
+      <li>k8s apps too: stateless in-cluster, state in RDS</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
+      <li>exotic engines/extensions RDS doesn't offer</li>
+      <li>DB-per-tenant fleets where cost explodes</li>
+      <li>you truly have the team to run it (rare)</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l17">Diagram ↗</a></p>
+</section>
+
+<section class="term" id="lambda" style="--c:#0d9488">
+  <h2>⚡ Lambda — serverless vs renting desks (lesson 19)</h2>
+  <div class="hist"><b>⏮️ Before serverless</b>
+    <p>Even a once-a-day errand needed a desk running 24/7 — patched, monitored, and billed
+    while idle. Lambda (2014) flipped the unit of compute from "a machine" to "an errand":
+    code appears when called, vanishes after, and idle costs zero.</p>
+  </div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul>
+      <li>idle = $0 · a million errands/month are free</li>
+      <li>scaling is implicit: one helper per errand</li>
+      <li>no OS to patch, no fleet to manage</li>
+    </ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul>
+      <li>cold starts (~100ms–2s) sting latency-critical APIs</li>
+      <li>15-minute cap; steady heavy load costs MORE than desks</li>
+      <li>local dev/debug is clunkier; vendor-shaped</li>
+    </ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul>
+      <li>event glue: uploads, webhooks, queues, schedules</li>
+      <li>spiky or rare workloads (the once-a-day report)</li>
+      <li>ops automation — lesson 12's scripts, serverless</li>
+    </ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
+      <li>constant high traffic (desks/k8s win on cost)</li>
+      <li>long-running jobs, websockets held for hours</li>
+      <li>special hardware (GPUs) or huge memory</li>
+    </ul></div>
+  </div>
+  <p class="foot"><a href="lesson-diagrams.html#l19">Diagram ↗</a></p>
+</section>
+
 <footer>
   Learn AWS School · <a href="index.html">Course home</a> ·
   <a href="lesson-diagrams.html">Lesson diagrams</a> ·

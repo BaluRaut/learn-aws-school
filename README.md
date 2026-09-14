@@ -17,7 +17,7 @@ every lesson as a numbered diagram, the big-picture 4K, and the Before &amp; tra
 
 ![The big picture: IAM (who may do what) and EC2 (the rented computers)](docs/images/big-picture-4k.png)
 
-## 🎓 The 12 lessons
+## 🎓 The 20 lessons
 
 Each numbered branch adds ONE lesson folder (`lessons/NN-topic/README.md`) with an
 explain-like-I'm-5 story, a school analogy, a diagram, **What / Why / How**, and hands-on
@@ -49,6 +49,20 @@ git checkout lesson-02-users-groups     # ...keep going, one branch at a time
 | 10 | `lesson-10-security-groups` | The instance firewall | The gatekeeper's guest list 🚪 |
 | 11 | `lesson-11-ebs-snapshots-ami` | Disks, snapshots, images | Drawer, photocopy, desk template 🗄️ |
 | 12 | `lesson-12-ec2-in-real-life` | user-data, metadata, ASGs, EKS nodes | The robot janitor's checklist 🤖📋 |
+
+
+### Part 3 — the campus & the services 🏫
+
+| # | Branch | You learn | Analogy |
+|---|---|---|---|
+| 13 | `lesson-13-vpc` | VPC, subnets, IGW, NAT, route tables | The campus walls & corridor signs 🏫🪧 |
+| 14 | `lesson-14-s3` | Buckets, objects, presigned URLs, lifecycle | The infinite locker room & visitor passes 🗄️🎟️ |
+| 15 | `lesson-15-load-balancers` | ALB/NLB, target groups, health checks | The reception that splits crowds 🛎️ |
+| 16 | `lesson-16-route53` | DNS, records, TTL, failover routing | The school's phonebook ☎️ |
+| 17 | `lesson-17-rds` | Managed databases, Multi-AZ, replicas | The record office you rent 🗃️ |
+| 18 | `lesson-18-cloudwatch` | Metrics, logs, alarms → actions | Report cards, diaries, alarm bells 📈🔔 |
+| 19 | `lesson-19-lambda` | Serverless functions, events, cold starts | The on-call helper ⚡ |
+| 20 | `lesson-20-the-bill` | The four meters, budgets, cost hygiene | Reading the meter 🧾 |
 
 ## 📦 What's in this repo (main branch)
 
