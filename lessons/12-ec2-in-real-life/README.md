@@ -1,6 +1,6 @@
 # 🤖 Lesson 12 — EC2 in real life: checklists, badges, and fleets
 
-**📍 You are here:** Lesson **12** of 12 — the final lesson! · Previous: `lesson-11-ebs-snapshots-ami`
+**📍 You are here:** Lesson **12** of 20 — Part 2 ends here · Previous: `lesson-11-ebs-snapshots-ami` · Next: `lesson-13-vpc`
 
 ---
 
