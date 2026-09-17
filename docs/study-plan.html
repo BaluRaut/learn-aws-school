@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Study plan — 🪪 AWS — IAM & EC2</title>
-<meta name="description" content="A 6-week study plan for the 🪪 AWS — IAM & EC2 school: sequence, time estimates, weekly milestones — progress saved in your browser.">
-<meta property="og:title" content="Study plan — 🪪 AWS — IAM & EC2"><meta property="og:description" content="12 lessons in 4 weeks, with checkpoints."><meta property="og:image" content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+
+<html lang="mr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Study plan — 🪪 AWS — IAM &amp;amp; EC2">अभ्यास योजना — 🪪 AWS — IAM &amp; EC2</title>
+<meta content="A 6-week study plan for the 🪪 AWS — IAM &amp; EC2 school: sequence, time estimates, weekly milestones — progress saved in your browser." name="description"/>
+<meta content="Study plan — 🪪 AWS — IAM &amp; EC2" property="og:title"/><meta content="12 lessons in 4 weeks, with checkpoints." property="og:description"/><meta content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png" property="og:image"/><meta content="website" property="og:type"/><meta content="summary_large_image" name="twitter:card"/>
 <style>
 :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#7c3aed; --ok:#16a34a; --blue:#2563eb; }
 @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -26,63 +27,68 @@ a { color:var(--blue); } h1 { font-size:1.9rem; } .sub { color:var(--muted); }
 .milestone b { color:var(--ok); }
 #done { display:none; text-align:center; background:var(--card); border:2px solid var(--ok); border-radius:20px; padding:32px 24px; margin-top:26px; }
 footer { margin-top:44px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:.88rem; }
-</style></head><body><div class="wrap">
-<p><a href="index.html">← Back to the course home</a></p>
-<h1>🗓️ Study plan — 🪪 AWS — IAM & EC2</h1>
-<p class="sub">20 lessons in 6 weeks (read ~15 min + lab ~25 min per lesson).
-Tick lessons off — <b>progress saved in this browser</b>.</p>
+</style>
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head><body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select><div class="wrap">
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="🗓️ Study plan — 🪪 AWS — IAM &amp;amp; EC2">🗓️ अभ्यास योजना — 🪪 AWS — IAM &amp; EC2</h1>
+<p class="sub" data-en="20 lessons in 6 weeks (read ~15 min + lab ~25 min per lesson).
+Tick lessons off — &lt;b&gt;progress saved in this browser&lt;/b&gt;.">20 धडे 6 आठवड्यांत (प्रत्येक धडा: वाचन ~15 मि. + प्रयोग ~25 मि.). धड्यांवर खूण करा — <b>प्रगती या ब्राउझरमध्ये जपली जाते</b>.</p>
 <div class="progress-box"><div class="progress-inner"><span id="ptext">0 / 20</span><div class="bar"><div id="pbar"></div></div></div></div>
 <section class="week" style="--c:#7c3aed">
-  <h2><span class="wk">WEEK 1</span> 🪪 Identity first</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l01" id="sl01"><label for="sl01"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">01 · 🗝️ Why IAM</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l02" id="sl02"><label for="sl02"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">02 · 🪪 Users & groups</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l03" id="sl03"><label for="sl03"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">03 · 📝 Policies</a></label><span class="time">~45 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> MFA everywhere; simulate a least-privilege policy with the simulator.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 1&lt;/span&gt; 🪪 Identity first'><span class="wk">आठवडा 1</span> 🪪 आधी ओळख</h2>
+<div class="lesson-row"><input data-l="l01" id="sl01" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md"&gt;01 · 🗝️ Why IAM&lt;/a&gt;' for="sl01"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">01 · 🗝️ IAM का</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l02" id="sl02" type="checkbox"/><label for="sl02"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">02 · 🪪 Users &amp; groups</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l03" id="sl03" type="checkbox"/><label for="sl03"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">03 · 📝 Policies</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; MFA everywhere; simulate a least-privilege policy with the simulator.">🏁 <b>तपासणी:</b> सगळीकडे MFA; simulator ने least-privilege policy simulate करा.</div>
 </section>
 <section class="week" style="--c:#7c3aed">
-  <h2><span class="wk">WEEK 2</span> 🎩 Hats & robots</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l04" id="sl04"><label for="sl04"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">04 · 🎩 Roles</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l05" id="sl05"><label for="sl05"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">05 · 🤖 Machine identities</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l06" id="sl06"><label for="sl06"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">06 · 📋 IAM hygiene</a></label><span class="time">~35 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> assume a role and read its expiry; credential report comes back clean.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 2&lt;/span&gt; 🎩 Hats &amp;amp; robots'><span class="wk">आठवडा 2</span> 🎩 टोप्या &amp; रोबोट</h2>
+<div class="lesson-row"><input data-l="l04" id="sl04" type="checkbox"/><label for="sl04"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">04 · 🎩 Roles</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l05" id="sl05" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md"&gt;05 · 🤖 Machine identities&lt;/a&gt;' for="sl05"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">05 · 🤖 मशीनच्या ओळखी</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l06" id="sl06" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md"&gt;06 · 📋 IAM hygiene&lt;/a&gt;' for="sl06"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">06 · 📋 IAM स्वच्छता</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; assume a role and read its expiry; credential report comes back clean.">🏁 <b>तपासणी:</b> एक role घ्या आणि त्याची मुदत वाचा; credential report स्वच्छ येतो.</div>
 </section>
 <section class="week" style="--c:#7c3aed">
-  <h2><span class="wk">WEEK 3</span> 🖥️ Rent a desk</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l07" id="sl07"><label for="sl07"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">07 · 🖥️ What is EC2</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l08" id="sl08"><label for="sl08"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">08 · 🛵 Types & pricing</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l09" id="sl09"><label for="sl09"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">09 · 🔑 Connecting</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> terraform up the desk, SSM into it, and always destroy before dinner.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 3&lt;/span&gt; 🖥️ Rent a desk'><span class="wk">आठवडा 3</span> 🖥️ बाक भाड्याने घ्या</h2>
+<div class="lesson-row"><input data-l="l07" id="sl07" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md"&gt;07 · 🖥️ What is EC2&lt;/a&gt;' for="sl07"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">07 · 🖥️ EC2 म्हणजे काय</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l08" id="sl08" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md"&gt;08 · 🛵 Types &amp;amp; pricing&lt;/a&gt;' for="sl08"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">08 · 🛵 प्रकार &amp; किंमत</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l09" id="sl09" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md"&gt;09 · 🔑 Connecting&lt;/a&gt;' for="sl09"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">09 · 🔑 जोडणी</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; terraform up the desk, SSM into it, and always destroy before dinner.">🏁 <b>तपासणी:</b> terraform ने बाक उभा करा, SSM ने आत जा, आणि जेवणाआधी नेहमी destroy करा.</div>
 </section>
 <section class="week" style="--c:#7c3aed">
-  <h2><span class="wk">WEEK 4</span> 🚪 Doors, drawers, fleets</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l10" id="sl10"><label for="sl10"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">10 · 🚪 Security groups</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l11" id="sl11"><label for="sl11"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">11 · 🗄️ EBS, snapshots & AMIs</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l12" id="sl12"><label for="sl12"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">12 · 🤖 EC2 in real life</a></label><span class="time">~45 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> test the guest list with nc; snapshot the drawer; curl the metadata badge.</div>
-</section>
-
-<section class="week" style="--c:#0d9488">
-  <h2><span class="wk">WEEK 5</span> 🏫 The campus &amp; its doors</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l13" id="sl13"><label for="sl13"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">13 · 🏫 VPC — the campus walls</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l14" id="sl14"><label for="sl14"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">14 · 🗄️ S3 — the locker room</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l15" id="sl15"><label for="sl15"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">15 · 🛎️ Load balancers</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l16" id="sl16"><label for="sl16"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">16 · ☎️ Route 53</a></label><span class="time">~35 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> apply vpc.tf and read the corridor signs; run the presign lab; watch curl alternate behind an ALB — then destroy it all.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 4&lt;/span&gt; 🚪 Doors, drawers, fleets'><span class="wk">आठवडा 4</span> 🚪 दारे, ड्रॉवर, ताफे</h2>
+<div class="lesson-row"><input data-l="l10" id="sl10" type="checkbox"/><label for="sl10"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">10 · 🚪 Security groups</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l11" id="sl11" type="checkbox"/><label for="sl11"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">11 · 🗄️ EBS, snapshots &amp; AMIs</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l12" id="sl12" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md"&gt;12 · 🤖 EC2 in real life&lt;/a&gt;' for="sl12"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">12 · 🤖 खऱ्या जगातील EC2</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; test the guest list with nc; snapshot the drawer; curl the metadata badge.">🏁 <b>तपासणी:</b> nc ने पाहुण्यांची यादी तपासा; ड्रॉवरचा snapshot घ्या; metadata बॅज curl करा.</div>
 </section>
 <section class="week" style="--c:#0d9488">
-  <h2><span class="wk">WEEK 6</span> 🗃️ State, eyes, errands — and the meter</h2>
-  <div class="lesson-row"><input type="checkbox" data-l="l17" id="sl17"><label for="sl17"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">17 · 🗃️ RDS — the record office</a></label><span class="time">~45 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l18" id="sl18"><label for="sl18"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">18 · 📈 CloudWatch</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l19" id="sl19"><label for="sl19"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">19 · ⚡ Lambda</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l20" id="sl20"><label for="sl20"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">20 · 🧾 The bill</a></label><span class="time">~35 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> force an RDS failover and watch the NAME flip; receive the alarm email; spot a cold start in the diary; set the $5 tripwire and read tomorrow's Cost Explorer. 🎓</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 5&lt;/span&gt; 🏫 The campus &amp;amp; its doors'><span class="wk">आठवडा 5</span> 🏫 कॅम्पस &amp; त्याची दारे</h2>
+<div class="lesson-row"><input data-l="l13" id="sl13" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md"&gt;13 · 🏫 VPC — the campus walls&lt;/a&gt;' for="sl13"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">13 · 🏫 VPC — कॅम्पसच्या भिंती</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l14" id="sl14" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md"&gt;14 · 🗄️ S3 — the locker room&lt;/a&gt;' for="sl14"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">14 · 🗄️ S3 — लॉकर रूम</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l15" id="sl15" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md"&gt;15 · 🛎️ Load balancers&lt;/a&gt;' for="sl15"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">15 · 🛎️ लोड बॅलन्सर</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l16" id="sl16" type="checkbox"/><label for="sl16"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">16 · ☎️ Route 53</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; apply vpc.tf and read the corridor signs; run the presign lab; watch curl alternate behind an ALB — then destroy it all.">🏁 <b>तपासणी:</b> vpc.tf apply करा आणि कॉरिडॉर पाट्या वाचा; presign प्रयोग चालवा; ALB मागे curl आलटून-पालटून पहा — मग सगळे destroy करा.</div>
 </section>
-
-<div id="done"><h2>🎓 20 / 20 — school complete!</h2>
-<p class="sub" style="margin-top:8px">Next stop: <a href="https://baluraut.github.io/school/">the grand path</a> — tick this school off there too.</p></div>
-<footer>Part of <a href="https://baluraut.github.io/school/">🏫 The School</a> · <a href="index.html">course home</a> · <a href="quiz.html">🧪 quiz</a> ·
-  <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 found a mistake?</a>
-</footer>
+<section class="week" style="--c:#0d9488">
+<h2 data-en='&lt;span class="wk"&gt;WEEK 6&lt;/span&gt; 🗃️ State, eyes, errands — and the meter'><span class="wk">आठवडा 6</span> 🗃️ State, डोळे, कामे — आणि मीटर</h2>
+<div class="lesson-row"><input data-l="l17" id="sl17" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md"&gt;17 · 🗃️ RDS — the record office&lt;/a&gt;' for="sl17"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">17 · 🗃️ RDS — दप्तर कार्यालय</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="lesson-row"><input data-l="l18" id="sl18" type="checkbox"/><label for="sl18"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">18 · 📈 CloudWatch</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l19" id="sl19" type="checkbox"/><label for="sl19"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">19 · ⚡ Lambda</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l20" id="sl20" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md"&gt;20 · 🧾 The bill&lt;/a&gt;' for="sl20"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">20 · 🧾 बिल</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; force an RDS failover and watch the NAME flip; receive the alarm email; spot a cold start in the diary; set the $5 tripwire and read tomorrow's Cost Explorer. 🎓">🏁 <b>तपासणी:</b> RDS failover घडवा आणि नाव वळताना पहा; alarm चा ईमेल मिळवा; डायरीत cold start शोधा; $5 चा सापळा लावा आणि उद्याचे Cost Explorer वाचा. 🎓</div>
+</section>
+<div id="done"><h2 data-en="🎓 20 / 20 — school complete!">🎓 20 / 20 — शाळा पूर्ण!</h2>
+<p class="sub" data-en='Next stop: &lt;a href="https://baluraut.github.io/school/"&gt;the grand path&lt;/a&gt; — tick this school off there too.' style="margin-top:8px">पुढचा थांबा: <a href="https://baluraut.github.io/school/">मोठा मार्ग</a> — तिथेही या शाळेवर खूण करा.</p></div>
+<footer data-en='Part of &lt;a href="https://baluraut.github.io/school/"&gt;🏫 The School&lt;/a&gt; · &lt;a href="index.html"&gt;course home&lt;/a&gt; · &lt;a href="quiz.html"&gt;🧪 quiz&lt;/a&gt; ·
+  &lt;a href="https://github.com/BaluRaut/learn-aws-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'><a href="https://baluraut.github.io/school/">🏫 द स्कूल</a> चा भाग · <a href="index.html">कोर्स मुख्य पान</a> · <a href="quiz.html">🧪 प्रश्नमंजुषा</a> · <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 चूक सापडली?</a></footer>
 </div>
 <script>
 (function() {
@@ -102,4 +108,21 @@ Tick lessons off — <b>progress saved in this browser</b>.</p>
   });
   render();
 })();
+</script>
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
 </script></body></html>

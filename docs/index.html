@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learn AWS the school way — IAM, EC2 &amp; the campus</title>
-<meta name="description" content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs.">
-<meta property="og:title" content="Learn AWS the school way — IAM, EC2 &amp; the campus">
-<meta property="og:description" content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs.">
-<meta property="og:image" content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Learn AWS the school way — IAM, EC2 &amp;amp; the campus">AWS शाळेच्या पद्धतीने शिका — IAM, EC2 &amp; कॅम्पस</title>
+<meta content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs." name="description"/>
+<meta content="Learn AWS the school way — IAM, EC2 &amp; the campus" property="og:title"/>
+<meta content="20 branch-by-branch lessons on AWS: IAM (identity), EC2 (compute), and the whole campus — VPC, S3, load balancers, Route 53, RDS, CloudWatch, Lambda, and reading the bill — ELI5 school analogies, diagrams and hands-on labs." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root {
     --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
@@ -67,883 +68,853 @@
   .nc { fill: var(--c, var(--accent)); }
   .nt { font: 700 12px -apple-system, sans-serif; fill: #fff; text-anchor: middle; }
 </style>
-</head>
-<body>
-<svg width="0" height="0" style="position:absolute"><defs>
-  <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-    <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
-  </marker>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
+<svg height="0" style="position:absolute" width="0"><defs>
+<marker id="arw" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M0 0 L10 5 L0 10 z" fill="#64748b"></path>
+</marker>
 </defs></svg>
 <div class="wrap">
-
-  <header>
-    <h1>🪪 Learn AWS the school way — IAM, EC2 &amp; the campus</h1>
-    <p class="sub">The <b>foundations course</b> of the school series: the two AWS ideas every other
-    course stands on. <b>IAM</b> is the ID-card office — who may do what. <b>EC2</b> is the rented
+<header>
+<h1 data-en="🪪 Learn AWS the school way — IAM, EC2 &amp;amp; the campus">🪪 AWS शाळेच्या पद्धतीने शिका — IAM, EC2 &amp; कॅम्पस</h1>
+<p class="sub" data-en="The &lt;b&gt;foundations course&lt;/b&gt; of the school series: the two AWS ideas every other
+    course stands on. &lt;b&gt;IAM&lt;/b&gt; is the ID-card office — who may do what. &lt;b&gt;EC2&lt;/b&gt; is the rented
     computer — the desk everything ultimately runs on. ECR logins, EKS nodes, CI roles: it's all
-    these two, wearing different costumes. And in <b>Part 3</b> the campus itself appears:
-    network, storage, traffic, names, state, eyes, errands — and the bill. 🧾</p>
-    <div class="chips">
-      <span class="chip">🪪 users &amp; groups</span><span class="chip">📝 policies</span>
-      <span class="chip">🎩 roles</span><span class="chip">🖥️ instances</span>
-      <span class="chip">🚪 security groups</span><span class="chip">🗄️ EBS &amp; AMIs</span><span class="chip">🏫 VPC</span><span class="chip">🪣 S3</span><span class="chip">🛎️ ALB</span><span class="chip">📈 CloudWatch</span><span class="chip">⚡ Lambda</span>
-    </div>
-  </header>
-
-  <div class="vs">
-    <div class="vcol" style="border-top: 5px solid #7c3aed">
-      <h3>🪪 Part 1 — IAM: who may do what</h3>
-      <ul>
-        <li>lock away the root master key 🗝️</li>
-        <li>ID cards (users), staff lists (groups), slips (policies)</li>
-        <li>hats, not people: roles &amp; temporary credentials 🎩</li>
-        <li>badges for robots — machines never get passwords 🤖</li>
-      </ul>
-    </div>
-    <div class="vcol" style="border-top: 5px solid #ea580c">
-      <h3>🖥️ Part 2 — EC2: the rented computers</h3>
-      <ul>
-        <li>a Linux desk with no screen, paid by the second</li>
-        <li>scooters vs trucks; standby-seat (spot) pricing 🛵</li>
-        <li>the gatekeeper's guest list (security groups) 🚪</li>
-        <li>drawers, photocopies, desk templates — EBS &amp; AMIs 🗄️</li>
-      </ul>
-    </div>
-    <div class="vcol" style="border-top: 5px solid #0d9488">
-      <h3>🏫 Part 3 — the campus &amp; the services</h3>
-      <ul>
-        <li>campus walls, wings, and the one-way postbox 📮</li>
-        <li>the infinite locker room &amp; visitor passes 🗄️🎟️</li>
-        <li>reception, phonebook, record office 🛎️☎️🗃️</li>
-        <li>report cards, on-call helpers, the meter 📈⚡🧾</li>
-      </ul>
-    </div>
-  </div>
-
-  <h2 id="big-picture">🗺️ The big picture — one diagram, both worlds</h2>
-  <p class="sub">The whole course on one canvas: IAM (purple, lessons 1–6), EC2 (orange, lessons 7–12),
-  and the campus &amp; services (teal, lessons 13–20). Click it for the <a href="images/big-picture-4k.png">4K version</a>.</p>
-  <figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
-    <a href="images/big-picture-4k.png"><img src="images/big-picture.svg" alt="The big picture: IAM decides who may do what; EC2 is the rented computers everything runs on" loading="lazy" style="width:100%;height:auto;border-radius:8px;background:#fff"></a>
-  </figure>
-
-  <h2 id="campus-map">🗺️ The campus map — where everything stands</h2>
-  <p class="sub">Part 3 on one canvas: the VPC campus with its wings and gates, and the services
+    these two, wearing different costumes. And in &lt;b&gt;Part 3&lt;/b&gt; the campus itself appears:
+    network, storage, traffic, names, state, eyes, errands — and the bill. 🧾">शाळांच्या मालिकेचा <b>पायाभूत कोर्स</b>: ज्यावर बाकी प्रत्येक कोर्स उभा आहे त्या दोन AWS कल्पना. <b>IAM</b> म्हणजे ओळखपत्र कार्यालय — कोण काय करू शकते. <b>EC2</b> म्हणजे भाड्याचा संगणक — ज्यावर शेवटी सगळे चालते तो बाक. ECR logins, EKS nodes, CI roles: सगळे हेच दोन, वेगवेगळ्या वेशात. आणि <b>भाग 3</b> मध्ये कॅम्पसच अवतरतो: नेटवर्क, साठा, traffic, नावे, state, डोळे, कामे — आणि बिल. 🧾</p>
+<div class="chips">
+<span class="chip">🪪 users &amp; groups</span><span class="chip">📝 policies</span>
+<span class="chip">🎩 roles</span><span class="chip">🖥️ instances</span>
+<span class="chip">🚪 security groups</span><span class="chip">🗄️ EBS &amp; AMIs</span><span class="chip">🏫 VPC</span><span class="chip">🪣 S3</span><span class="chip">🛎️ ALB</span><span class="chip">📈 CloudWatch</span><span class="chip">⚡ Lambda</span>
+</div>
+</header>
+<div class="vs">
+<div class="vcol" style="border-top: 5px solid #7c3aed">
+<h3 data-en="🪪 Part 1 — IAM: who may do what">🪪 भाग 1 — IAM: कोण काय करू शकते</h3>
+<ul>
+<li data-en="lock away the root master key 🗝️">root ची मास्टर किल्ली कुलूपबंद करा 🗝️</li>
+<li data-en="ID cards (users), staff lists (groups), slips (policies)">ओळखपत्रे (users), स्टाफ याद्या (groups), चिठ्ठ्या (policies)</li>
+<li data-en="hats, not people: roles &amp;amp; temporary credentials 🎩">माणसे नव्हे, टोप्या: roles &amp; तात्पुरती credentials 🎩</li>
+<li data-en="badges for robots — machines never get passwords 🤖">रोबोटसाठी बॅज — मशीनना कधीच पासवर्ड मिळत नाहीत 🤖</li>
+</ul>
+</div>
+<div class="vcol" style="border-top: 5px solid #ea580c">
+<h3 data-en="🖥️ Part 2 — EC2: the rented computers">🖥️ भाग 2 — EC2: भाड्याचे संगणक</h3>
+<ul>
+<li data-en="a Linux desk with no screen, paid by the second">स्क्रीन नसलेला Linux बाक, सेकंदाने पैसे</li>
+<li data-en="scooters vs trucks; standby-seat (spot) pricing 🛵">स्कूटर विरुद्ध ट्रक; standby-जागेची (spot) किंमत 🛵</li>
+<li data-en="the gatekeeper's guest list (security groups) 🚪">द्वारपालाची पाहुण्यांची यादी (security groups) 🚪</li>
+<li data-en="drawers, photocopies, desk templates — EBS &amp;amp; AMIs 🗄️">ड्रॉवर, फोटोकॉपी, बाकाचे साचे — EBS &amp; AMIs 🗄️</li>
+</ul>
+</div>
+<div class="vcol" style="border-top: 5px solid #0d9488">
+<h3 data-en="🏫 Part 3 — the campus &amp;amp; the services">🏫 भाग 3 — कॅम्पस &amp; सेवा</h3>
+<ul>
+<li data-en="campus walls, wings, and the one-way postbox 📮">कॅम्पसच्या भिंती, विभाग, आणि एकमार्गी पोस्टबॉक्स 📮</li>
+<li data-en="the infinite locker room &amp;amp; visitor passes 🗄️🎟️">अमर्याद लॉकर रूम &amp; पाहुण्यांचे पास 🗄️🎟️</li>
+<li data-en="reception, phonebook, record office 🛎️☎️🗃️">रिसेप्शन, फोनबुक, दप्तर कार्यालय 🛎️☎️🗃️</li>
+<li data-en="report cards, on-call helpers, the meter 📈⚡🧾">प्रगतिपुस्तके, on-call मदतनीस, मीटर 📈⚡🧾</li>
+</ul>
+</div>
+</div>
+<h2 data-en="🗺️ The big picture — one diagram, both worlds" id="big-picture">🗺️ संपूर्ण चित्र — एक आकृती, दोन्ही जगे</h2>
+<p class="sub" data-en='The whole course on one canvas: IAM (purple, lessons 1–6), EC2 (orange, lessons 7–12),
+  and the campus &amp;amp; services (teal, lessons 13–20). Click it for the &lt;a href="images/big-picture-4k.png"&gt;4K version&lt;/a&gt;.'>संपूर्ण कोर्स एका कॅनव्हासवर: IAM (जांभळा, धडे 1–6), EC2 (नारिंगी, धडे 7–12), आणि कॅम्पस &amp; सेवा (हिरवट-निळा, धडे 13–20). <a href="images/big-picture-4k.png">4K आवृत्तीसाठी</a> क्लिक करा.</p>
+<figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
+<a href="images/big-picture-4k.png"><img alt="The big picture: IAM decides who may do what; EC2 is the rented computers everything runs on" loading="lazy" src="images/big-picture.svg" style="width:100%;height:auto;border-radius:8px;background:#fff"/></a>
+</figure>
+<h2 data-en="🗺️ The campus map — where everything stands" id="campus-map">🗺️ कॅम्पसचा नकाशा — प्रत्येक गोष्ट कुठे उभी आहे</h2>
+<p class="sub" data-en='Part 3 on one canvas: the VPC campus with its wings and gates, and the services
   around it — each with a REQUIRED/OPTIONAL badge and its analogy. Click for the
-  <a href="images/campus-map-4k.png">4K version</a>.</p>
-  <figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
-    <a href="images/campus-map-4k.png"><img src="images/campus-map.svg" alt="The campus map: VPC with public and private wings across two AZs, IGW, NAT, ALB, and the regional services — S3, Route 53, RDS, CloudWatch, Lambda" loading="lazy" style="width:100%;height:auto;border-radius:8px;background:#fff"></a>
-  </figure>
-
-  <h2 id="part1">🪪 Part 1 — IAM: who may do what (lessons 1–6)</h2>
-  <p class="sub">IAM is <b>free</b> — every lab here costs nothing. One git branch = one idea;
-  branch 04 contains lessons 01–04.</p>
-
-  <div class="grid">
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">1</span><h3>🗝️ Why IAM</h3></div><span class="ana">The principal's master key — lock it away, issue ID cards.</span><code>lesson-01-why-iam</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l01">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">2</span><h3>🪪 Users &amp; groups</h3></div><span class="ana">Cards and staff lists — permissions attach to the list.</span><code>lesson-02-users-groups</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l02">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">3</span><h3>📝 Policies</h3></div><span class="ana">Permission slips — Effect, Action, Resource; default is NO.</span><code>lesson-03-policies</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l03">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">4</span><h3>🎩 Roles</h3></div><span class="ana">The substitute-teacher hat — worn temporarily, returned always.</span><code>lesson-04-roles</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l04">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">5</span><h3>🤖 Machine identities</h3></div><span class="ana">Badges for robots — EC2 roles &amp; CI via OIDC, keys for nobody.</span><code>lesson-05-machine-identities</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l05">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">6</span><h3>📋 IAM hygiene</h3></div><span class="ana">The ID-office rules poster — MFA, least privilege, audit.</span><code>lesson-06-iam-hygiene</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l06">See the diagram ↗</a></div>
-  </div>
-
-  <h2 id="part2">🖥️ Part 2 — EC2: the rented computers (lessons 7–12)</h2>
-  <p class="sub">Labs use a free-tier-eligible <code>t3.micro</code> (otherwise ~1¢/hour) — and every
-  lesson ends with <code>terraform destroy</code>. Never leave a lab desk running overnight.</p>
-
-  <div class="grid">
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">7</span><h3>🖥️ What is EC2</h3></div><span class="ana">A rented desk-computer with no screen, paid by the second.</span><code>lesson-07-what-is-ec2</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l07">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">8</span><h3>🛵 Types &amp; pricing</h3></div><span class="ana">Scooter vs truck vs race car — and spot's standby seats.</span><code>lesson-08-types-pricing</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l08">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">9</span><h3>🔑 Connecting</h3></div><span class="ana">The door key (SSH) vs the escorted visit (SSM).</span><code>lesson-09-connecting</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l09">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">10</span><h3>🚪 Security groups</h3></div><span class="ana">The gatekeeper's guest list — default silence, explicit doors.</span><code>lesson-10-security-groups</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l10">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">11</span><h3>🗄️ EBS, snapshots &amp; AMIs</h3></div><span class="ana">Drawer, photocopy, desk template — what survives what.</span><code>lesson-11-ebs-snapshots-ami</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l11">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">12</span><h3>🤖 EC2 in real life</h3></div><span class="ana">Boot checklists, role badges, fleets — and EKS nodes revealed.</span><code>lesson-12-ec2-in-real-life</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l12">See the diagram ↗</a></div>
-  </div>
-
-
-  <h2 id="part3">🏫 Part 3 — the campus &amp; the services (lessons 13–20)</h2>
-  <p class="sub">Where the desks actually stand — and everything the school rents around them:
-  network, storage, traffic, names, state, eyes, errands, and <b>the meter</b>. VPC/S3/Lambda labs
-  are ~free; the ALB/RDS labs cost pennies <b>if you destroy</b> — which is lesson 20's whole point.</p>
-
-  <div class="grid">
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">13</span><h3>🏫 VPC</h3></div><span class="ana">The campus walls — wings, one gate, corridor signs.</span><code>lesson-13-vpc</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l13">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">14</span><h3>🗄️ S3</h3></div><span class="ana">The infinite locker room — boxes, passes, three buildings.</span><code>lesson-14-s3</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l14">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">15</span><h3>🛎️ Load balancers</h3></div><span class="ana">The reception that splits crowds — health checks decide.</span><code>lesson-15-load-balancers</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l15">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">16</span><h3>☎️ Route 53</h3></div><span class="ana">The phonebook — names to reception, failover included.</span><code>lesson-16-route53</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l16">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">17</span><h3>🗃️ RDS</h3></div><span class="ana">The record office you rent — clerk, mirror, photocopies.</span><code>lesson-17-rds</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l17">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">18</span><h3>📈 CloudWatch</h3></div><span class="ana">Report cards, diaries, alarm bells — wired to actions.</span><code>lesson-18-cloudwatch</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l18">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">19</span><h3>⚡ Lambda</h3></div><span class="ana">The helper who exists only while called — pay per errand.</span><code>lesson-19-lambda</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l19">See the diagram ↗</a></div>
-    <div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">20</span><h3>🧾 The bill</h3></div><span class="ana">Reading the meter — four meters, four classic surprises.</span><code>lesson-20-the-bill</code><a class="go" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">Read lesson →</a><a class="go" href="lesson-diagrams.html#l20">See the diagram ↗</a></div>
-  </div>
-
-  <pre><code># take the course locally (AWS CLI configured; IAM part is 100% free):
+  &lt;a href="images/campus-map-4k.png"&gt;4K version&lt;/a&gt;.'>भाग 3 एका कॅनव्हासवर: VPC कॅम्पस त्याच्या विभागांसह आणि गेटांसह, आणि त्याभोवतीच्या सेवा — प्रत्येकीला आवश्यक/ऐच्छिक बॅज आणि तिची उपमा. <a href="images/campus-map-4k.png">4K आवृत्तीसाठी</a> क्लिक करा.</p>
+<figure style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:16px">
+<a href="images/campus-map-4k.png"><img alt="The campus map: VPC with public and private wings across two AZs, IGW, NAT, ALB, and the regional services — S3, Route 53, RDS, CloudWatch, Lambda" loading="lazy" src="images/campus-map.svg" style="width:100%;height:auto;border-radius:8px;background:#fff"/></a>
+</figure>
+<h2 data-en="🪪 Part 1 — IAM: who may do what (lessons 1–6)" id="part1">🪪 भाग 1 — IAM: कोण काय करू शकते (धडे 1–6)</h2>
+<p class="sub" data-en="IAM is &lt;b&gt;free&lt;/b&gt; — every lab here costs nothing. One git branch = one idea;
+  branch 04 contains lessons 01–04.">IAM <b>मोफत</b> आहे — इथला प्रत्येक प्रयोग शून्य खर्चाचा. एक git ब्रँच = एक कल्पना; ब्रँच 04 मध्ये धडे 01–04 आहेत.</p>
+<div class="grid">
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">1</span><h3 data-en="🗝️ Why IAM">🗝️ IAM का</h3></div><span class="ana" data-en="The principal's master key — lock it away, issue ID cards.">मुख्याध्यापकांची मास्टर किल्ली — कुलूपबंद करा, ओळखपत्रे द्या.</span><code>lesson-01-why-iam</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l01">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">2</span><h3>🪪 Users &amp; groups</h3></div><span class="ana" data-en="Cards and staff lists — permissions attach to the list.">कार्डे आणि स्टाफ याद्या — परवानग्या यादीला जोडल्या जातात.</span><code>lesson-02-users-groups</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l02">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">3</span><h3>📝 Policies</h3></div><span class="ana" data-en="Permission slips — Effect, Action, Resource; default is NO.">परवानगी चिठ्ठ्या — Effect, Action, Resource; मुळात उत्तर नाही.</span><code>lesson-03-policies</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l03">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">4</span><h3>🎩 Roles</h3></div><span class="ana" data-en="The substitute-teacher hat — worn temporarily, returned always.">बदली शिक्षकाची टोपी — तात्पुरती घातली, नेहमी परत केली.</span><code>lesson-04-roles</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l04">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">5</span><h3 data-en="🤖 Machine identities">🤖 मशीनच्या ओळखी</h3></div><span class="ana" data-en="Badges for robots — EC2 roles &amp;amp; CI via OIDC, keys for nobody.">रोबोटसाठी बॅज — EC2 roles &amp; OIDC ने CI, कोणालाच keys नाहीत.</span><code>lesson-05-machine-identities</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l05">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">6</span><h3 data-en="📋 IAM hygiene">📋 IAM स्वच्छता</h3></div><span class="ana" data-en="The ID-office rules poster — MFA, least privilege, audit.">ओळखपत्र कार्यालयाचे नियम-फलक — MFA, least privilege, audit.</span><code>lesson-06-iam-hygiene</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l06">आकृती पहा ↗</a></div>
+</div>
+<h2 data-en="🖥️ Part 2 — EC2: the rented computers (lessons 7–12)" id="part2">🖥️ भाग 2 — EC2: भाड्याचे संगणक (धडे 7–12)</h2>
+<p class="sub" data-en="Labs use a free-tier-eligible &lt;code&gt;t3.micro&lt;/code&gt; (otherwise ~1¢/hour) — and every
+  lesson ends with &lt;code&gt;terraform destroy&lt;/code&gt;. Never leave a lab desk running overnight.">प्रयोग free-tier-पात्र <code>t3.micro</code> वापरतात (नाहीतर ~1¢/तास) — आणि प्रत्येक धडा <code>terraform destroy</code> ने संपतो. प्रयोगाचा बाक रात्रभर कधीच चालू ठेवू नका.</p>
+<div class="grid">
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">7</span><h3 data-en="🖥️ What is EC2">🖥️ EC2 म्हणजे काय</h3></div><span class="ana" data-en="A rented desk-computer with no screen, paid by the second.">स्क्रीन नसलेला भाड्याचा बाक-संगणक, सेकंदाने पैसे.</span><code>lesson-07-what-is-ec2</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l07">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">8</span><h3 data-en="🛵 Types &amp;amp; pricing">🛵 प्रकार &amp; किंमत</h3></div><span class="ana" data-en="Scooter vs truck vs race car — and spot's standby seats.">स्कूटर विरुद्ध ट्रक विरुद्ध रेस कार — आणि spot च्या standby जागा.</span><code>lesson-08-types-pricing</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l08">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">9</span><h3 data-en="🔑 Connecting">🔑 जोडणी</h3></div><span class="ana" data-en="The door key (SSH) vs the escorted visit (SSM).">दाराची किल्ली (SSH) विरुद्ध सोबत नेलेली भेट (SSM).</span><code>lesson-09-connecting</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l09">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">10</span><h3>🚪 Security groups</h3></div><span class="ana" data-en="The gatekeeper's guest list — default silence, explicit doors.">द्वारपालाची पाहुण्यांची यादी — मुळात शांतता, दारे स्पष्टपणे उघडलेली.</span><code>lesson-10-security-groups</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l10">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">11</span><h3>🗄️ EBS, snapshots &amp; AMIs</h3></div><span class="ana" data-en="Drawer, photocopy, desk template — what survives what.">ड्रॉवर, फोटोकॉपी, बाकाचा साचा — काय कशानंतर टिकते.</span><code>lesson-11-ebs-snapshots-ami</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l11">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">12</span><h3 data-en="🤖 EC2 in real life">🤖 खऱ्या जगातील EC2</h3></div><span class="ana" data-en="Boot checklists, role badges, fleets — and EKS nodes revealed.">boot याद्या, role बॅज, ताफे — आणि EKS nodes चा उलगडा.</span><code>lesson-12-ec2-in-real-life</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l12">आकृती पहा ↗</a></div>
+</div>
+<h2 data-en="🏫 Part 3 — the campus &amp;amp; the services (lessons 13–20)" id="part3">🏫 भाग 3 — कॅम्पस &amp; सेवा (धडे 13–20)</h2>
+<p class="sub" data-en="Where the desks actually stand — and everything the school rents around them:
+  network, storage, traffic, names, state, eyes, errands, and &lt;b&gt;the meter&lt;/b&gt;. VPC/S3/Lambda labs
+  are ~free; the ALB/RDS labs cost pennies &lt;b&gt;if you destroy&lt;/b&gt; — which is lesson 20's whole point.">बाक प्रत्यक्षात कुठे उभे असतात — आणि त्याभोवती शाळा जे भाड्याने घेते ते सगळे: नेटवर्क, साठा, traffic, नावे, state, डोळे, कामे, आणि <b>मीटर</b>. VPC/S3/Lambda प्रयोग ~मोफत; ALB/RDS प्रयोगांना काही पैसे लागतात <b>जर तुम्ही destroy केले तर</b> — हाच धडा 20 चा संपूर्ण मुद्दा.</p>
+<div class="grid">
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">13</span><h3>🏫 VPC</h3></div><span class="ana" data-en="The campus walls — wings, one gate, corridor signs.">कॅम्पसच्या भिंती — विभाग, एक गेट, कॉरिडॉरच्या पाट्या.</span><code>lesson-13-vpc</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l13">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">14</span><h3>🗄️ S3</h3></div><span class="ana" data-en="The infinite locker room — boxes, passes, three buildings.">अमर्याद लॉकर रूम — डबे, पास, तीन इमारती.</span><code>lesson-14-s3</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l14">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">15</span><h3 data-en="🛎️ Load balancers">🛎️ लोड बॅलन्सर</h3></div><span class="ana" data-en="The reception that splits crowds — health checks decide.">गर्दी वाटणारे रिसेप्शन — health checks ठरवतात.</span><code>lesson-15-load-balancers</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l15">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">16</span><h3>☎️ Route 53</h3></div><span class="ana" data-en="The phonebook — names to reception, failover included.">फोनबुक — नावांपासून रिसेप्शनपर्यंत, failover सह.</span><code>lesson-16-route53</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l16">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">17</span><h3>🗃️ RDS</h3></div><span class="ana" data-en="The record office you rent — clerk, mirror, photocopies.">भाड्याने घेतलेले दप्तर कार्यालय — कारकून, आरसा, फोटोकॉपी.</span><code>lesson-17-rds</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l17">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">18</span><h3>📈 CloudWatch</h3></div><span class="ana" data-en="Report cards, diaries, alarm bells — wired to actions.">प्रगतिपुस्तके, डायऱ्या, धोक्याच्या घंटा — कृतींशी जोडलेल्या.</span><code>lesson-18-cloudwatch</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l18">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">19</span><h3>⚡ Lambda</h3></div><span class="ana" data-en="The helper who exists only while called — pay per errand.">फक्त बोलावल्यावर अस्तित्वात असणारा मदतनीस — प्रत्येक कामाचे पैसे.</span><code>lesson-19-lambda</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l19">आकृती पहा ↗</a></div>
+<div class="lesson" style="--c:#0d9488"><div class="top"><span class="num">20</span><h3 data-en="🧾 The bill">🧾 बिल</h3></div><span class="ana" data-en="Reading the meter — four meters, four classic surprises.">मीटर वाचणे — चार मीटर, चार क्लासिक धक्के.</span><code>lesson-20-the-bill</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l20">आकृती पहा ↗</a></div>
+</div>
+<pre><code># take the course locally (AWS CLI configured; IAM part is 100% free):
 git clone https://github.com/BaluRaut/learn-aws-school.git
 cd learn-aws-school
 git checkout lesson-01-why-iam          # then open lessons/01-why-iam/README.md</code></pre>
-
-  <div class="callout">🎓 <b>The school series:</b> 0️⃣ this course lays the AWS foundations →
-    1️⃣ <a href="https://baluraut.github.io/learn-docker-school/">Docker &amp; ECR</a> packs &amp; ships
-    images → 2️⃣ <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes</a> runs them
-    (on EC2 desks you now understand!) → 3️⃣ <a href="https://baluraut.github.io/learn-argocd-school/">ArgoCD</a>
-    deploys them from git, forever.</div>
-
-
-  <h2 id="diagrams">📐 The lesson diagrams — follow the numbers</h2>
-  <p class="sub">Every lesson as one numbered box-and-arrow diagram, one after another —
+<div class="callout" data-en='🎓 &lt;b&gt;The school series:&lt;/b&gt; 0️⃣ this course lays the AWS foundations →
+    1️⃣ &lt;a href="https://baluraut.github.io/learn-docker-school/"&gt;Docker &amp;amp; ECR&lt;/a&gt; packs &amp;amp; ships
+    images → 2️⃣ &lt;a href="https://baluraut.github.io/learn-kubernetes-school/"&gt;Kubernetes&lt;/a&gt; runs them
+    (on EC2 desks you now understand!) → 3️⃣ &lt;a href="https://baluraut.github.io/learn-argocd-school/"&gt;ArgoCD&lt;/a&gt;
+    deploys them from git, forever.'>🎓 <b>शाळांची मालिका:</b> 0️⃣ हा कोर्स AWS चा पाया घालतो → 1️⃣ <a href="https://baluraut.github.io/learn-docker-school/">Docker &amp; ECR</a> इमेज पॅक करून पाठवते → 2️⃣ <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes</a> त्या चालवते (आता तुम्हाला समजलेल्या EC2 बाकांवर!) → 3️⃣ <a href="https://baluraut.github.io/learn-argocd-school/">ArgoCD</a> त्या git मधून deploy करते, कायमचे.</div>
+<h2 data-en="📐 The lesson diagrams — follow the numbers" id="diagrams">📐 धड्यांच्या आकृत्या — क्रमांक अनुसरा</h2>
+<p class="sub" data-en='Every lesson as one numbered box-and-arrow diagram, one after another —
   readable right here (purple = IAM, orange = EC2, teal = the campus). Also on a
-  <a href="lesson-diagrams.html">standalone page</a> with jump navigation.</p>
-
+  &lt;a href="lesson-diagrams.html"&gt;standalone page&lt;/a&gt; with jump navigation.'>प्रत्येक धडा एका क्रमांकित बॉक्स-आणि-बाण आकृतीत, एकामागून एक — इथेच वाचता येईल (जांभळा = IAM, नारिंगी = EC2, हिरवट-निळा = कॅम्पस). <a href="lesson-diagrams.html">स्वतंत्र पानावरही</a>, उडी-मारण्याच्या दुव्यांसह.</p>
 <!-- 01 -->
 <section class="dsec" id="l01" style="--c:#7c3aed">
-  <h2><span class="ln">1</span> 🗝️ Why IAM — lock away the master key</h2>
-  <p class="d">One all-powerful login for everyone is how accounts die. IAM gives every person and robot their own checked identity.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="The root account is locked away with MFA; the ID office issues identities; every API call is checked">
-    <rect class="dead" x="40" y="60" width="260" height="110" rx="12"/>
-    <text class="t m" x="170" y="95">🗝️ root account</text>
-    <text class="s m" x="170" y="120">can do EVERYTHING, forever</text>
-    <text class="s m" x="170" y="142">→ MFA + locked in the safe 🔒</text>
-    <g transform="translate(40,60)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <text class="s m" x="170" y="200">used ~once a year, never daily</text>
-    <rect class="box" x="380" y="60" width="240" height="180" rx="14"/>
-    <text class="t m" x="500" y="92">🪪 IAM — the ID office</text>
-    <rect class="soft" x="405" y="110" width="190" height="40" rx="8"/>
-    <text class="s m" x="500" y="135">👩‍🏫 user: balasaheb</text>
-    <rect class="soft" x="405" y="158" width="190" height="40" rx="8"/>
-    <text class="s m" x="500" y="183">🤖 role: ci-robot</text>
-    <text class="s m" x="500" y="225">everyone gets their OWN card</text>
-    <g transform="translate(380,60)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="700" y="80" width="210" height="140" rx="12"/>
-    <text class="t m" x="805" y="112">☁️ every API call</text>
-    <text class="s m" x="805" y="138">"create instance?" →</text>
-    <text class="s m" x="805" y="160">card checked, slips checked,</text>
-    <text class="s m" x="805" y="182">THEN allowed (or denied)</text>
-    <line class="arr" x1="620" y1="150" x2="696" y2="150"/>
-    <g transform="translate(658,133)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">Read full lesson 01 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;1&lt;/span&gt; 🗝️ Why IAM — lock away the master key'><span class="ln">1</span> 🗝️ IAM का — मास्टर किल्ली कुलूपबंद करा</h2>
+<p class="d" data-en="One all-powerful login for everyone is how accounts die. IAM gives every person and robot their own checked identity.">सगळ्यांसाठी एक सर्वशक्तिमान login म्हणजे खाती मरण्याचा मार्ग. IAM प्रत्येक व्यक्ती आणि रोबोटला स्वतःची तपासलेली ओळख देते.</p>
+<svg aria-label="The root account is locked away with MFA; the ID office issues identities; every API call is checked" role="img" viewbox="0 0 940 300">
+<rect class="dead" height="110" rx="12" width="260" x="40" y="60"></rect>
+<text class="t m" data-en="🗝️ root account" x="170" y="95">🗝️ root खाते</text>
+<text class="s m" data-en="can do EVERYTHING, forever" x="170" y="120">सगळे काही करू शकते, कायमचे</text>
+<text class="s m" data-en="→ MFA + locked in the safe 🔒" x="170" y="142">→ MFA + तिजोरीत कुलूपबंद 🔒</text>
+<g transform="translate(40,60)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<text class="s m" data-en="used ~once a year, never daily" x="170" y="200">वर्षातून ~एकदा वापरले, रोज कधीच नाही</text>
+<rect class="box" height="180" rx="14" width="240" x="380" y="60"></rect>
+<text class="t m" data-en="🪪 IAM — the ID office" x="500" y="92">🪪 IAM — ओळखपत्र कार्यालय</text>
+<rect class="soft" height="40" rx="8" width="190" x="405" y="110"></rect>
+<text class="s m" x="500" y="135">👩‍🏫 user: balasaheb</text>
+<rect class="soft" height="40" rx="8" width="190" x="405" y="158"></rect>
+<text class="s m" x="500" y="183">🤖 role: ci-robot</text>
+<text class="s m" data-en="everyone gets their OWN card" x="500" y="225">प्रत्येकाला स्वतःचे कार्ड मिळते</text>
+<g transform="translate(380,60)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="140" rx="12" width="210" x="700" y="80"></rect>
+<text class="t m" data-en="☁️ every API call" x="805" y="112">☁️ प्रत्येक API कॉल</text>
+<text class="s m" data-en='"create instance?" →' x="805" y="138">"instance बनवू?" →</text>
+<text class="s m" data-en="card checked, slips checked," x="805" y="160">कार्ड तपासले, चिठ्ठ्या तपासल्या,</text>
+<text class="s m" data-en="THEN allowed (or denied)" x="805" y="182">मगच परवानगी (किंवा नकार)</text>
+<line class="arr" x1="620" x2="696" y1="150" y2="150"></line>
+<g transform="translate(658,133)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md"&gt;Read full lesson 01 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">संपूर्ण धडा 01 वाचा →</a></p>
 </section>
-
 <!-- 02 -->
 <section class="dsec" id="l02" style="--c:#7c3aed">
-  <h2><span class="ln">2</span> 🪪 Users &amp; groups — cards and staff lists</h2>
-  <p class="d">People get cards; cards join lists; permissions attach to the LIST, not the person.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="Users join groups; policies attach to groups; a new member instantly gets the group's permissions">
-    <rect class="box" x="40" y="50" width="180" height="70" rx="12"/>
-    <text class="s m" x="130" y="80">🪪 user: aarav</text>
-    <text class="s m" x="130" y="102">a person's card</text>
-    <rect class="box" x="40" y="140" width="180" height="70" rx="12"/>
-    <text class="s m" x="130" y="170">🪪 user: sita</text>
-    <rect class="dead" x="40" y="230" width="180" height="50" rx="12"/>
-    <text class="s m" x="130" y="260">🆕 user: new-teacher</text>
-    <rect class="box" x="360" y="90" width="250" height="130" rx="14"/>
-    <text class="t m" x="485" y="125">👩‍🏫 group: teachers</text>
-    <text class="s m" x="485" y="152">a list of cards —</text>
-    <text class="s m" x="485" y="174">permissions live HERE</text>
-    <line class="arr" x1="220" y1="85" x2="356" y2="130"/>
-    <line class="arr" x1="220" y1="175" x2="356" y2="160"/>
-    <g transform="translate(288,115)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <line class="arr dash" x1="220" y1="255" x2="356" y2="195"/>
-    <g transform="translate(288,240)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <text class="s m" x="288" y="285">join the list → powers arrive instantly</text>
-    <rect class="box" x="700" y="90" width="210" height="130" rx="12"/>
-    <text class="t m" x="805" y="122">📝 policies</text>
-    <text class="s m" x="805" y="148">"may manage EC2"</text>
-    <text class="s m" x="805" y="170">"may read S3 reports"</text>
-    <line class="arr" x1="610" y1="155" x2="696" y2="155"/>
-    <g transform="translate(653,138)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <text class="s m" x="653" y="185">attached to the GROUP</text>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">Read full lesson 02 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;2&lt;/span&gt; 🪪 Users &amp;amp; groups — cards and staff lists'><span class="ln">2</span> 🪪 Users &amp; groups — कार्डे आणि स्टाफ याद्या</h2>
+<p class="d" data-en="People get cards; cards join lists; permissions attach to the LIST, not the person.">माणसांना कार्डे मिळतात; कार्डे याद्यांत जातात; परवानग्या व्यक्तीला नव्हे, यादीला जोडल्या जातात.</p>
+<svg aria-label="Users join groups; policies attach to groups; a new member instantly gets the group's permissions" role="img" viewbox="0 0 940 300">
+<rect class="box" height="70" rx="12" width="180" x="40" y="50"></rect>
+<text class="s m" x="130" y="80">🪪 user: aarav</text>
+<text class="s m" data-en="a person's card" x="130" y="102">एका व्यक्तीचे कार्ड</text>
+<rect class="box" height="70" rx="12" width="180" x="40" y="140"></rect>
+<text class="s m" x="130" y="170">🪪 user: sita</text>
+<rect class="dead" height="50" rx="12" width="180" x="40" y="230"></rect>
+<text class="s m" x="130" y="260">🆕 user: new-teacher</text>
+<rect class="box" height="130" rx="14" width="250" x="360" y="90"></rect>
+<text class="t m" x="485" y="125">👩‍🏫 group: teachers</text>
+<text class="s m" data-en="a list of cards —" x="485" y="152">कार्डांची यादी —</text>
+<text class="s m" data-en="permissions live HERE" x="485" y="174">परवानग्या इथे राहतात</text>
+<line class="arr" x1="220" x2="356" y1="85" y2="130"></line>
+<line class="arr" x1="220" x2="356" y1="175" y2="160"></line>
+<g transform="translate(288,115)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<line class="arr dash" x1="220" x2="356" y1="255" y2="195"></line>
+<g transform="translate(288,240)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<text class="s m" data-en="join the list → powers arrive instantly" x="288" y="285">यादीत जा → अधिकार तात्काळ येतात</text>
+<rect class="box" height="130" rx="12" width="210" x="700" y="90"></rect>
+<text class="t m" x="805" y="122">📝 policies</text>
+<text class="s m" data-en='"may manage EC2"' x="805" y="148">"EC2 सांभाळू शकतो"</text>
+<text class="s m" data-en='"may read S3 reports"' x="805" y="170">"S3 अहवाल वाचू शकतो"</text>
+<line class="arr" x1="610" x2="696" y1="155" y2="155"></line>
+<g transform="translate(653,138)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<text class="s m" data-en="attached to the GROUP" x="653" y="185">GROUP ला जोडलेल्या</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md"&gt;Read full lesson 02 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-02-users-groups/lessons/02-users-groups/README.md">संपूर्ण धडा 02 वाचा →</a></p>
 </section>
-
 <!-- 03 -->
 <section class="dsec" id="l03" style="--c:#7c3aed">
-  <h2><span class="ln">3</span> 📝 Policies — reading a permission slip</h2>
-  <p class="d">Four fields decide everything: Effect, Action, Resource, Condition — and the default is always NO.</p>
-  <svg viewBox="0 0 940 320" role="img" aria-label="A policy JSON annotated: effect allow, action, resource, condition; default deny and explicit deny wins">
-    <rect class="box" x="50" y="40" width="380" height="240" rx="14"/>
-    <text class="t m" x="240" y="72">📝 the permission slip (JSON)</text>
-    <text class="s" x="80" y="105">"Effect":   "Allow"</text>
-    <text class="s" x="80" y="140">"Action":   "ecr:PutImage"</text>
-    <text class="s" x="80" y="175">"Resource": "…repository/hello-school"</text>
-    <text class="s" x="80" y="210">"Condition": {"aws:SourceIp": …}</text>
-    <text class="s m" x="240" y="255">= may FILE BOXES, in ONE locker, from school</text>
-    <rect class="soft" x="510" y="40" width="400" height="55" rx="10"/>
-    <text class="s" x="530" y="62">1️⃣ Effect: Allow or Deny — that's the verdict type</text>
-    <text class="s" x="530" y="82">(no slip at all = silently denied)</text>
-    <rect class="soft" x="510" y="105" width="400" height="55" rx="10"/>
-    <text class="s" x="530" y="127">2️⃣ Action: WHAT — service:Verb, wildcards allowed</text>
-    <text class="s" x="530" y="147">(ecr:* = every ECR verb — use sparingly!)</text>
-    <rect class="soft" x="510" y="170" width="400" height="55" rx="10"/>
-    <text class="s" x="530" y="192">3️⃣ Resource: ON WHICH THING — the ARN address</text>
-    <text class="s" x="530" y="212">("*" = everything — the least-privilege enemy)</text>
-    <rect class="soft" x="510" y="235" width="400" height="55" rx="10"/>
-    <text class="s" x="530" y="257">4️⃣ evaluation: default DENY → Allow can open →</text>
-    <text class="s" x="530" y="277">an explicit Deny ALWAYS wins over any Allow</text>
-    <line class="arr" x1="430" y1="100" x2="506" y2="70"/>
-    <line class="arr" x1="430" y1="135" x2="506" y2="132"/>
-    <line class="arr" x1="430" y1="170" x2="506" y2="197"/>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">Read full lesson 03 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;3&lt;/span&gt; 📝 Policies — reading a permission slip'><span class="ln">3</span> 📝 Policies — परवानगी चिठ्ठी वाचणे</h2>
+<p class="d" data-en="Four fields decide everything: Effect, Action, Resource, Condition — and the default is always NO.">चार fields सगळे ठरवतात: Effect, Action, Resource, Condition — आणि मुळात उत्तर नेहमी नाही.</p>
+<svg aria-label="A policy JSON annotated: effect allow, action, resource, condition; default deny and explicit deny wins" role="img" viewbox="0 0 940 320">
+<rect class="box" height="240" rx="14" width="380" x="50" y="40"></rect>
+<text class="t m" data-en="📝 the permission slip (JSON)" x="240" y="72">📝 परवानगी चिठ्ठी (JSON)</text>
+<text class="s" x="80" y="105">"Effect":   "Allow"</text>
+<text class="s" x="80" y="140">"Action":   "ecr:PutImage"</text>
+<text class="s" x="80" y="175">"Resource": "…repository/hello-school"</text>
+<text class="s" x="80" y="210">"Condition": {"aws:SourceIp": …}</text>
+<text class="s m" data-en="= may FILE BOXES, in ONE locker, from school" x="240" y="255">= एकाच लॉकरमध्ये, शाळेतून, डबे लावू शकतो</text>
+<rect class="soft" height="55" rx="10" width="400" x="510" y="40"></rect>
+<text class="s" data-en="1️⃣ Effect: Allow or Deny — that's the verdict type" x="530" y="62">1️⃣ Effect: Allow किंवा Deny — निकालाचा प्रकार</text>
+<text class="s" data-en="(no slip at all = silently denied)" x="530" y="82">(चिठ्ठीच नाही = गुपचूप नकार)</text>
+<rect class="soft" height="55" rx="10" width="400" x="510" y="105"></rect>
+<text class="s" data-en="2️⃣ Action: WHAT — service:Verb, wildcards allowed" x="530" y="127">2️⃣ Action: काय — service:Verb, wildcards चालतात</text>
+<text class="s" data-en="(ecr:* = every ECR verb — use sparingly!)" x="530" y="147">(ecr:* = ECR ची प्रत्येक क्रिया — जपून वापरा!)</text>
+<rect class="soft" height="55" rx="10" width="400" x="510" y="170"></rect>
+<text class="s" data-en="3️⃣ Resource: ON WHICH THING — the ARN address" x="530" y="192">3️⃣ Resource: कोणत्या गोष्टीवर — ARN पत्ता</text>
+<text class="s" data-en='("*" = everything — the least-privilege enemy)' x="530" y="212">("*" = सगळे — least-privilege चा शत्रू)</text>
+<rect class="soft" height="55" rx="10" width="400" x="510" y="235"></rect>
+<text class="s" data-en="4️⃣ evaluation: default DENY → Allow can open →" x="530" y="257">4️⃣ मूल्यमापन: मुळात DENY → Allow उघडू शकते →</text>
+<text class="s" data-en="an explicit Deny ALWAYS wins over any Allow" x="530" y="277">स्पष्ट Deny कोणत्याही Allow वर नेहमी जिंकते</text>
+<line class="arr" x1="430" x2="506" y1="100" y2="70"></line>
+<line class="arr" x1="430" x2="506" y1="135" y2="132"></line>
+<line class="arr" x1="430" x2="506" y1="170" y2="197"></line>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md"&gt;Read full lesson 03 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-03-policies/lessons/03-policies/README.md">संपूर्ण धडा 03 वाचा →</a></p>
 </section>
-
 <!-- 04 -->
 <section class="dsec" id="l04" style="--c:#7c3aed">
-  <h2><span class="ln">4</span> 🎩 Roles — hats, not people</h2>
-  <p class="d">A role is a wearable identity: approved wearers put it on, get temporary credentials, and give it back.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="A person assumes a role, receives temporary credentials from STS, acts with the role's permissions, credentials expire">
-    <rect class="box" x="40" y="100" width="190" height="100" rx="12"/>
-    <text class="t m" x="135" y="135">🧑 you (a user)</text>
-    <text class="s m" x="135" y="160">or a service, or CI…</text>
-    <rect class="box" x="330" y="60" width="280" height="180" rx="14"/>
-    <text class="t m" x="470" y="95">🎩 role: deploy-admin</text>
-    <rect class="soft" x="355" y="115" width="230" height="50" rx="8"/>
-    <text class="s m" x="470" y="136">🤝 trust policy: WHO may</text>
-    <text class="s m" x="470" y="155">wear this hat</text>
-    <rect class="soft" x="355" y="175" width="230" height="50" rx="8"/>
-    <text class="s m" x="470" y="196">📝 permission policies:</text>
-    <text class="s m" x="470" y="215">what the hat may do</text>
-    <line class="arr" x1="230" y1="150" x2="326" y2="150"/>
-    <g transform="translate(278,133)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <text class="s m" x="278" y="180">sts:AssumeRole</text>
-    <rect class="box" x="700" y="60" width="210" height="110" rx="12"/>
-    <text class="t m" x="805" y="92">⏳ temporary creds</text>
-    <text class="s m" x="805" y="118">valid ~1 hour, then poof —</text>
-    <text class="s m" x="805" y="140">nothing to leak long-term</text>
-    <line class="arr" x1="610" y1="115" x2="696" y2="115"/>
-    <g transform="translate(653,98)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="soft" x="700" y="200" width="210" height="70" rx="12"/>
-    <text class="s m" x="805" y="228">act AS the hat, audit shows</text>
-    <text class="s m" x="805" y="250">"balasaheb, wearing deploy-admin"</text>
-    <g transform="translate(680,235)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">Read full lesson 04 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;4&lt;/span&gt; 🎩 Roles — hats, not people'><span class="ln">4</span> 🎩 Roles — माणसे नव्हे, टोप्या</h2>
+<p class="d" data-en="A role is a wearable identity: approved wearers put it on, get temporary credentials, and give it back.">role म्हणजे घालता येणारी ओळख: मंजूर घालणारे ती घालतात, तात्पुरती credentials मिळवतात, आणि परत देतात.</p>
+<svg aria-label="A person assumes a role, receives temporary credentials from STS, acts with the role's permissions, credentials expire" role="img" viewbox="0 0 940 300">
+<rect class="box" height="100" rx="12" width="190" x="40" y="100"></rect>
+<text class="t m" data-en="🧑 you (a user)" x="135" y="135">🧑 तुम्ही (एक user)</text>
+<text class="s m" data-en="or a service, or CI…" x="135" y="160">किंवा एखादी सेवा, किंवा CI…</text>
+<rect class="box" height="180" rx="14" width="280" x="330" y="60"></rect>
+<text class="t m" x="470" y="95">🎩 role: deploy-admin</text>
+<rect class="soft" height="50" rx="8" width="230" x="355" y="115"></rect>
+<text class="s m" data-en="🤝 trust policy: WHO may" x="470" y="136">🤝 trust policy: ही टोपी</text>
+<text class="s m" data-en="wear this hat" x="470" y="155">कोण घालू शकते</text>
+<rect class="soft" height="50" rx="8" width="230" x="355" y="175"></rect>
+<text class="s m" x="470" y="196">📝 permission policies:</text>
+<text class="s m" data-en="what the hat may do" x="470" y="215">टोपी काय करू शकते</text>
+<line class="arr" x1="230" x2="326" y1="150" y2="150"></line>
+<g transform="translate(278,133)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<text class="s m" x="278" y="180">sts:AssumeRole</text>
+<rect class="box" height="110" rx="12" width="210" x="700" y="60"></rect>
+<text class="t m" data-en="⏳ temporary creds" x="805" y="92">⏳ तात्पुरती creds</text>
+<text class="s m" data-en="valid ~1 hour, then poof —" x="805" y="118">~1 तास वैध, मग गायब —</text>
+<text class="s m" data-en="nothing to leak long-term" x="805" y="140">दीर्घकाळ गळण्यासारखे काही नाही</text>
+<line class="arr" x1="610" x2="696" y1="115" y2="115"></line>
+<g transform="translate(653,98)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="soft" height="70" rx="12" width="210" x="700" y="200"></rect>
+<text class="s m" data-en="act AS the hat, audit shows" x="805" y="228">टोपी म्हणून कृती, audit दाखवते</text>
+<text class="s m" data-en='"balasaheb, wearing deploy-admin"' x="805" y="250">"balasaheb, deploy-admin घालून"</text>
+<g transform="translate(680,235)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md"&gt;Read full lesson 04 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-04-roles/lessons/04-roles/README.md">संपूर्ण धडा 04 वाचा →</a></p>
 </section>
-
 <!-- 05 -->
 <section class="dsec" id="l05" style="--c:#7c3aed">
-  <h2><span class="ln">5</span> 🤖 Machine identities — badges for robots, keys for nobody</h2>
-  <p class="d">Machines never get passwords: EC2 wears an instance role; CI assumes a role via OIDC. Long-lived keys are the last resort.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="An EC2 instance gets temporary credentials from its instance role; CI gets them via OIDC federation; stored access keys are the anti-pattern">
-    <rect class="box" x="40" y="50" width="280" height="110" rx="14"/>
-    <text class="t m" x="180" y="82">🖥️ EC2 instance</text>
-    <text class="s m" x="180" y="108">wears a role via instance profile —</text>
-    <text class="s m" x="180" y="130">metadata service hands fresh creds</text>
-    <g transform="translate(40,50)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="40" y="180" width="280" height="100" rx="14"/>
-    <text class="t m" x="180" y="212">📮 CI pipeline (GitHub/CircleCI)</text>
-    <text class="s m" x="180" y="238">proves WHO it is via OIDC →</text>
-    <text class="s m" x="180" y="260">assumes a role for ~15 min</text>
-    <g transform="translate(40,180)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="450" y="105" width="220" height="110" rx="14"/>
-    <text class="t m" x="560" y="140">🎩 the role</text>
-    <text class="s m" x="560" y="165">least-privilege slips only</text>
-    <text class="s m" x="560" y="187">(iam/ecr-push-policy.json)</text>
-    <line class="arr" x1="320" y1="105" x2="446" y2="140"/>
-    <line class="arr" x1="320" y1="225" x2="446" y2="185"/>
-    <rect class="box" x="740" y="105" width="170" height="110" rx="12"/>
-    <text class="t m" x="825" y="140">☁️ AWS APIs</text>
-    <text class="s m" x="825" y="165">push to ECR,</text>
-    <text class="s m" x="825" y="187">read S3…</text>
-    <line class="arr" x1="670" y1="160" x2="736" y2="160"/>
-    <g transform="translate(703,143)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="dead" x="450" y="245" width="460" height="45" rx="10"/>
-    <text class="s m" x="680" y="273">❌ the anti-pattern: AKIA… access keys pasted into CI settings — leakable, forever-valid, unrotated</text>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">Read full lesson 05 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;5&lt;/span&gt; 🤖 Machine identities — badges for robots, keys for nobody'><span class="ln">5</span> 🤖 मशीनच्या ओळखी — रोबोटसाठी बॅज, कोणालाच keys नाहीत</h2>
+<p class="d" data-en="Machines never get passwords: EC2 wears an instance role; CI assumes a role via OIDC. Long-lived keys are the last resort.">मशीनना कधीच पासवर्ड मिळत नाहीत: EC2 instance role घालतो; CI OIDC ने role घेतो. दीर्घकालीन keys हा शेवटचा पर्याय.</p>
+<svg aria-label="An EC2 instance gets temporary credentials from its instance role; CI gets them via OIDC federation; stored access keys are the anti-pattern" role="img" viewbox="0 0 940 300">
+<rect class="box" height="110" rx="14" width="280" x="40" y="50"></rect>
+<text class="t m" x="180" y="82">🖥️ EC2 instance</text>
+<text class="s m" data-en="wears a role via instance profile —" x="180" y="108">instance profile द्वारे role घालतो —</text>
+<text class="s m" data-en="metadata service hands fresh creds" x="180" y="130">metadata सेवा नवी creds देते</text>
+<g transform="translate(40,50)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="100" rx="14" width="280" x="40" y="180"></rect>
+<text class="t m" x="180" y="212">📮 CI pipeline (GitHub/CircleCI)</text>
+<text class="s m" data-en="proves WHO it is via OIDC →" x="180" y="238">OIDC ने ते कोण आहे हे सिद्ध करते →</text>
+<text class="s m" data-en="assumes a role for ~15 min" x="180" y="260">~15 मि. साठी role घेते</text>
+<g transform="translate(40,180)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="110" rx="14" width="220" x="450" y="105"></rect>
+<text class="t m" data-en="🎩 the role" x="560" y="140">🎩 role</text>
+<text class="s m" data-en="least-privilege slips only" x="560" y="165">फक्त least-privilege चिठ्ठ्या</text>
+<text class="s m" x="560" y="187">(iam/ecr-push-policy.json)</text>
+<line class="arr" x1="320" x2="446" y1="105" y2="140"></line>
+<line class="arr" x1="320" x2="446" y1="225" y2="185"></line>
+<rect class="box" height="110" rx="12" width="170" x="740" y="105"></rect>
+<text class="t m" x="825" y="140">☁️ AWS APIs</text>
+<text class="s m" data-en="push to ECR," x="825" y="165">ECR वर push,</text>
+<text class="s m" data-en="read S3…" x="825" y="187">S3 वाचा…</text>
+<line class="arr" x1="670" x2="736" y1="160" y2="160"></line>
+<g transform="translate(703,143)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="dead" height="45" rx="10" width="460" x="450" y="245"></rect>
+<text class="s m" data-en="❌ the anti-pattern: AKIA… access keys pasted into CI settings — leakable, forever-valid, unrotated" x="680" y="273">❌ anti-pattern: CI settings मध्ये चिकटवलेल्या AKIA… access keys — गळण्यासारख्या, कायम वैध, न बदललेल्या</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md"&gt;Read full lesson 05 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-05-machine-identities/lessons/05-machine-identities/README.md">संपूर्ण धडा 05 वाचा →</a></p>
 </section>
-
 <!-- 06 -->
 <section class="dsec" id="l06" style="--c:#7c3aed">
-  <h2><span class="ln">6</span> 📋 IAM hygiene — the ID-office rules poster</h2>
-  <p class="d">Four habits that prevent 90% of AWS security incidents.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="Four rules: MFA everywhere, least privilege, no root and no long-lived keys, CloudTrail audit">
-    <rect class="box" x="50" y="50" width="410" height="100" rx="12"/>
-    <text class="t m" x="255" y="82">📱 1 · MFA everywhere</text>
-    <text class="s m" x="255" y="108">root AND every human user —</text>
-    <text class="s m" x="255" y="128">a stolen password alone opens nothing</text>
-    <g transform="translate(50,50)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="490" y="50" width="410" height="100" rx="12"/>
-    <text class="t m" x="695" y="82">🤏 2 · least privilege</text>
-    <text class="s m" x="695" y="108">exact Actions on exact Resources;</text>
-    <text class="s m" x="695" y="128">AdministratorAccess is a smell, not a default</text>
-    <g transform="translate(490,50)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="50" y="170" width="410" height="100" rx="12"/>
-    <text class="t m" x="255" y="202">🚫 3 · no root, no stray keys</text>
-    <text class="s m" x="255" y="228">root locked with MFA; prefer roles over</text>
-    <text class="s m" x="255" y="248">access keys; rotate/delete the ones that exist</text>
-    <g transform="translate(50,170)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="box" x="490" y="170" width="410" height="100" rx="12"/>
-    <text class="t m" x="695" y="202">🧾 4 · CloudTrail on = audit for free</text>
-    <text class="s m" x="695" y="228">every API call logged: who, what, when,</text>
-    <text class="s m" x="695" y="248">from where — the school's CCTV, but polite</text>
-    <g transform="translate(490,170)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">Read full lesson 06 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;6&lt;/span&gt; 📋 IAM hygiene — the ID-office rules poster'><span class="ln">6</span> 📋 IAM स्वच्छता — ओळखपत्र कार्यालयाचे नियम-फलक</h2>
+<p class="d" data-en="Four habits that prevent 90% of AWS security incidents.">90% AWS सुरक्षा घटना टाळणाऱ्या चार सवयी.</p>
+<svg aria-label="Four rules: MFA everywhere, least privilege, no root and no long-lived keys, CloudTrail audit" role="img" viewbox="0 0 940 300">
+<rect class="box" height="100" rx="12" width="410" x="50" y="50"></rect>
+<text class="t m" data-en="📱 1 · MFA everywhere" x="255" y="82">📱 1 · सगळीकडे MFA</text>
+<text class="s m" data-en="root AND every human user —" x="255" y="108">root आणि प्रत्येक मानवी user —</text>
+<text class="s m" data-en="a stolen password alone opens nothing" x="255" y="128">चोरलेला पासवर्ड एकटा काहीच उघडत नाही</text>
+<g transform="translate(50,50)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="100" rx="12" width="410" x="490" y="50"></rect>
+<text class="t m" x="695" y="82">🤏 2 · least privilege</text>
+<text class="s m" data-en="exact Actions on exact Resources;" x="695" y="108">नेमक्या Resources वर नेमक्या Actions;</text>
+<text class="s m" data-en="AdministratorAccess is a smell, not a default" x="695" y="128">AdministratorAccess हा वास आहे, default नाही</text>
+<g transform="translate(490,50)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="100" rx="12" width="410" x="50" y="170"></rect>
+<text class="t m" data-en="🚫 3 · no root, no stray keys" x="255" y="202">🚫 3 · root नाही, भटक्या keys नाहीत</text>
+<text class="s m" data-en="root locked with MFA; prefer roles over" x="255" y="228">root MFA ने कुलूपबंद; access keys पेक्षा</text>
+<text class="s m" data-en="access keys; rotate/delete the ones that exist" x="255" y="248">roles ना पसंती; असलेल्या बदला/हटवा</text>
+<g transform="translate(50,170)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="box" height="100" rx="12" width="410" x="490" y="170"></rect>
+<text class="t m" data-en="🧾 4 · CloudTrail on = audit for free" x="695" y="202">🧾 4 · CloudTrail चालू = audit मोफत</text>
+<text class="s m" data-en="every API call logged: who, what, when," x="695" y="228">प्रत्येक API कॉल नोंदवला: कोण, काय, कधी,</text>
+<text class="s m" data-en="from where — the school's CCTV, but polite" x="695" y="248">कुठून — शाळेचा CCTV, पण सभ्य</text>
+<g transform="translate(490,170)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md"&gt;Read full lesson 06 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">संपूर्ण धडा 06 वाचा →</a></p>
 </section>
-
 <!-- 07 -->
 <section class="dsec" id="l07" style="--c:#ea580c">
-  <h2><span class="ln">7</span> 🖥️ What is EC2 — a rented desk-computer with no screen</h2>
-  <p class="d">An instance is a real computer in AWS's study hall; you talk to it over the network, pay by the hour, and hand it back.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="An AWS region contains availability zones with racks of computers; your instance is one rented desk reachable over the network">
-    <rect class="soft" x="40" y="40" width="620" height="230" rx="14"/>
-    <text class="t m" x="350" y="72">🌏 region: ap-south-1 (Mumbai) — the school district</text>
-    <rect class="soft" x="70" y="95" width="270" height="150" rx="12"/>
-    <text class="s m" x="205" y="120">🏫 AZ-a — one school building</text>
-    <rect class="box" x="95" y="140" width="220" height="85" rx="10"/>
-    <text class="t m" x="205" y="170">🖥️ i-0abc… your desk</text>
-    <text class="s m" x="205" y="192">2 vCPU · 1GB RAM · Linux</text>
-    <text class="s m" x="205" y="212">no screen, no keyboard</text>
-    <rect class="soft" x="370" y="95" width="270" height="150" rx="12"/>
-    <text class="s m" x="505" y="120">🏫 AZ-b — another building</text>
-    <text class="s m" x="505" y="175">(spread desks across buildings</text>
-    <text class="s m" x="505" y="197">so one fire ≠ everything down)</text>
-    <g transform="translate(70,95)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="730" y="100" width="180" height="110" rx="12"/>
-    <text class="t m" x="820" y="132">🧑‍💻 you, at home</text>
-    <text class="s m" x="820" y="158">talk over the network:</text>
-    <text class="s m" x="820" y="180">SSH, HTTP — that's it</text>
-    <line class="arr" x1="730" y1="165" x2="319" y2="180"/>
-    <g transform="translate(525,158)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <text class="s m" x="480" y="292">⏱️ pay per second while it runs · stop = keep the desk cheap · terminate = hand it back</text>
-    <g transform="translate(160,292)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">Read full lesson 07 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;7&lt;/span&gt; 🖥️ What is EC2 — a rented desk-computer with no screen'><span class="ln">7</span> 🖥️ EC2 म्हणजे काय — स्क्रीन नसलेला भाड्याचा बाक-संगणक</h2>
+<p class="d" data-en="An instance is a real computer in AWS's study hall; you talk to it over the network, pay by the hour, and hand it back.">instance म्हणजे AWS च्या अभ्यासिकेतील खरा संगणक; तुम्ही त्याच्याशी नेटवर्कवरून बोलता, तासाने पैसे देता, आणि परत देता.</p>
+<svg aria-label="An AWS region contains availability zones with racks of computers; your instance is one rented desk reachable over the network" role="img" viewbox="0 0 940 300">
+<rect class="soft" height="230" rx="14" width="620" x="40" y="40"></rect>
+<text class="t m" data-en="🌏 region: ap-south-1 (Mumbai) — the school district" x="350" y="72">🌏 region: ap-south-1 (मुंबई) — शाळेचा जिल्हा</text>
+<rect class="soft" height="150" rx="12" width="270" x="70" y="95"></rect>
+<text class="s m" data-en="🏫 AZ-a — one school building" x="205" y="120">🏫 AZ-a — शाळेची एक इमारत</text>
+<rect class="box" height="85" rx="10" width="220" x="95" y="140"></rect>
+<text class="t m" data-en="🖥️ i-0abc… your desk" x="205" y="170">🖥️ i-0abc… तुमचा बाक</text>
+<text class="s m" x="205" y="192">2 vCPU · 1GB RAM · Linux</text>
+<text class="s m" data-en="no screen, no keyboard" x="205" y="212">स्क्रीन नाही, कीबोर्ड नाही</text>
+<rect class="soft" height="150" rx="12" width="270" x="370" y="95"></rect>
+<text class="s m" data-en="🏫 AZ-b — another building" x="505" y="120">🏫 AZ-b — दुसरी इमारत</text>
+<text class="s m" data-en="(spread desks across buildings" x="505" y="175">(बाक इमारतींमध्ये पसरवा</text>
+<text class="s m" data-en="so one fire ≠ everything down)" x="505" y="197">म्हणजे एक आग ≠ सगळे बंद)</text>
+<g transform="translate(70,95)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="110" rx="12" width="180" x="730" y="100"></rect>
+<text class="t m" data-en="🧑‍💻 you, at home" x="820" y="132">🧑‍💻 तुम्ही, घरी</text>
+<text class="s m" data-en="talk over the network:" x="820" y="158">नेटवर्कवरून बोला:</text>
+<text class="s m" data-en="SSH, HTTP — that's it" x="820" y="180">SSH, HTTP — एवढेच</text>
+<line class="arr" x1="730" x2="319" y1="165" y2="180"></line>
+<g transform="translate(525,158)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<text class="s m" data-en="⏱️ pay per second while it runs · stop = keep the desk cheap · terminate = hand it back" x="480" y="292">⏱️ चालू असताना सेकंदाने पैसे · stop = बाक स्वस्तात ठेवा · terminate = परत द्या</text>
+<g transform="translate(160,292)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md"&gt;Read full lesson 07 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">संपूर्ण धडा 07 वाचा →</a></p>
 </section>
-
 <!-- 08 -->
 <section class="dsec" id="l08" style="--c:#ea580c">
-  <h2><span class="ln">8</span> 🛵 Types &amp; pricing — scooters, trucks, and standby seats</h2>
-  <p class="d">Pick the vehicle for the errand, and the payment plan for the pattern.</p>
-  <svg viewBox="0 0 940 320" role="img" aria-label="Instance families compared to vehicles; on-demand, savings plans and spot pricing compared to rental plans">
-    <rect class="box" x="40" y="40" width="200" height="90" rx="12"/>
-    <text class="t m" x="140" y="70">🛵 t3 — scooter</text>
-    <text class="s m" x="140" y="94">cheap, bursty · dev/small</text>
-    <text class="s m" x="140" y="114">(our labs: t3.micro)</text>
-    <rect class="box" x="260" y="40" width="200" height="90" rx="12"/>
-    <text class="t m" x="360" y="70">🚗 m — sedan</text>
-    <text class="s m" x="360" y="94">balanced · general apps</text>
-    <text class="s m" x="360" y="114">(EKS nodes often live here)</text>
-    <rect class="box" x="480" y="40" width="200" height="90" rx="12"/>
-    <text class="t m" x="580" y="70">🏎️ c — race car</text>
-    <text class="s m" x="580" y="94">CPU-heavy · encoding, ML</text>
-    <rect class="box" x="700" y="40" width="200" height="90" rx="12"/>
-    <text class="t m" x="800" y="70">🚚 r — moving truck</text>
-    <text class="s m" x="800" y="94">RAM-heavy · databases</text>
-    <g transform="translate(40,40)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="soft" x="40" y="170" width="270" height="110" rx="12"/>
-    <text class="t m" x="175" y="202">💳 on-demand</text>
-    <text class="s m" x="175" y="228">pay per second, leave anytime —</text>
-    <text class="s m" x="175" y="250">flexible &amp; most expensive</text>
-    <rect class="soft" x="330" y="170" width="270" height="110" rx="12"/>
-    <text class="t m" x="465" y="202">🎫 savings plan / reserved</text>
-    <text class="s m" x="465" y="228">season ticket: commit 1–3 yrs</text>
-    <text class="s m" x="465" y="250">→ up to ~70% off steady load</text>
-    <rect class="soft" x="620" y="170" width="280" height="110" rx="12"/>
-    <text class="t m" x="760" y="202">🎟️ spot</text>
-    <text class="s m" x="760" y="228">standby seat: ~90% off, but AWS</text>
-    <text class="s m" x="760" y="250">may reclaim it (2-min warning)</text>
-    <g transform="translate(40,170)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <text class="s m" x="470" y="308">rule: steady base → savings plan · spiky extra → on-demand/spot · interruptible work → spot</text>
-    <g transform="translate(105,308)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">Read full lesson 08 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;8&lt;/span&gt; 🛵 Types &amp;amp; pricing — scooters, trucks, and standby seats'><span class="ln">8</span> 🛵 प्रकार &amp; किंमत — स्कूटर, ट्रक, आणि standby जागा</h2>
+<p class="d" data-en="Pick the vehicle for the errand, and the payment plan for the pattern.">कामासाठी वाहन निवडा, आणि पॅटर्नसाठी पैसे देण्याची योजना.</p>
+<svg aria-label="Instance families compared to vehicles; on-demand, savings plans and spot pricing compared to rental plans" role="img" viewbox="0 0 940 320">
+<rect class="box" height="90" rx="12" width="200" x="40" y="40"></rect>
+<text class="t m" data-en="🛵 t3 — scooter" x="140" y="70">🛵 t3 — स्कूटर</text>
+<text class="s m" data-en="cheap, bursty · dev/small" x="140" y="94">स्वस्त, झटक्यांचे · dev/छोटे</text>
+<text class="s m" data-en="(our labs: t3.micro)" x="140" y="114">(आपले प्रयोग: t3.micro)</text>
+<rect class="box" height="90" rx="12" width="200" x="260" y="40"></rect>
+<text class="t m" data-en="🚗 m — sedan" x="360" y="70">🚗 m — सेडान</text>
+<text class="s m" data-en="balanced · general apps" x="360" y="94">संतुलित · सामान्य ॲप्स</text>
+<text class="s m" data-en="(EKS nodes often live here)" x="360" y="114">(EKS nodes अनेकदा इथे राहतात)</text>
+<rect class="box" height="90" rx="12" width="200" x="480" y="40"></rect>
+<text class="t m" data-en="🏎️ c — race car" x="580" y="70">🏎️ c — रेस कार</text>
+<text class="s m" data-en="CPU-heavy · encoding, ML" x="580" y="94">CPU-जड · encoding, ML</text>
+<rect class="box" height="90" rx="12" width="200" x="700" y="40"></rect>
+<text class="t m" data-en="🚚 r — moving truck" x="800" y="70">🚚 r — सामानाचा ट्रक</text>
+<text class="s m" data-en="RAM-heavy · databases" x="800" y="94">RAM-जड · डेटाबेस</text>
+<g transform="translate(40,40)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="soft" height="110" rx="12" width="270" x="40" y="170"></rect>
+<text class="t m" x="175" y="202">💳 on-demand</text>
+<text class="s m" data-en="pay per second, leave anytime —" x="175" y="228">सेकंदाने पैसे, कधीही सोडा —</text>
+<text class="s m" data-en="flexible &amp;amp; most expensive" x="175" y="250">लवचिक &amp; सर्वात महाग</text>
+<rect class="soft" height="110" rx="12" width="270" x="330" y="170"></rect>
+<text class="t m" x="465" y="202">🎫 savings plan / reserved</text>
+<text class="s m" data-en="season ticket: commit 1–3 yrs" x="465" y="228">सीझन तिकीट: 1–3 वर्षे बांधिलकी</text>
+<text class="s m" data-en="→ up to ~70% off steady load" x="465" y="250">→ स्थिर load वर ~70% पर्यंत स्वस्त</text>
+<rect class="soft" height="110" rx="12" width="280" x="620" y="170"></rect>
+<text class="t m" x="760" y="202">🎟️ spot</text>
+<text class="s m" data-en="standby seat: ~90% off, but AWS" x="760" y="228">standby जागा: ~90% स्वस्त, पण AWS</text>
+<text class="s m" data-en="may reclaim it (2-min warning)" x="760" y="250">ती परत घेऊ शकते (2 मि. सूचना)</text>
+<g transform="translate(40,170)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<text class="s m" data-en="rule: steady base → savings plan · spiky extra → on-demand/spot · interruptible work → spot" x="470" y="308">नियम: स्थिर पाया → savings plan · झटक्यांचे जादा → on-demand/spot · व्यत्यय चालणारे काम → spot</text>
+<g transform="translate(105,308)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md"&gt;Read full lesson 08 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">संपूर्ण धडा 08 वाचा →</a></p>
 </section>
-
 <!-- 09 -->
 <section class="dsec" id="l09" style="--c:#ea580c">
-  <h2><span class="ln">9</span> 🔑 Connecting — the door key vs the escorted visit</h2>
-  <p class="d">Classic: SSH with a key pair. Modern: SSM Session Manager — no open door at all.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="SSH uses a key pair through an open port 22; SSM Session Manager connects through the agent with no inbound port and full audit">
-    <rect class="box" x="40" y="60" width="230" height="100" rx="12"/>
-    <text class="t m" x="155" y="92">🔑 key pair</text>
-    <text class="s m" x="155" y="118">public key → on the desk</text>
-    <text class="s m" x="155" y="140">private key → NEVER leaves you</text>
-    <rect class="box" x="360" y="60" width="250" height="100" rx="12"/>
-    <text class="t m" x="485" y="92">🚪 SSH, port 22</text>
-    <text class="s m" x="485" y="118">an open (guarded) door —</text>
-    <text class="s m" x="485" y="140">only from YOUR IP (lesson 10)</text>
-    <line class="arr" x1="270" y1="110" x2="356" y2="110"/>
-    <g transform="translate(313,93)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="700" y="60" width="210" height="100" rx="12"/>
-    <text class="t m" x="805" y="92">🖥️ the instance</text>
-    <text class="s m" x="805" y="118">ssh ec2-user@IP</text>
-    <line class="arr" x1="610" y1="110" x2="696" y2="110"/>
-    <rect class="box" x="360" y="190" width="250" height="90" rx="12"/>
-    <text class="t m" x="485" y="220">🛗 SSM Session Manager</text>
-    <text class="s m" x="485" y="244">NO open port, NO key to lose,</text>
-    <text class="s m" x="485" y="264">every session audited</text>
-    <g transform="translate(360,190)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <line class="arr dash" x1="610" y1="235" x2="770" y2="164"/>
-    <text class="s m" x="740" y="240">via the SSM agent +</text>
-    <text class="s m" x="740" y="260">the instance's role 🎩</text>
-    <g transform="translate(690,205)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <text class="s m" x="180" y="250">modern default: SSM;</text>
-    <text class="s m" x="180" y="270">SSH when you must</text>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">Read full lesson 09 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;9&lt;/span&gt; 🔑 Connecting — the door key vs the escorted visit'><span class="ln">9</span> 🔑 जोडणी — दाराची किल्ली विरुद्ध सोबत नेलेली भेट</h2>
+<p class="d" data-en="Classic: SSH with a key pair. Modern: SSM Session Manager — no open door at all.">क्लासिक: key pair ने SSH. आधुनिक: SSM Session Manager — उघडे दारच नाही.</p>
+<svg aria-label="SSH uses a key pair through an open port 22; SSM Session Manager connects through the agent with no inbound port and full audit" role="img" viewbox="0 0 940 300">
+<rect class="box" height="100" rx="12" width="230" x="40" y="60"></rect>
+<text class="t m" x="155" y="92">🔑 key pair</text>
+<text class="s m" data-en="public key → on the desk" x="155" y="118">public key → बाकावर</text>
+<text class="s m" data-en="private key → NEVER leaves you" x="155" y="140">private key → तुमच्यापासून कधीच दूर नाही</text>
+<rect class="box" height="100" rx="12" width="250" x="360" y="60"></rect>
+<text class="t m" x="485" y="92">🚪 SSH, port 22</text>
+<text class="s m" data-en="an open (guarded) door —" x="485" y="118">उघडे (पहारा असलेले) दार —</text>
+<text class="s m" data-en="only from YOUR IP (lesson 10)" x="485" y="140">फक्त तुमच्या IP वरून (धडा 10)</text>
+<line class="arr" x1="270" x2="356" y1="110" y2="110"></line>
+<g transform="translate(313,93)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="100" rx="12" width="210" x="700" y="60"></rect>
+<text class="t m" data-en="🖥️ the instance" x="805" y="92">🖥️ instance</text>
+<text class="s m" x="805" y="118">ssh ec2-user@IP</text>
+<line class="arr" x1="610" x2="696" y1="110" y2="110"></line>
+<rect class="box" height="90" rx="12" width="250" x="360" y="190"></rect>
+<text class="t m" x="485" y="220">🛗 SSM Session Manager</text>
+<text class="s m" data-en="NO open port, NO key to lose," x="485" y="244">उघडा port नाही, हरवायला key नाही,</text>
+<text class="s m" data-en="every session audited" x="485" y="264">प्रत्येक सत्र audit केलेले</text>
+<g transform="translate(360,190)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<line class="arr dash" x1="610" x2="770" y1="235" y2="164"></line>
+<text class="s m" data-en="via the SSM agent +" x="740" y="240">SSM agent +</text>
+<text class="s m" data-en="the instance's role 🎩" x="740" y="260">instance च्या role ने 🎩</text>
+<g transform="translate(690,205)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<text class="s m" data-en="modern default: SSM;" x="180" y="250">आधुनिक default: SSM;</text>
+<text class="s m" data-en="SSH when you must" x="180" y="270">SSH फक्त गरज असेल तेव्हा</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md"&gt;Read full lesson 09 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-09-connecting/lessons/09-connecting/README.md">संपूर्ण धडा 09 वाचा →</a></p>
 </section>
-
 <!-- 10 -->
 <section class="dsec" id="l10" style="--c:#ea580c">
-  <h2><span class="ln">10</span> 🚪 Security groups — the gatekeeper's guest list</h2>
-  <p class="d">Default: nobody enters. You list exactly who may knock on which door — and replies are let back out automatically.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="A security group in front of the instance allows port 22 from one IP and port 80 from anywhere; everything else is denied by default">
-    <rect class="box" x="360" y="50" width="260" height="220" rx="14"/>
-    <text class="t m" x="490" y="82">🧍 security group</text>
-    <text class="s m" x="490" y="104">the gatekeeper + guest list</text>
-    <rect class="soft" x="385" y="120" width="210" height="55" rx="8"/>
-    <text class="s m" x="490" y="142">✅ 22 (SSH) — only from</text>
-    <text class="s m" x="490" y="162">MY house (1.2.3.4/32)</text>
-    <rect class="soft" x="385" y="185" width="210" height="40" rx="8"/>
-    <text class="s m" x="490" y="210">✅ 80 (web) — from anyone</text>
-    <rect class="dead" x="385" y="233" width="210" height="30" rx="8"/>
-    <text class="s m" x="490" y="253">❌ everything else — silence</text>
-    <rect class="box" x="720" y="100" width="190" height="110" rx="12"/>
-    <text class="t m" x="815" y="135">🖥️ instance</text>
-    <text class="s m" x="815" y="160">never even hears</text>
-    <text class="s m" x="815" y="182">the denied knocks</text>
-    <line class="arr" x1="620" y1="155" x2="716" y2="155"/>
-    <rect class="box" x="40" y="60" width="200" height="80" rx="12"/>
-    <text class="s m" x="140" y="92">🧑‍💻 you (your IP)</text>
-    <text class="s m" x="140" y="114">ssh → allowed ✅</text>
-    <line class="arr" x1="240" y1="100" x2="356" y2="135"/>
-    <g transform="translate(298,100)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="40" y="170" width="200" height="80" rx="12"/>
-    <text class="s m" x="140" y="202">🌍 the internet</text>
-    <text class="s m" x="140" y="224">port 80 ✅ · port 22 ❌</text>
-    <line class="arr" x1="240" y1="210" x2="356" y2="200"/>
-    <g transform="translate(298,222)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <text class="s m" x="490" y="292">stateful: if a request was allowed IN, its reply is allowed OUT — no mirror rules needed</text>
-    <g transform="translate(130,292)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">Read full lesson 10 →</a></p>
+<h2 data-en="&lt;span class=&quot;ln&quot;&gt;10&lt;/span&gt; 🚪 Security groups — the gatekeeper's guest list"><span class="ln">10</span> 🚪 Security groups — द्वारपालाची पाहुण्यांची यादी</h2>
+<p class="d" data-en="Default: nobody enters. You list exactly who may knock on which door — and replies are let back out automatically.">मुळात: कोणीच आत येत नाही. कोण कोणत्या दारावर ठोठावू शकते हे तुम्ही नेमके लिहिता — आणि उत्तरे आपोआप बाहेर सोडली जातात.</p>
+<svg aria-label="A security group in front of the instance allows port 22 from one IP and port 80 from anywhere; everything else is denied by default" role="img" viewbox="0 0 940 300">
+<rect class="box" height="220" rx="14" width="260" x="360" y="50"></rect>
+<text class="t m" x="490" y="82">🧍 security group</text>
+<text class="s m" data-en="the gatekeeper + guest list" x="490" y="104">द्वारपाल + पाहुण्यांची यादी</text>
+<rect class="soft" height="55" rx="8" width="210" x="385" y="120"></rect>
+<text class="s m" data-en="✅ 22 (SSH) — only from" x="490" y="142">✅ 22 (SSH) — फक्त</text>
+<text class="s m" data-en="MY house (1.2.3.4/32)" x="490" y="162">माझ्या घरून (1.2.3.4/32)</text>
+<rect class="soft" height="40" rx="8" width="210" x="385" y="185"></rect>
+<text class="s m" data-en="✅ 80 (web) — from anyone" x="490" y="210">✅ 80 (web) — कोणाकडूनही</text>
+<rect class="dead" height="30" rx="8" width="210" x="385" y="233"></rect>
+<text class="s m" data-en="❌ everything else — silence" x="490" y="253">❌ बाकी सगळे — शांतता</text>
+<rect class="box" height="110" rx="12" width="190" x="720" y="100"></rect>
+<text class="t m" x="815" y="135">🖥️ instance</text>
+<text class="s m" data-en="never even hears" x="815" y="160">नाकारलेले ठोके</text>
+<text class="s m" data-en="the denied knocks" x="815" y="182">ऐकतही नाही</text>
+<line class="arr" x1="620" x2="716" y1="155" y2="155"></line>
+<rect class="box" height="80" rx="12" width="200" x="40" y="60"></rect>
+<text class="s m" data-en="🧑‍💻 you (your IP)" x="140" y="92">🧑‍💻 तुम्ही (तुमचा IP)</text>
+<text class="s m" data-en="ssh → allowed ✅" x="140" y="114">ssh → परवानगी ✅</text>
+<line class="arr" x1="240" x2="356" y1="100" y2="135"></line>
+<g transform="translate(298,100)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="80" rx="12" width="200" x="40" y="170"></rect>
+<text class="s m" data-en="🌍 the internet" x="140" y="202">🌍 इंटरनेट</text>
+<text class="s m" x="140" y="224">port 80 ✅ · port 22 ❌</text>
+<line class="arr" x1="240" x2="356" y1="210" y2="200"></line>
+<g transform="translate(298,222)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<text class="s m" data-en="stateful: if a request was allowed IN, its reply is allowed OUT — no mirror rules needed" x="490" y="292">stateful: विनंती आत सोडली असेल तर तिचे उत्तर बाहेर सोडले जाते — आरशातले नियम लागत नाहीत</text>
+<g transform="translate(130,292)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md"&gt;Read full lesson 10 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-10-security-groups/lessons/10-security-groups/README.md">संपूर्ण धडा 10 वाचा →</a></p>
 </section>
-
 <!-- 11 -->
 <section class="dsec" id="l11" style="--c:#ea580c">
-  <h2><span class="ln">11</span> 🗄️ EBS, snapshots &amp; AMIs — drawer, photocopy, desk template</h2>
-  <p class="d">The disk outlives reboots; the snapshot is its backup; the AMI stamps out identical ready-made desks.</p>
-  <svg viewBox="0 0 940 300" role="img" aria-label="EBS volume attached to instance persists; snapshots copy it to S3; an AMI creates identical new instances">
-    <rect class="box" x="40" y="70" width="220" height="110" rx="12"/>
-    <text class="t m" x="150" y="102">🖥️ instance</text>
-    <text class="s m" x="150" y="128">the desk — disposable,</text>
-    <text class="s m" x="150" y="150">stop/start/terminate</text>
-    <rect class="box" x="330" y="70" width="220" height="110" rx="12"/>
-    <text class="t m" x="440" y="102">🗄️ EBS volume</text>
-    <text class="s m" x="440" y="128">the drawer — 8GB here,</text>
-    <text class="s m" x="440" y="150">survives stops &amp; reboots</text>
-    <line class="arr" x1="260" y1="125" x2="326" y2="125"/>
-    <g transform="translate(293,108)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="630" y="40" width="280" height="90" rx="12"/>
-    <text class="t m" x="770" y="72">📸 snapshot</text>
-    <text class="s m" x="770" y="98">photocopy of the drawer → S3,</text>
-    <text class="s m" x="770" y="118">incremental, restore anywhere</text>
-    <line class="arr" x1="550" y1="100" x2="626" y2="85"/>
-    <g transform="translate(588,75)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="630" y="160" width="280" height="110" rx="12"/>
-    <text class="t m" x="770" y="192">🖼️ AMI — the desk template</text>
-    <text class="s m" x="770" y="218">disk + settings, frozen — launch 1</text>
-    <text class="s m" x="770" y="240">or 100 IDENTICAL desks from it</text>
-    <line class="arr" x1="550" y1="150" x2="626" y2="200"/>
-    <g transform="translate(588,190)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <text class="s m" x="300" y="250">💡 it's images-and-containers again (Docker course lesson 02) —</text>
-    <text class="s m" x="300" y="272">AMI : instance = image : container, just heavier</text>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">Read full lesson 11 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;11&lt;/span&gt; 🗄️ EBS, snapshots &amp;amp; AMIs — drawer, photocopy, desk template'><span class="ln">11</span> 🗄️ EBS, snapshots &amp; AMIs — ड्रॉवर, फोटोकॉपी, बाकाचा साचा</h2>
+<p class="d" data-en="The disk outlives reboots; the snapshot is its backup; the AMI stamps out identical ready-made desks.">डिस्क reboot नंतरही टिकते; snapshot तिचा backup; AMI एकसारखे तयार बाक छापतो.</p>
+<svg aria-label="EBS volume attached to instance persists; snapshots copy it to S3; an AMI creates identical new instances" role="img" viewbox="0 0 940 300">
+<rect class="box" height="110" rx="12" width="220" x="40" y="70"></rect>
+<text class="t m" x="150" y="102">🖥️ instance</text>
+<text class="s m" data-en="the desk — disposable," x="150" y="128">बाक — टाकाऊ,</text>
+<text class="s m" x="150" y="150">stop/start/terminate</text>
+<rect class="box" height="110" rx="12" width="220" x="330" y="70"></rect>
+<text class="t m" x="440" y="102">🗄️ EBS volume</text>
+<text class="s m" data-en="the drawer — 8GB here," x="440" y="128">ड्रॉवर — इथे 8GB,</text>
+<text class="s m" data-en="survives stops &amp;amp; reboots" x="440" y="150">stop &amp; reboot नंतर टिकतो</text>
+<line class="arr" x1="260" x2="326" y1="125" y2="125"></line>
+<g transform="translate(293,108)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="90" rx="12" width="280" x="630" y="40"></rect>
+<text class="t m" x="770" y="72">📸 snapshot</text>
+<text class="s m" data-en="photocopy of the drawer → S3," x="770" y="98">ड्रॉवरची फोटोकॉपी → S3,</text>
+<text class="s m" data-en="incremental, restore anywhere" x="770" y="118">incremental, कुठेही restore</text>
+<line class="arr" x1="550" x2="626" y1="100" y2="85"></line>
+<g transform="translate(588,75)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="110" rx="12" width="280" x="630" y="160"></rect>
+<text class="t m" data-en="🖼️ AMI — the desk template" x="770" y="192">🖼️ AMI — बाकाचा साचा</text>
+<text class="s m" data-en="disk + settings, frozen — launch 1" x="770" y="218">डिस्क + settings, गोठवलेले — त्यातून 1</text>
+<text class="s m" data-en="or 100 IDENTICAL desks from it" x="770" y="240">किंवा 100 एकसारखे बाक launch करा</text>
+<line class="arr" x1="550" x2="626" y1="150" y2="200"></line>
+<g transform="translate(588,190)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<text class="s m" data-en="💡 it's images-and-containers again (Docker course lesson 02) —" x="300" y="250">💡 पुन्हा इमेज-आणि-कंटेनर (Docker कोर्स धडा 02) —</text>
+<text class="s m" data-en="AMI : instance = image : container, just heavier" x="300" y="272">AMI : instance = इमेज : कंटेनर, फक्त जड</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md"&gt;Read full lesson 11 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-11-ebs-snapshots-ami/lessons/11-ebs-snapshots-ami/README.md">संपूर्ण धडा 11 वाचा →</a></p>
 </section>
-
 <!-- 12 -->
 <section class="dsec" id="l12" style="--c:#ea580c">
-  <h2><span class="ln">12</span> 🤖 EC2 in real life — checklists, badges, and fleets</h2>
-  <p class="d">user-data sets desks up alone; the metadata service hands out the role badge; ASGs keep N desks alive — and EKS nodes are exactly this.</p>
-  <svg viewBox="0 0 940 320" role="img" aria-label="User-data configures the instance on boot; the metadata service provides role credentials; an autoscaling group maintains the fleet that EKS uses as nodes">
-    <rect class="box" x="40" y="50" width="260" height="100" rx="12"/>
-    <text class="t m" x="170" y="82">📋 user-data</text>
-    <text class="s m" x="170" y="108">boot checklist, runs once:</text>
-    <text class="s m" x="170" y="130">install nginx, start serving</text>
-    <g transform="translate(40,50)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="40" y="180" width="260" height="100" rx="12"/>
-    <text class="t m" x="170" y="212">🎩 metadata service</text>
-    <text class="s m" x="170" y="238">169.254.169.254 hands the desk</text>
-    <text class="s m" x="170" y="260">its role badge — IAM meets EC2!</text>
-    <g transform="translate(40,180)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="400" y="90" width="250" height="150" rx="14"/>
-    <text class="t m" x="525" y="122">🖥️ the instance</text>
-    <text class="s m" x="525" y="148">set up by robots,</text>
-    <text class="s m" x="525" y="170">authorized by its hat,</text>
-    <text class="s m" x="525" y="192">replaceable at any time</text>
-    <line class="arr" x1="300" y1="100" x2="396" y2="130"/>
-    <line class="arr" x1="300" y1="230" x2="396" y2="200"/>
-    <rect class="box" x="720" y="50" width="190" height="110" rx="12"/>
-    <text class="t m" x="815" y="82">👯 Auto Scaling Group</text>
-    <text class="s m" x="815" y="108">"always N desks" —</text>
-    <text class="s m" x="815" y="130">a Deployment, for computers</text>
-    <line class="arr" x1="650" y1="140" x2="716" y2="110"/>
-    <g transform="translate(683,108)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="soft" x="720" y="190" width="190" height="90" rx="12"/>
-    <text class="s m" x="815" y="220">☸️ EKS "nodes" =</text>
-    <text class="s m" x="815" y="242">exactly these desks,</text>
-    <text class="s m" x="815" y="264">in exactly such a group</text>
-    <g transform="translate(700,225)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <text class="s m" x="440" y="300">the punchline of the course: k8s pods sit on desks you now fully understand 🎓</text>
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">Read full lesson 12 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;12&lt;/span&gt; 🤖 EC2 in real life — checklists, badges, and fleets'><span class="ln">12</span> 🤖 खऱ्या जगातील EC2 — याद्या, बॅज, आणि ताफे</h2>
+<p class="d" data-en="user-data sets desks up alone; the metadata service hands out the role badge; ASGs keep N desks alive — and EKS nodes are exactly this.">user-data बाक स्वतःहून तयार करते; metadata सेवा role बॅज देते; ASG N बाक जिवंत ठेवतात — आणि EKS nodes नेमके हेच.</p>
+<svg aria-label="User-data configures the instance on boot; the metadata service provides role credentials; an autoscaling group maintains the fleet that EKS uses as nodes" role="img" viewbox="0 0 940 320">
+<rect class="box" height="100" rx="12" width="260" x="40" y="50"></rect>
+<text class="t m" x="170" y="82">📋 user-data</text>
+<text class="s m" data-en="boot checklist, runs once:" x="170" y="108">boot यादी, एकदाच चालते:</text>
+<text class="s m" data-en="install nginx, start serving" x="170" y="130">nginx install करा, serve सुरू करा</text>
+<g transform="translate(40,50)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="100" rx="12" width="260" x="40" y="180"></rect>
+<text class="t m" data-en="🎩 metadata service" x="170" y="212">🎩 metadata सेवा</text>
+<text class="s m" data-en="169.254.169.254 hands the desk" x="170" y="238">169.254.169.254 बाकाला त्याचा</text>
+<text class="s m" data-en="its role badge — IAM meets EC2!" x="170" y="260">role बॅज देते — IAM ची EC2 शी भेट!</text>
+<g transform="translate(40,180)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="150" rx="14" width="250" x="400" y="90"></rect>
+<text class="t m" data-en="🖥️ the instance" x="525" y="122">🖥️ instance</text>
+<text class="s m" data-en="set up by robots," x="525" y="148">रोबोटने तयार केलेला,</text>
+<text class="s m" data-en="authorized by its hat," x="525" y="170">टोपीने अधिकृत,</text>
+<text class="s m" data-en="replaceable at any time" x="525" y="192">कधीही बदलता येणारा</text>
+<line class="arr" x1="300" x2="396" y1="100" y2="130"></line>
+<line class="arr" x1="300" x2="396" y1="230" y2="200"></line>
+<rect class="box" height="110" rx="12" width="190" x="720" y="50"></rect>
+<text class="t m" x="815" y="82">👯 Auto Scaling Group</text>
+<text class="s m" data-en='"always N desks" —' x="815" y="108">"नेहमी N बाक" —</text>
+<text class="s m" data-en="a Deployment, for computers" x="815" y="130">संगणकांसाठीचे Deployment</text>
+<line class="arr" x1="650" x2="716" y1="140" y2="110"></line>
+<g transform="translate(683,108)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="soft" height="90" rx="12" width="190" x="720" y="190"></rect>
+<text class="s m" x="815" y="220">☸️ EKS "nodes" =</text>
+<text class="s m" data-en="exactly these desks," x="815" y="242">नेमके हेच बाक,</text>
+<text class="s m" data-en="in exactly such a group" x="815" y="264">नेमक्या अशाच गटात</text>
+<g transform="translate(700,225)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<text class="s m" data-en="the punchline of the course: k8s pods sit on desks you now fully understand 🎓" x="440" y="300">कोर्सचा कळस: k8s pods तुम्हाला आता पूर्ण समजलेल्या बाकांवर बसतात 🎓</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md"&gt;Read full lesson 12 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-12-ec2-in-real-life/lessons/12-ec2-in-real-life/README.md">संपूर्ण धडा 12 वाचा →</a></p>
 </section>
-
 <!-- 13 -->
 <section class="dsec" id="l13" style="--c:#0d9488">
-  <h2><span class="ln">13</span> 🏫 VPC — the campus walls</h2>
-  <p class="d">Desks never stood in an open field: a fenced campus with wings, one gate, and corridor signs deciding who can reach the street.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="The internet reaches the VPC through the internet gateway into the public wing; private wings reach out only via NAT; route tables decide everything">
-
-    <rect class="soft" x="40" y="110" width="150" height="80" rx="12"/>
-    <text class="t m" x="115" y="145">🌍 the street</text>
-    <text class="s m" x="115" y="168">(internet)</text>
-    <rect class="box" x="240" y="110" width="150" height="80" rx="12"/>
-    <text class="t m" x="315" y="145">🚧 IGW</text>
-    <text class="s m" x="315" y="168">the main gate</text>
-    <line class="arr" x1="190" y1="150" x2="236" y2="150"/>
-    <g transform="translate(213,133)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="soft" x="440" y="40" width="460" height="250" rx="16"/>
-    <text class="t" x="460" y="70">🏫 VPC 10.0.0.0/16 — the fenced campus</text>
-    <rect class="box" x="465" y="90" width="190" height="95" rx="12"/>
-    <text class="t m" x="560" y="115">🚪 public wing</text>
-    <text class="s m" x="560" y="138">10.0.1.0/24 · AZ-a</text>
-    <text class="s m" x="560" y="160">📮 NAT postbox here</text>
-    <rect class="box" x="685" y="90" width="190" height="95" rx="12"/>
-    <text class="t m" x="780" y="115">🔒 private wing</text>
-    <text class="s m" x="780" y="138">10.0.101.0/24 · AZ-a</text>
-    <text class="s m" x="780" y="160">🖥️ your desks live here</text>
-    <line class="arr" x1="390" y1="150" x2="461" y2="137"/>
-    <g transform="translate(425,128)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <line class="arr dash" x1="685" y1="160" x2="659" y2="160"/>
-    <g transform="translate(672,143)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="soft" x="465" y="205" width="410" height="70" rx="10"/>
-    <text class="s m" x="670" y="232">🪧 corridor signs (route tables):</text>
-    <text class="s m" x="670" y="254">public: 0.0.0.0/0 → gate · private: 0.0.0.0/0 → NAT (out only)</text>
-    <g transform="translate(465,205)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <text class="s m" x="470" y="318">"public" just means: this wing's sign points at the gate — that's the whole trick 🪧</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">Read full lesson 13 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;13&lt;/span&gt; 🏫 VPC — the campus walls'><span class="ln">13</span> 🏫 VPC — कॅम्पसच्या भिंती</h2>
+<p class="d" data-en="Desks never stood in an open field: a fenced campus with wings, one gate, and corridor signs deciding who can reach the street.">बाक कधीच उघड्या मैदानात नव्हते: विभाग, एक गेट, आणि रस्त्यापर्यंत कोण पोहोचू शकते हे ठरवणाऱ्या कॉरिडॉर पाट्या असलेला कुंपण घातलेला कॅम्पस.</p>
+<svg aria-label="The internet reaches the VPC through the internet gateway into the public wing; private wings reach out only via NAT; route tables decide everything" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="80" rx="12" width="150" x="40" y="110"></rect>
+<text class="t m" data-en="🌍 the street" x="115" y="145">🌍 रस्ता</text>
+<text class="s m" data-en="(internet)" x="115" y="168">(इंटरनेट)</text>
+<rect class="box" height="80" rx="12" width="150" x="240" y="110"></rect>
+<text class="t m" x="315" y="145">🚧 IGW</text>
+<text class="s m" data-en="the main gate" x="315" y="168">मुख्य गेट</text>
+<line class="arr" x1="190" x2="236" y1="150" y2="150"></line>
+<g transform="translate(213,133)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="soft" height="250" rx="16" width="460" x="440" y="40"></rect>
+<text class="t" data-en="🏫 VPC 10.0.0.0/16 — the fenced campus" x="460" y="70">🏫 VPC 10.0.0.0/16 — कुंपण घातलेला कॅम्पस</text>
+<rect class="box" height="95" rx="12" width="190" x="465" y="90"></rect>
+<text class="t m" data-en="🚪 public wing" x="560" y="115">🚪 सार्वजनिक विभाग</text>
+<text class="s m" x="560" y="138">10.0.1.0/24 · AZ-a</text>
+<text class="s m" data-en="📮 NAT postbox here" x="560" y="160">📮 NAT पोस्टबॉक्स इथे</text>
+<rect class="box" height="95" rx="12" width="190" x="685" y="90"></rect>
+<text class="t m" data-en="🔒 private wing" x="780" y="115">🔒 खाजगी विभाग</text>
+<text class="s m" x="780" y="138">10.0.101.0/24 · AZ-a</text>
+<text class="s m" data-en="🖥️ your desks live here" x="780" y="160">🖥️ तुमचे बाक इथे राहतात</text>
+<line class="arr" x1="390" x2="461" y1="150" y2="137"></line>
+<g transform="translate(425,128)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<line class="arr dash" x1="685" x2="659" y1="160" y2="160"></line>
+<g transform="translate(672,143)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="soft" height="70" rx="10" width="410" x="465" y="205"></rect>
+<text class="s m" data-en="🪧 corridor signs (route tables):" x="670" y="232">🪧 कॉरिडॉर पाट्या (route tables):</text>
+<text class="s m" data-en="public: 0.0.0.0/0 → gate · private: 0.0.0.0/0 → NAT (out only)" x="670" y="254">सार्वजनिक: 0.0.0.0/0 → गेट · खाजगी: 0.0.0.0/0 → NAT (फक्त बाहेर)</text>
+<g transform="translate(465,205)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<text class="s m" data-en="&quot;public&quot; just means: this wing's sign points at the gate — that's the whole trick 🪧" x="470" y="318">"सार्वजनिक" म्हणजे फक्त: या विभागाची पाटी गेटकडे दाखवते — हीच संपूर्ण युक्ती 🪧</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md"&gt;Read full lesson 13 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-13-vpc/lessons/13-vpc/README.md">संपूर्ण धडा 13 वाचा →</a></p>
 </section>
-
 <!-- 14 -->
 <section class="dsec" id="l14" style="--c:#0d9488">
-  <h2><span class="ln">14</span> 🗄️ S3 — the infinite locker room</h2>
-  <p class="d">Boxes with labels, photocopied to three buildings, opened by ID card — or by a visitor pass that expires.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="An app puts an object into a bucket; S3 replicates it across three availability zones; a presigned URL lets a visitor fetch it until it expires">
-
-    <rect class="box" x="40" y="60" width="180" height="80" rx="12"/>
-    <text class="t m" x="130" y="95">🖥️ app / CLI</text>
-    <text class="s m" x="130" y="118">signs every call 🪪</text>
-    <rect class="box" x="300" y="50" width="260" height="120" rx="14"/>
-    <text class="t m" x="430" y="82">🪣 bucket: school-files</text>
-    <rect class="soft" x="325" y="98" width="210" height="50" rx="8"/>
-    <text class="s m" x="430" y="120">📦 key: 2026/class-3A/</text>
-    <text class="s m" x="430" y="138">photo.jpg (no real folders)</text>
-    <line class="arr" x1="220" y1="100" x2="296" y2="100"/>
-    <g transform="translate(258,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="soft" x="640" y="50" width="260" height="90" rx="12"/>
-    <text class="t m" x="770" y="85">🏢🏢🏢 three buildings</text>
-    <text class="s m" x="770" y="110">every box photocopied — 11 nines</text>
-    <line class="arr" x1="560" y1="95" x2="636" y2="95"/>
-    <g transform="translate(598,78)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="300" y="210" width="260" height="80" rx="12"/>
-    <text class="t m" x="430" y="242">🧑 visitor with 🎟️ pass</text>
-    <text class="s m" x="430" y="265">presigned URL, expires ⏰</text>
-    <line class="arr" x1="130" y1="140" x2="130" y2="250"/>
-    <line class="arr" x1="130" y1="250" x2="296" y2="250"/>
-    <g transform="translate(213,233)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <line class="arr" x1="430" y1="210" x2="430" y2="174"/>
-    <g transform="translate(447,192)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <rect class="dead" x="640" y="210" width="260" height="80" rx="12"/>
-    <text class="t m" x="770" y="242">🛡️ no pass, no entry</text>
-    <text class="s m" x="770" y="265">Block Public Access: ON → 403</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">Read full lesson 14 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;14&lt;/span&gt; 🗄️ S3 — the infinite locker room'><span class="ln">14</span> 🗄️ S3 — अमर्याद लॉकर रूम</h2>
+<p class="d" data-en="Boxes with labels, photocopied to three buildings, opened by ID card — or by a visitor pass that expires.">लेबल असलेले डबे, तीन इमारतींत फोटोकॉपी केलेले, ओळखपत्राने उघडणारे — किंवा संपणाऱ्या पाहुण्यांच्या पासने.</p>
+<svg aria-label="An app puts an object into a bucket; S3 replicates it across three availability zones; a presigned URL lets a visitor fetch it until it expires" role="img" viewbox="0 0 940 330">
+<rect class="box" height="80" rx="12" width="180" x="40" y="60"></rect>
+<text class="t m" data-en="🖥️ app / CLI" x="130" y="95">🖥️ ॲप / CLI</text>
+<text class="s m" data-en="signs every call 🪪" x="130" y="118">प्रत्येक कॉलवर सही 🪪</text>
+<rect class="box" height="120" rx="14" width="260" x="300" y="50"></rect>
+<text class="t m" x="430" y="82">🪣 bucket: school-files</text>
+<rect class="soft" height="50" rx="8" width="210" x="325" y="98"></rect>
+<text class="s m" x="430" y="120">📦 key: 2026/class-3A/</text>
+<text class="s m" data-en="photo.jpg (no real folders)" x="430" y="138">photo.jpg (खरे फोल्डर नाहीत)</text>
+<line class="arr" x1="220" x2="296" y1="100" y2="100"></line>
+<g transform="translate(258,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="soft" height="90" rx="12" width="260" x="640" y="50"></rect>
+<text class="t m" data-en="🏢🏢🏢 three buildings" x="770" y="85">🏢🏢🏢 तीन इमारती</text>
+<text class="s m" data-en="every box photocopied — 11 nines" x="770" y="110">प्रत्येक डब्याची फोटोकॉपी — 11 nines</text>
+<line class="arr" x1="560" x2="636" y1="95" y2="95"></line>
+<g transform="translate(598,78)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="80" rx="12" width="260" x="300" y="210"></rect>
+<text class="t m" data-en="🧑 visitor with 🎟️ pass" x="430" y="242">🧑 पाहुणा 🎟️ पाससह</text>
+<text class="s m" data-en="presigned URL, expires ⏰" x="430" y="265">presigned URL, संपते ⏰</text>
+<line class="arr" x1="130" x2="130" y1="140" y2="250"></line>
+<line class="arr" x1="130" x2="296" y1="250" y2="250"></line>
+<g transform="translate(213,233)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<line class="arr" x1="430" x2="430" y1="210" y2="174"></line>
+<g transform="translate(447,192)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<rect class="dead" height="80" rx="12" width="260" x="640" y="210"></rect>
+<text class="t m" data-en="🛡️ no pass, no entry" x="770" y="242">🛡️ पास नाही, प्रवेश नाही</text>
+<text class="s m" x="770" y="265">Block Public Access: ON → 403</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md"&gt;Read full lesson 14 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-14-s3/lessons/14-s3/README.md">संपूर्ण धडा 14 वाचा →</a></p>
 </section>
-
 <!-- 15 -->
 <section class="dsec" id="l15" style="--c:#0d9488">
-  <h2><span class="ln">15</span> 🛎️ Load balancers — the reception that splits crowds</h2>
-  <p class="d">One address for the whole town; a signboard routes by path; only desks that answer the health check get visitors.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="The town connects to the ALB in public subnets; listener rules route to target groups; health checks decide which private instances receive traffic">
-
-    <rect class="soft" x="40" y="60" width="150" height="80" rx="12"/>
-    <text class="t m" x="115" y="95">🧑‍🧑‍🧒 the town</text>
-    <text class="s m" x="115" y="118">one address</text>
-    <rect class="box" x="240" y="50" width="220" height="100" rx="14"/>
-    <text class="t m" x="350" y="82">🛎️ ALB — reception</text>
-    <text class="s m" x="350" y="105">public wings, AZ-a + AZ-b</text>
-    <text class="s m" x="350" y="127">🔐 HTTPS cert at the door</text>
-    <line class="arr" x1="190" y1="100" x2="236" y2="100"/>
-    <g transform="translate(213,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="soft" x="510" y="50" width="180" height="100" rx="12"/>
-    <text class="t m" x="600" y="82">🪧 signboard</text>
-    <text class="s m" x="600" y="105">/api/* → api desks</text>
-    <text class="s m" x="600" y="127">else → web desks</text>
-    <line class="arr" x1="460" y1="100" x2="506" y2="100"/>
-    <g transform="translate(483,83)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="740" y="55" width="170" height="90" rx="12"/>
-    <text class="t m" x="825" y="87">📋 target group</text>
-    <text class="s m" x="825" y="110">🙋 "ready to answer?"</text>
-    <text class="s m" x="825" y="130">every few seconds</text>
-    <line class="arr" x1="690" y1="100" x2="736" y2="100"/>
-    <g transform="translate(713,83)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="box" x="600" y="220" width="140" height="70" rx="12"/>
-    <text class="t m" x="670" y="250">🖥️ desk AZ-a</text>
-    <text class="s m" x="670" y="272">private wing</text>
-    <rect class="box" x="770" y="220" width="140" height="70" rx="12"/>
-    <text class="t m" x="840" y="250">🖥️ desk AZ-b</text>
-    <text class="s m" x="840" y="272">private wing</text>
-    <rect class="dead" x="420" y="220" width="150" height="70" rx="12"/>
-    <text class="t m" x="495" y="250">😴 failing checks</text>
-    <text class="s m" x="495" y="272">skipped, not restarted</text>
-    <line class="arr" x1="800" y1="145" x2="690" y2="216"/>
-    <line class="arr" x1="835" y1="145" x2="843" y2="216"/>
-    <g transform="translate(760,190)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <line class="arr dash" x1="740" y1="130" x2="530" y2="216"/>
-    <text class="s m" x="220" y="250">🚄 NLB = the pneumatic tube:</text>
-    <text class="s m" x="220" y="272">raw packets, wire speed (L4)</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">Read full lesson 15 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;15&lt;/span&gt; 🛎️ Load balancers — the reception that splits crowds'><span class="ln">15</span> 🛎️ लोड बॅलन्सर — गर्दी वाटणारे रिसेप्शन</h2>
+<p class="d" data-en="One address for the whole town; a signboard routes by path; only desks that answer the health check get visitors.">संपूर्ण गावासाठी एक पत्ता; फलक path नुसार वाट दाखवतो; फक्त health check ला उत्तर देणाऱ्या बाकांना पाहुणे मिळतात.</p>
+<svg aria-label="The town connects to the ALB in public subnets; listener rules route to target groups; health checks decide which private instances receive traffic" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="80" rx="12" width="150" x="40" y="60"></rect>
+<text class="t m" data-en="🧑‍🧑‍🧒 the town" x="115" y="95">🧑‍🧑‍🧒 गाव</text>
+<text class="s m" data-en="one address" x="115" y="118">एक पत्ता</text>
+<rect class="box" height="100" rx="14" width="220" x="240" y="50"></rect>
+<text class="t m" data-en="🛎️ ALB — reception" x="350" y="82">🛎️ ALB — रिसेप्शन</text>
+<text class="s m" data-en="public wings, AZ-a + AZ-b" x="350" y="105">सार्वजनिक विभाग, AZ-a + AZ-b</text>
+<text class="s m" data-en="🔐 HTTPS cert at the door" x="350" y="127">🔐 दारावर HTTPS cert</text>
+<line class="arr" x1="190" x2="236" y1="100" y2="100"></line>
+<g transform="translate(213,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="soft" height="100" rx="12" width="180" x="510" y="50"></rect>
+<text class="t m" data-en="🪧 signboard" x="600" y="82">🪧 फलक</text>
+<text class="s m" data-en="/api/* → api desks" x="600" y="105">/api/* → api बाक</text>
+<text class="s m" data-en="else → web desks" x="600" y="127">बाकी → web बाक</text>
+<line class="arr" x1="460" x2="506" y1="100" y2="100"></line>
+<g transform="translate(483,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="90" rx="12" width="170" x="740" y="55"></rect>
+<text class="t m" x="825" y="87">📋 target group</text>
+<text class="s m" data-en='🙋 "ready to answer?"' x="825" y="110">🙋 "उत्तर द्यायला तयार?"</text>
+<text class="s m" data-en="every few seconds" x="825" y="130">दर काही सेकंदांनी</text>
+<line class="arr" x1="690" x2="736" y1="100" y2="100"></line>
+<g transform="translate(713,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="box" height="70" rx="12" width="140" x="600" y="220"></rect>
+<text class="t m" data-en="🖥️ desk AZ-a" x="670" y="250">🖥️ बाक AZ-a</text>
+<text class="s m" data-en="private wing" x="670" y="272">खाजगी विभाग</text>
+<rect class="box" height="70" rx="12" width="140" x="770" y="220"></rect>
+<text class="t m" data-en="🖥️ desk AZ-b" x="840" y="250">🖥️ बाक AZ-b</text>
+<text class="s m" data-en="private wing" x="840" y="272">खाजगी विभाग</text>
+<rect class="dead" height="70" rx="12" width="150" x="420" y="220"></rect>
+<text class="t m" data-en="😴 failing checks" x="495" y="250">😴 checks मध्ये नापास</text>
+<text class="s m" data-en="skipped, not restarted" x="495" y="272">वगळला, पुन्हा सुरू नाही</text>
+<line class="arr" x1="800" x2="690" y1="145" y2="216"></line>
+<line class="arr" x1="835" x2="843" y1="145" y2="216"></line>
+<g transform="translate(760,190)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<line class="arr dash" x1="740" x2="530" y1="130" y2="216"></line>
+<text class="s m" data-en="🚄 NLB = the pneumatic tube:" x="220" y="250">🚄 NLB = हवेची नळी:</text>
+<text class="s m" data-en="raw packets, wire speed (L4)" x="220" y="272">कच्चे packets, वायरच्या वेगाने (L4)</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md"&gt;Read full lesson 15 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-15-load-balancers/lessons/15-load-balancers/README.md">संपूर्ण धडा 15 वाचा →</a></p>
 </section>
-
 <!-- 16 -->
 <section class="dsec" id="l16" style="--c:#0d9488">
-  <h2><span class="ln">16</span> ☎️ Route 53 — the school's phonebook</h2>
-  <p class="d">Names become reception desks; the phonebook health-checks reception and answers with the backup campus when it must.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="A browser asks Route 53 for school.com; an ALIAS record answers with the ALB; health checks watch it and fail over to a backup">
-
-    <rect class="soft" x="40" y="60" width="170" height="90" rx="12"/>
-    <text class="t m" x="125" y="95">🧒 browser</text>
-    <text class="s m" x="125" y="118">"school.com?"</text>
-    <rect class="box" x="270" y="50" width="240" height="110" rx="14"/>
-    <text class="t m" x="390" y="82">☎️ Route 53 — hosted zone 📖</text>
-    <text class="s m" x="390" y="105">ALIAS: school.com → reception</text>
-    <text class="s m" x="390" y="127">(no IP written down — it changes!)</text>
-    <line class="arr" x1="210" y1="105" x2="266" y2="105"/>
-    <g transform="translate(238,88)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="580" y="60" width="180" height="90" rx="12"/>
-    <text class="t m" x="670" y="95">🛎️ ALB</text>
-    <text class="s m" x="670" y="118">(lesson 15)</text>
-    <line class="arr" x1="510" y1="105" x2="576" y2="105"/>
-    <g transform="translate(543,88)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="soft" x="580" y="215" width="180" height="80" rx="12"/>
-    <text class="t m" x="670" y="247">🩺 health check</text>
-    <text class="s m" x="670" y="270">/health · every 30 s</text>
-    <line class="arr dash" x1="670" y1="215" x2="670" y2="154"/>
-    <g transform="translate(687,185)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="dead" x="270" y="215" width="240" height="80" rx="12"/>
-    <text class="t m" x="390" y="247">🏫 backup campus</text>
-    <text class="s m" x="390" y="270">(another region, asleep)</text>
-    <line class="arr dash" x1="390" y1="160" x2="390" y2="211"/>
-    <g transform="translate(407,185)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <text class="s m" x="125" y="200">⏰ TTL = how long callers may</text>
-    <text class="s m" x="125" y="222">remember the answer</text>
-    <text class="s m" x="125" y="244">(lower it BEFORE you move)</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">Read full lesson 16 →</a></p>
+<h2 data-en="&lt;span class=&quot;ln&quot;&gt;16&lt;/span&gt; ☎️ Route 53 — the school's phonebook"><span class="ln">16</span> ☎️ Route 53 — शाळेचे फोनबुक</h2>
+<p class="d" data-en="Names become reception desks; the phonebook health-checks reception and answers with the backup campus when it must.">नावे रिसेप्शन डेस्क बनतात; फोनबुक रिसेप्शन तपासते आणि गरज पडल्यास backup कॅम्पसने उत्तर देते.</p>
+<svg aria-label="A browser asks Route 53 for school.com; an ALIAS record answers with the ALB; health checks watch it and fail over to a backup" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="90" rx="12" width="170" x="40" y="60"></rect>
+<text class="t m" data-en="🧒 browser" x="125" y="95">🧒 ब्राउझर</text>
+<text class="s m" x="125" y="118">"school.com?"</text>
+<rect class="box" height="110" rx="14" width="240" x="270" y="50"></rect>
+<text class="t m" x="390" y="82">☎️ Route 53 — hosted zone 📖</text>
+<text class="s m" data-en="ALIAS: school.com → reception" x="390" y="105">ALIAS: school.com → रिसेप्शन</text>
+<text class="s m" data-en="(no IP written down — it changes!)" x="390" y="127">(IP लिहिलेला नाही — तो बदलतो!)</text>
+<line class="arr" x1="210" x2="266" y1="105" y2="105"></line>
+<g transform="translate(238,88)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="90" rx="12" width="180" x="580" y="60"></rect>
+<text class="t m" x="670" y="95">🛎️ ALB</text>
+<text class="s m" data-en="(lesson 15)" x="670" y="118">(धडा 15)</text>
+<line class="arr" x1="510" x2="576" y1="105" y2="105"></line>
+<g transform="translate(543,88)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="soft" height="80" rx="12" width="180" x="580" y="215"></rect>
+<text class="t m" x="670" y="247">🩺 health check</text>
+<text class="s m" data-en="/health · every 30 s" x="670" y="270">/health · दर 30 से.</text>
+<line class="arr dash" x1="670" x2="670" y1="215" y2="154"></line>
+<g transform="translate(687,185)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="dead" height="80" rx="12" width="240" x="270" y="215"></rect>
+<text class="t m" data-en="🏫 backup campus" x="390" y="247">🏫 backup कॅम्पस</text>
+<text class="s m" data-en="(another region, asleep)" x="390" y="270">(दुसरा region, झोपलेला)</text>
+<line class="arr dash" x1="390" x2="390" y1="160" y2="211"></line>
+<g transform="translate(407,185)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<text class="s m" data-en="⏰ TTL = how long callers may" x="125" y="200">⏰ TTL = कॉल करणारे उत्तर</text>
+<text class="s m" data-en="remember the answer" x="125" y="222">किती वेळ लक्षात ठेवू शकतात</text>
+<text class="s m" data-en="(lower it BEFORE you move)" x="125" y="244">(हलवण्याआधी ते कमी करा)</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md"&gt;Read full lesson 16 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-16-route53/lessons/16-route53/README.md">संपूर्ण धडा 16 वाचा →</a></p>
 </section>
-
 <!-- 17 -->
 <section class="dsec" id="l17" style="--c:#0d9488">
-  <h2><span class="ln">17</span> 🗃️ RDS — the record office you rent</h2>
-  <p class="d">A database with the clerk included: nightly photocopies, a synced mirror in the next building, and an endpoint name that never changes.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="The app dials the endpoint DNS which points at the primary; a standby mirrors it synchronously in another AZ; backups and read replicas hang off the primary">
-
-    <rect class="box" x="40" y="60" width="160" height="80" rx="12"/>
-    <text class="t m" x="120" y="95">🖥️ app</text>
-    <text class="s m" x="120" y="118">private wing</text>
-    <rect class="soft" x="250" y="60" width="230" height="80" rx="12"/>
-    <text class="t m" x="365" y="90">☎️ endpoint (DNS)</text>
-    <text class="s m" x="365" y="115">always the current primary</text>
-    <line class="arr" x1="200" y1="100" x2="246" y2="100"/>
-    <g transform="translate(223,83)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="540" y="40" width="180" height="110" rx="14"/>
-    <text class="t m" x="630" y="72">🗃️ primary office</text>
-    <text class="s m" x="630" y="95">AZ-a · private subnet</text>
-    <text class="s m" x="630" y="117">SG: app desks only</text>
-    <line class="arr" x1="480" y1="100" x2="536" y2="100"/>
-    <g transform="translate(508,83)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="760" y="40" width="150" height="110" rx="14"/>
-    <text class="t m" x="835" y="72">🪞 standby</text>
-    <text class="s m" x="835" y="95">AZ-b · synced</text>
-    <text class="s m" x="835" y="117">invisible until needed</text>
-    <line class="arr" x1="720" y1="95" x2="756" y2="95"/>
-    <g transform="translate(738,78)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="soft" x="540" y="210" width="180" height="80" rx="12"/>
-    <text class="t m" x="630" y="242">📸 photocopies</text>
-    <text class="s m" x="630" y="265">nightly + point-in-time</text>
-    <line class="arr" x1="630" y1="150" x2="630" y2="206"/>
-    <g transform="translate(647,178)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <rect class="dead" x="760" y="210" width="150" height="80" rx="12"/>
-    <text class="t m" x="835" y="242">📚 read replicas</text>
-    <text class="s m" x="835" y="265">async · for reports</text>
-    <line class="arr dash" x1="740" y1="150" x2="810" y2="206"/>
-    <text class="s m" x="240" y="220">failover drill: primary floods →</text>
-    <text class="s m" x="240" y="242">the NAME flips to the mirror ~1 min</text>
-    <text class="s m" x="240" y="264">your app just… reconnects 🎩</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">Read full lesson 17 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;17&lt;/span&gt; 🗃️ RDS — the record office you rent'><span class="ln">17</span> 🗃️ RDS — भाड्याने घेतलेले दप्तर कार्यालय</h2>
+<p class="d" data-en="A database with the clerk included: nightly photocopies, a synced mirror in the next building, and an endpoint name that never changes.">कारकुनासह डेटाबेस: रोज रात्री फोटोकॉपी, शेजारच्या इमारतीत sync केलेला आरसा, आणि कधीच न बदलणारे endpoint नाव.</p>
+<svg aria-label="The app dials the endpoint DNS which points at the primary; a standby mirrors it synchronously in another AZ; backups and read replicas hang off the primary" role="img" viewbox="0 0 940 330">
+<rect class="box" height="80" rx="12" width="160" x="40" y="60"></rect>
+<text class="t m" data-en="🖥️ app" x="120" y="95">🖥️ ॲप</text>
+<text class="s m" data-en="private wing" x="120" y="118">खाजगी विभाग</text>
+<rect class="soft" height="80" rx="12" width="230" x="250" y="60"></rect>
+<text class="t m" x="365" y="90">☎️ endpoint (DNS)</text>
+<text class="s m" data-en="always the current primary" x="365" y="115">नेहमी सध्याचा primary</text>
+<line class="arr" x1="200" x2="246" y1="100" y2="100"></line>
+<g transform="translate(223,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="110" rx="14" width="180" x="540" y="40"></rect>
+<text class="t m" data-en="🗃️ primary office" x="630" y="72">🗃️ primary कार्यालय</text>
+<text class="s m" data-en="AZ-a · private subnet" x="630" y="95">AZ-a · खाजगी subnet</text>
+<text class="s m" data-en="SG: app desks only" x="630" y="117">SG: फक्त ॲपचे बाक</text>
+<line class="arr" x1="480" x2="536" y1="100" y2="100"></line>
+<g transform="translate(508,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="110" rx="14" width="150" x="760" y="40"></rect>
+<text class="t m" x="835" y="72">🪞 standby</text>
+<text class="s m" x="835" y="95">AZ-b · synced</text>
+<text class="s m" data-en="invisible until needed" x="835" y="117">गरज पडेपर्यंत अदृश्य</text>
+<line class="arr" x1="720" x2="756" y1="95" y2="95"></line>
+<g transform="translate(738,78)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="soft" height="80" rx="12" width="180" x="540" y="210"></rect>
+<text class="t m" data-en="📸 photocopies" x="630" y="242">📸 फोटोकॉपी</text>
+<text class="s m" data-en="nightly + point-in-time" x="630" y="265">रोज रात्री + point-in-time</text>
+<line class="arr" x1="630" x2="630" y1="150" y2="206"></line>
+<g transform="translate(647,178)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<rect class="dead" height="80" rx="12" width="150" x="760" y="210"></rect>
+<text class="t m" x="835" y="242">📚 read replicas</text>
+<text class="s m" data-en="async · for reports" x="835" y="265">async · अहवालांसाठी</text>
+<line class="arr dash" x1="740" x2="810" y1="150" y2="206"></line>
+<text class="s m" data-en="failover drill: primary floods →" x="240" y="220">failover सराव: primary बुडतो →</text>
+<text class="s m" data-en="the NAME flips to the mirror ~1 min" x="240" y="242">नाव ~1 मि. मध्ये आरशाकडे वळते</text>
+<text class="s m" data-en="your app just… reconnects 🎩" x="240" y="264">तुमचे ॲप फक्त… पुन्हा जोडते 🎩</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md"&gt;Read full lesson 17 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-17-rds/lessons/17-rds/README.md">संपूर्ण धडा 17 वाचा →</a></p>
 </section>
-
 <!-- 18 -->
 <section class="dsec" id="l18" style="--c:#0d9488">
-  <h2><span class="ln">18</span> 📈 CloudWatch — report cards, diaries, alarm bells</h2>
-  <p class="d">Numbers, text, and rules that DO things: text the teacher, or tell the fleet manager to add desks.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="Instances, load balancers and databases emit metrics and logs; an alarm watches a metric and triggers SNS or Auto Scaling actions">
-
-    <rect class="soft" x="40" y="50" width="200" height="110" rx="14"/>
-    <text class="t m" x="140" y="82">🖥️ 🛎️ 🗃️ everything</text>
-    <text class="s m" x="140" y="105">mails numbers &amp; text</text>
-    <text class="s m" x="140" y="127">every minute</text>
-    <rect class="box" x="300" y="40" width="180" height="80" rx="12"/>
-    <text class="t m" x="390" y="72">📊 metrics</text>
-    <text class="s m" x="390" y="95">CPUUtilization = 87%</text>
-    <rect class="box" x="300" y="150" width="180" height="80" rx="12"/>
-    <text class="t m" x="390" y="182">📔 diaries (logs)</text>
-    <text class="s m" x="390" y="205">app output · flow logs</text>
-    <line class="arr" x1="240" y1="80" x2="296" y2="80"/>
-    <line class="arr" x1="240" y1="130" x2="296" y2="180"/>
-    <g transform="translate(268,63)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="540" y="40" width="180" height="90" rx="12"/>
-    <text class="t m" x="630" y="72">🔔 alarm</text>
-    <text class="s m" x="630" y="95">CPU &gt; 80%</text>
-    <text class="s m" x="630" y="115">for 5 minutes</text>
-    <line class="arr" x1="480" y1="80" x2="536" y2="80"/>
-    <g transform="translate(508,63)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="770" y="30" width="150" height="80" rx="12"/>
-    <text class="t m" x="845" y="62">📱 SNS</text>
-    <text class="s m" x="845" y="85">text the teacher</text>
-    <rect class="box" x="770" y="140" width="150" height="90" rx="12"/>
-    <text class="t m" x="845" y="172">👯 ASG: +2 desks</text>
-    <text class="s m" x="845" y="195">the HPA's buses,</text>
-    <text class="s m" x="845" y="215">one floor down</text>
-    <line class="arr" x1="720" y1="70" x2="766" y2="70"/>
-    <g transform="translate(743,53)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <line class="arr" x1="720" y1="110" x2="766" y2="175"/>
-    <rect class="soft" x="540" y="180" width="180" height="80" rx="12"/>
-    <text class="t m" x="630" y="212">🔎 Logs Insights</text>
-    <text class="s m" x="630" y="235">grep the diaries at scale</text>
-    <line class="arr" x1="480" y1="200" x2="536" y2="215"/>
-    <g transform="translate(508,190)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <text class="s m" x="470" y="290">🫢 famous surprise: no memory metric without the CloudWatch agent — the desk must tell on itself</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">Read full lesson 18 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;18&lt;/span&gt; 📈 CloudWatch — report cards, diaries, alarm bells'><span class="ln">18</span> 📈 CloudWatch — प्रगतिपुस्तके, डायऱ्या, धोक्याच्या घंटा</h2>
+<p class="d" data-en="Numbers, text, and rules that DO things: text the teacher, or tell the fleet manager to add desks.">आकडे, मजकूर, आणि कृती करणारे नियम: शिक्षकांना संदेश पाठवा, किंवा ताफा-व्यवस्थापकाला बाक वाढवायला सांगा.</p>
+<svg aria-label="Instances, load balancers and databases emit metrics and logs; an alarm watches a metric and triggers SNS or Auto Scaling actions" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="110" rx="14" width="200" x="40" y="50"></rect>
+<text class="t m" data-en="🖥️ 🛎️ 🗃️ everything" x="140" y="82">🖥️ 🛎️ 🗃️ सगळे</text>
+<text class="s m" data-en="mails numbers &amp;amp; text" x="140" y="105">आकडे &amp; मजकूर पाठवतात</text>
+<text class="s m" data-en="every minute" x="140" y="127">दर मिनिटाला</text>
+<rect class="box" height="80" rx="12" width="180" x="300" y="40"></rect>
+<text class="t m" x="390" y="72">📊 metrics</text>
+<text class="s m" x="390" y="95">CPUUtilization = 87%</text>
+<rect class="box" height="80" rx="12" width="180" x="300" y="150"></rect>
+<text class="t m" data-en="📔 diaries (logs)" x="390" y="182">📔 डायऱ्या (logs)</text>
+<text class="s m" data-en="app output · flow logs" x="390" y="205">ॲप output · flow logs</text>
+<line class="arr" x1="240" x2="296" y1="80" y2="80"></line>
+<line class="arr" x1="240" x2="296" y1="130" y2="180"></line>
+<g transform="translate(268,63)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="90" rx="12" width="180" x="540" y="40"></rect>
+<text class="t m" x="630" y="72">🔔 alarm</text>
+<text class="s m" x="630" y="95">CPU &gt; 80%</text>
+<text class="s m" data-en="for 5 minutes" x="630" y="115">5 मिनिटे</text>
+<line class="arr" x1="480" x2="536" y1="80" y2="80"></line>
+<g transform="translate(508,63)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="80" rx="12" width="150" x="770" y="30"></rect>
+<text class="t m" x="845" y="62">📱 SNS</text>
+<text class="s m" data-en="text the teacher" x="845" y="85">शिक्षकांना संदेश</text>
+<rect class="box" height="90" rx="12" width="150" x="770" y="140"></rect>
+<text class="t m" data-en="👯 ASG: +2 desks" x="845" y="172">👯 ASG: +2 बाक</text>
+<text class="s m" data-en="the HPA's buses," x="845" y="195">HPA च्या बस,</text>
+<text class="s m" data-en="one floor down" x="845" y="215">एक मजला खाली</text>
+<line class="arr" x1="720" x2="766" y1="70" y2="70"></line>
+<g transform="translate(743,53)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<line class="arr" x1="720" x2="766" y1="110" y2="175"></line>
+<rect class="soft" height="80" rx="12" width="180" x="540" y="180"></rect>
+<text class="t m" x="630" y="212">🔎 Logs Insights</text>
+<text class="s m" data-en="grep the diaries at scale" x="630" y="235">मोठ्या प्रमाणावर डायऱ्या grep करा</text>
+<line class="arr" x1="480" x2="536" y1="200" y2="215"></line>
+<g transform="translate(508,190)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<text class="s m" data-en="🫢 famous surprise: no memory metric without the CloudWatch agent — the desk must tell on itself" x="470" y="290">🫢 प्रसिद्ध धक्का: CloudWatch agent शिवाय memory metric नाही — बाकाने स्वतःबद्दल सांगावे लागते</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md"&gt;Read full lesson 18 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-18-cloudwatch/lessons/18-cloudwatch/README.md">संपूर्ण धडा 18 वाचा →</a></p>
 </section>
-
 <!-- 19 -->
 <section class="dsec" id="l19" style="--c:#0d9488">
-  <h2><span class="ln">19</span> ⚡ Lambda — the helper who exists only while called</h2>
-  <p class="d">An event happens, a helper appears wearing exactly one hat, does one errand, and vanishes. Idle cost: zero.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="Events from S3, schedules or URLs invoke the function; it runs with its execution role, returns a result, and disappears">
-
-    <rect class="soft" x="40" y="50" width="200" height="110" rx="14"/>
-    <text class="t m" x="140" y="82">🔔 events</text>
-    <text class="s m" x="140" y="105">📦 S3 upload · ⏰ the bell</text>
-    <text class="s m" x="140" y="127">🌐 URL · 📨 queue</text>
-    <rect class="box" x="310" y="50" width="240" height="110" rx="14"/>
-    <text class="t m" x="430" y="82">⚡ helper appears 💨</text>
-    <text class="s m" x="430" y="105">runs hello.py · ≤ 15 min</text>
-    <text class="s m" x="430" y="127">billed per 100 ms</text>
-    <line class="arr" x1="240" y1="105" x2="306" y2="105"/>
-    <g transform="translate(273,88)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="soft" x="310" y="220" width="240" height="70" rx="12"/>
-    <text class="t m" x="430" y="248">🎩 execution role</text>
-    <text class="s m" x="430" y="270">this bucket + logs — nothing else</text>
-    <line class="arr" x1="430" y1="220" x2="430" y2="164"/>
-    <g transform="translate(447,192)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="620" y="60" width="140" height="90" rx="12"/>
-    <text class="t m" x="690" y="95">✅ result</text>
-    <text class="s m" x="690" y="118">→ S3 / response</text>
-    <line class="arr" x1="550" y1="105" x2="616" y2="105"/>
-    <g transform="translate(583,88)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="dead" x="800" y="60" width="110" height="90" rx="12"/>
-    <text class="t m" x="855" y="95">👻 gone</text>
-    <text class="s m" x="855" y="118">idle = $0</text>
-    <line class="arr dash" x1="760" y1="105" x2="796" y2="105"/>
-    <g transform="translate(778,88)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-    <text class="s m" x="700" y="230">🥶 cold start: a helper who hasn't run lately</text>
-    <text class="s m" x="700" y="252">spends ~100ms–2s putting their shoes on</text>
-    <text class="s m" x="700" y="274">(watch it in the diary's REPORT lines)</text>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">Read full lesson 19 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;19&lt;/span&gt; ⚡ Lambda — the helper who exists only while called'><span class="ln">19</span> ⚡ Lambda — फक्त बोलावल्यावर अस्तित्वात असणारा मदतनीस</h2>
+<p class="d" data-en="An event happens, a helper appears wearing exactly one hat, does one errand, and vanishes. Idle cost: zero.">एक घटना घडते, नेमकी एक टोपी घातलेला मदतनीस येतो, एक काम करतो, आणि नाहीसा होतो. रिकामेपणाचा खर्च: शून्य.</p>
+<svg aria-label="Events from S3, schedules or URLs invoke the function; it runs with its execution role, returns a result, and disappears" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="110" rx="14" width="200" x="40" y="50"></rect>
+<text class="t m" data-en="🔔 events" x="140" y="82">🔔 घटना</text>
+<text class="s m" data-en="📦 S3 upload · ⏰ the bell" x="140" y="105">📦 S3 upload · ⏰ घंटा</text>
+<text class="s m" x="140" y="127">🌐 URL · 📨 queue</text>
+<rect class="box" height="110" rx="14" width="240" x="310" y="50"></rect>
+<text class="t m" data-en="⚡ helper appears 💨" x="430" y="82">⚡ मदतनीस येतो 💨</text>
+<text class="s m" data-en="runs hello.py · ≤ 15 min" x="430" y="105">hello.py चालवतो · ≤ 15 मि.</text>
+<text class="s m" data-en="billed per 100 ms" x="430" y="127">दर 100 ms ने बिल</text>
+<line class="arr" x1="240" x2="306" y1="105" y2="105"></line>
+<g transform="translate(273,88)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="soft" height="70" rx="12" width="240" x="310" y="220"></rect>
+<text class="t m" x="430" y="248">🎩 execution role</text>
+<text class="s m" data-en="this bucket + logs — nothing else" x="430" y="270">हे bucket + logs — दुसरे काही नाही</text>
+<line class="arr" x1="430" x2="430" y1="220" y2="164"></line>
+<g transform="translate(447,192)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="90" rx="12" width="140" x="620" y="60"></rect>
+<text class="t m" data-en="✅ result" x="690" y="95">✅ निकाल</text>
+<text class="s m" data-en="→ S3 / response" x="690" y="118">→ S3 / प्रतिसाद</text>
+<line class="arr" x1="550" x2="616" y1="105" y2="105"></line>
+<g transform="translate(583,88)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="dead" height="90" rx="12" width="110" x="800" y="60"></rect>
+<text class="t m" data-en="👻 gone" x="855" y="95">👻 गेला</text>
+<text class="s m" data-en="idle = $0" x="855" y="118">रिकामे = $0</text>
+<line class="arr dash" x1="760" x2="796" y1="105" y2="105"></line>
+<g transform="translate(778,88)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+<text class="s m" data-en="🥶 cold start: a helper who hasn't run lately" x="700" y="230">🥶 cold start: अलीकडे न चाललेला मदतनीस</text>
+<text class="s m" data-en="spends ~100ms–2s putting their shoes on" x="700" y="252">बूट घालायला ~100ms–2s घेतो</text>
+<text class="s m" data-en="(watch it in the diary's REPORT lines)" x="700" y="274">(डायरीच्या REPORT ओळींत पहा)</text>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md"&gt;Read full lesson 19 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-19-lambda/lessons/19-lambda/README.md">संपूर्ण धडा 19 वाचा →</a></p>
 </section>
-
 <!-- 20 -->
 <section class="dsec" id="l20" style="--c:#0d9488">
-  <h2><span class="ln">20</span> 🧾 The bill — reading the meter</h2>
-  <p class="d">Four meters, one itemized bill, and a $5 tripwire that has saved more students than any other feature.</p>
-  <svg viewBox="0 0 940 330" role="img" aria-label="Time, space, requests and egress feed the bill; Cost Explorer itemizes it; a budget alarm rings before it hurts">
-
-    <rect class="soft" x="40" y="35" width="200" height="55" rx="10"/>
-    <text class="t m" x="140" y="58">⏱️ time</text>
-    <text class="s m" x="140" y="78">desk-seconds · office-hours</text>
-    <rect class="soft" x="40" y="103" width="200" height="55" rx="10"/>
-    <text class="t m" x="140" y="126">📦 space</text>
-    <text class="s m" x="140" y="146">GB-months exist = pay</text>
-    <rect class="soft" x="40" y="171" width="200" height="55" rx="10"/>
-    <text class="t m" x="140" y="194">🔁 errands</text>
-    <text class="s m" x="140" y="214">per-request, tiny × huge</text>
-    <rect class="soft" x="40" y="239" width="200" height="55" rx="10"/>
-    <text class="t m" x="140" y="262">🚪 the gate (egress)</text>
-    <text class="s m" x="140" y="282">leaving costs, entering free</text>
-    <g transform="translate(40,35)"><circle r="11" class="nc"/><text class="nt" dy="4">1</text></g>
-    <rect class="box" x="330" y="100" width="250" height="120" rx="14"/>
-    <text class="t m" x="455" y="135">🧾 Cost Explorer</text>
-    <text class="s m" x="455" y="160">the itemized bill:</text>
-    <text class="s m" x="455" y="182">by service · by day · by tag</text>
-    <line class="arr" x1="240" y1="62" x2="326" y2="120"/>
-    <line class="arr" x1="240" y1="130" x2="326" y2="150"/>
-    <line class="arr" x1="240" y1="198" x2="326" y2="175"/>
-    <line class="arr" x1="240" y1="266" x2="326" y2="200"/>
-    <g transform="translate(283,145)"><circle r="11" class="nc"/><text class="nt" dy="4">2</text></g>
-    <rect class="box" x="660" y="100" width="250" height="120" rx="14"/>
-    <text class="t m" x="785" y="135">⏰ Budget alarm at $5</text>
-    <text class="s m" x="785" y="160">the tripwire — set it TODAY,</text>
-    <text class="s m" x="785" y="182">before any other lab</text>
-    <line class="arr" x1="580" y1="160" x2="656" y2="160"/>
-    <g transform="translate(618,143)"><circle r="11" class="nc"/><text class="nt" dy="4">3</text></g>
-    <rect class="dead" x="330" y="255" width="580" height="60" rx="12"/>
-    <text class="s m" x="620" y="280">😱 the classics: NAT postbox · stopped desk's drawer (EBS) ·</text>
-    <text class="s m" x="620" y="302">orphan snapshots · idle ALB/RDS — labs that skip destroy become subscriptions</text>
-    <g transform="translate(330,255)"><circle r="11" class="nc"/><text class="nt" dy="4">4</text></g>
-
-  </svg>
-  <p class="foot"><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">Read full lesson 20 →</a></p>
+<h2 data-en='&lt;span class="ln"&gt;20&lt;/span&gt; 🧾 The bill — reading the meter'><span class="ln">20</span> 🧾 बिल — मीटर वाचणे</h2>
+<p class="d" data-en="Four meters, one itemized bill, and a $5 tripwire that has saved more students than any other feature.">चार मीटर, एक तपशीलवार बिल, आणि इतर कोणत्याही सुविधेपेक्षा जास्त विद्यार्थ्यांना वाचवणारा $5 चा अलार्म.</p>
+<svg aria-label="Time, space, requests and egress feed the bill; Cost Explorer itemizes it; a budget alarm rings before it hurts" role="img" viewbox="0 0 940 330">
+<rect class="soft" height="55" rx="10" width="200" x="40" y="35"></rect>
+<text class="t m" data-en="⏱️ time" x="140" y="58">⏱️ वेळ</text>
+<text class="s m" data-en="desk-seconds · office-hours" x="140" y="78">बाक-सेकंद · कार्यालय-तास</text>
+<rect class="soft" height="55" rx="10" width="200" x="40" y="103"></rect>
+<text class="t m" data-en="📦 space" x="140" y="126">📦 जागा</text>
+<text class="s m" data-en="GB-months exist = pay" x="140" y="146">GB-महिने अस्तित्व = पैसे</text>
+<rect class="soft" height="55" rx="10" width="200" x="40" y="171"></rect>
+<text class="t m" data-en="🔁 errands" x="140" y="194">🔁 कामे</text>
+<text class="s m" data-en="per-request, tiny × huge" x="140" y="214">प्रत्येक विनंतीला, लहान × प्रचंड</text>
+<rect class="soft" height="55" rx="10" width="200" x="40" y="239"></rect>
+<text class="t m" data-en="🚪 the gate (egress)" x="140" y="262">🚪 गेट (egress)</text>
+<text class="s m" data-en="leaving costs, entering free" x="140" y="282">बाहेर जाणे महाग, आत येणे मोफत</text>
+<g transform="translate(40,35)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
+<rect class="box" height="120" rx="14" width="250" x="330" y="100"></rect>
+<text class="t m" x="455" y="135">🧾 Cost Explorer</text>
+<text class="s m" data-en="the itemized bill:" x="455" y="160">तपशीलवार बिल:</text>
+<text class="s m" data-en="by service · by day · by tag" x="455" y="182">सेवेनुसार · दिवसानुसार · tag नुसार</text>
+<line class="arr" x1="240" x2="326" y1="62" y2="120"></line>
+<line class="arr" x1="240" x2="326" y1="130" y2="150"></line>
+<line class="arr" x1="240" x2="326" y1="198" y2="175"></line>
+<line class="arr" x1="240" x2="326" y1="266" y2="200"></line>
+<g transform="translate(283,145)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
+<rect class="box" height="120" rx="14" width="250" x="660" y="100"></rect>
+<text class="t m" data-en="⏰ Budget alarm at $5" x="785" y="135">⏰ $5 वर Budget अलार्म</text>
+<text class="s m" data-en="the tripwire — set it TODAY," x="785" y="160">तारेचा सापळा — आजच लावा,</text>
+<text class="s m" data-en="before any other lab" x="785" y="182">दुसऱ्या कोणत्याही प्रयोगाआधी</text>
+<line class="arr" x1="580" x2="656" y1="160" y2="160"></line>
+<g transform="translate(618,143)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
+<rect class="dead" height="60" rx="12" width="580" x="330" y="255"></rect>
+<text class="s m" data-en="😱 the classics: NAT postbox · stopped desk's drawer (EBS) ·" x="620" y="280">😱 क्लासिक: NAT पोस्टबॉक्स · थांबवलेल्या बाकाचा ड्रॉवर (EBS) ·</text>
+<text class="s m" data-en="orphan snapshots · idle ALB/RDS — labs that skip destroy become subscriptions" x="620" y="302">अनाथ snapshots · रिकामे ALB/RDS — destroy वगळणारे प्रयोग subscriptions बनतात</text>
+<g transform="translate(330,255)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
+</svg>
+<p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md"&gt;Read full lesson 20 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-20-the-bill/lessons/20-the-bill/README.md">संपूर्ण धडा 20 वाचा →</a></p>
 </section>
-
-  <a class="btn" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">Start Lesson 01 →</a>
-  <a class="btn alt" href="lesson-diagrams.html">📐 All 20 lesson diagrams</a>
-  <a class="btn alt" href="quiz.html">🧪 Quiz</a>
-  <a class="btn alt" href="study-plan.html">🗓️ Study plan</a>
-  <a class="btn alt" href="before-and-tradeoffs.html">⏮️ Before &amp; trade-offs</a>
-  <a class="btn alt" href="https://baluraut.github.io/learn-docker-school/">🍱 Next course: Docker</a>
-
-  <footer>
-    Learn AWS School · the foundations: IAM &amp; EC2 ·
-    <a href="https://github.com/BaluRaut/learn-aws-school">github.com/BaluRaut/learn-aws-school</a> ·
-    the series: <a href="https://baluraut.github.io/learn-docker-school/">Docker</a> ·
-    <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes</a> ·
-    <a href="https://baluraut.github.io/learn-argocd-school/">ArgoCD</a>
+<a class="btn" data-en="Start Lesson 01 →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-01-why-iam/lessons/01-why-iam/README.md">धडा 01 सुरू करा →</a>
+<a class="btn alt" data-en="📐 All 20 lesson diagrams" href="lesson-diagrams.html">📐 सर्व 20 धड्यांच्या आकृत्या</a>
+<a class="btn alt" data-en="🧪 Quiz" href="quiz.html">🧪 प्रश्नमंजुषा</a>
+<a class="btn alt" data-en="🗓️ Study plan" href="study-plan.html">🗓️ अभ्यास योजना</a>
+<a class="btn alt" data-en="⏮️ Before &amp;amp; trade-offs" href="before-and-tradeoffs.html">⏮️ आधी काय होते &amp; फायदे-तोटे</a>
+<a class="btn alt" data-en="🍱 Next course: Docker" href="https://baluraut.github.io/learn-docker-school/">🍱 पुढचा कोर्स: Docker</a>
+<footer data-en='
+    Learn AWS School · the foundations: IAM &amp;amp; EC2 ·
+    &lt;a href="https://github.com/BaluRaut/learn-aws-school"&gt;github.com/BaluRaut/learn-aws-school&lt;/a&gt; ·
+    the series: &lt;a href="https://baluraut.github.io/learn-docker-school/"&gt;Docker&lt;/a&gt; ·
+    &lt;a href="https://baluraut.github.io/learn-kubernetes-school/"&gt;Kubernetes&lt;/a&gt; ·
+    &lt;a href="https://baluraut.github.io/learn-argocd-school/"&gt;ArgoCD&lt;/a&gt;
    ·
-  <a href="https://baluraut.github.io/school/">🏫 all schools</a>
+  &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt;
  ·
-  <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 found a mistake?</a>
-</footer>
-
+  &lt;a href="https://github.com/BaluRaut/learn-aws-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'>Learn AWS School · पाया: IAM &amp; EC2 · <a href="https://github.com/BaluRaut/learn-aws-school">github.com/BaluRaut/learn-aws-school</a> · मालिका: <a href="https://baluraut.github.io/learn-docker-school/">Docker</a> · <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes</a> · <a href="https://baluraut.github.io/learn-argocd-school/">ArgoCD</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a></footer>
 </div>
-</body>
+
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

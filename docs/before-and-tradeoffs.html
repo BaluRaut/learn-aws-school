@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Before &amp; trade-offs — Learn AWS School</title>
-<meta name="description" content="For IAM and EC2: what the world looked like before them, their merits and demerits, and where to use each vs where not.">
-<meta property="og:title" content="Before &amp; trade-offs — Learn AWS School">
-<meta property="og:description" content="For IAM and EC2: what the world looked like before them, their merits and demerits, and where to use each vs where not.">
-<meta property="og:image" content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Before &amp;amp; trade-offs — Learn AWS School">आधी काय होते &amp; फायदे-तोटे — Learn AWS School</title>
+<meta content="For IAM and EC2: what the world looked like before them, their merits and demerits, and where to use each vs where not." name="description"/>
+<meta content="Before &amp; trade-offs — Learn AWS School" property="og:title"/>
+<meta content="For IAM and EC2: what the world looked like before them, their merits and demerits, and where to use each vs where not." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root {
     --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
@@ -45,259 +46,273 @@
 
   @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
 </style>
-</head>
-<body>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
-
 <header>
-  <p><a href="index.html">← Back to the course home</a></p>
-  <h1>⏮️ Before &amp; trade-offs</h1>
-  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere.
-  For each big idea in this course: what life was like <b>before</b> it, its honest
-  <b>merits ✅ and demerits ❌</b>, and <b>where to use it 👍 vs where not 👎</b>.</p>
-  <nav class="toc">
-    <a href="#iam">🪪 IAM</a><a href="#roles">🎩 Roles vs keys</a><a href="#ec2">🖥️ EC2</a>
-    <a href="#spot">🎟️ Spot</a><a href="#ssm">🛗 SSM vs SSH</a>
-  </nav>
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="⏮️ Before &amp;amp; trade-offs">⏮️ आधी काय होते &amp; फायदे-तोटे</h1>
+<p class="sub" data-en="Every tool replaced something worse — and is itself the wrong tool somewhere.
+  For each big idea in this course: what life was like &lt;b&gt;before&lt;/b&gt; it, its honest
+  &lt;b&gt;merits ✅ and demerits ❌&lt;/b&gt;, and &lt;b&gt;where to use it 👍 vs where not 👎&lt;/b&gt;.">प्रत्येक साधनाने काहीतरी वाईट गोष्ट बदलली — आणि तेच साधन कुठेतरी चुकीचे ठरते. या कोर्समधील प्रत्येक मोठ्या कल्पनेसाठी: ती येण्या<b>आधी</b> जीवन कसे होते, तिचे प्रामाणिक <b>फायदे ✅ आणि तोटे ❌</b>, आणि <b>कुठे वापरावी 👍 विरुद्ध कुठे नाही 👎</b>.</p>
+<nav class="toc" data-en='
+&lt;a href="#iam"&gt;🪪 IAM&lt;/a&gt;&lt;a href="#roles"&gt;🎩 Roles vs keys&lt;/a&gt;&lt;a href="#ec2"&gt;🖥️ EC2&lt;/a&gt;
+&lt;a href="#spot"&gt;🎟️ Spot&lt;/a&gt;&lt;a href="#ssm"&gt;🛗 SSM vs SSH&lt;/a&gt;
+'><a href="#iam">🪪 IAM</a><a href="#roles">🎩 Roles विरुद्ध keys</a><a href="#ec2">🖥️ EC2</a> <a href="#spot">🎟️ Spot</a><a href="#ssm">🛗 SSM विरुद्ध SSH</a></nav>
 </header>
-
 <section class="term" id="iam" style="--c:#7c3aed">
-  <h2>🪪 IAM — identity &amp; access management (lessons 01–06)</h2>
-  <div class="hist"><b>⏮️ Before IAM (launched 2011)</b>
-    <p>Early AWS accounts had essentially <b>one login: root</b>. Teams shared that password in a
+<h2 data-en="🪪 IAM — identity &amp;amp; access management (lessons 01–06)">🪪 IAM — ओळख &amp; प्रवेश व्यवस्थापन (धडे 01–06)</h2>
+<div class="hist"><b data-en="⏮️ Before IAM (launched 2011)">⏮️ IAM च्या आधी (2011 मध्ये सुरू)</b>
+<p data-en='Early AWS accounts had essentially &lt;b&gt;one login: root&lt;/b&gt;. Teams shared that password in a
     spreadsheet or chat. Everyone was all-powerful; nobody was accountable ("who deleted the
     bucket?" — silence); leaving employees meant rotating THE password for everyone. On-prem
     before that: shared admin accounts and sticky notes. IAM brought per-person identity,
-    per-action permission, and an audit trail.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul>
-      <li>every person/robot has its own checked identity</li>
-      <li>least privilege possible at all (slips per action)</li>
-      <li>audit: every call attributable (with CloudTrail)</li>
-      <li>free — no excuse not to use it fully</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>policy JSON gets complex fast (ARNs, conditions)</li>
-      <li>debugging "AccessDenied" can eat an afternoon</li>
-      <li>easy to over-grant out of frustration (Admin*)</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul>
-      <li>always — from your first day on AWS</li>
-      <li>separate identities even for a solo account (you + CI)</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
-      <li>…never. But DO avoid: daily root use, shared users,
-          and one mega-policy for everything</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l01">Diagram ↗</a></p>
+    per-action permission, and an audit trail.'>सुरुवातीच्या AWS खात्यांना मुळात <b>एकच login: root</b> होते. टीम तो पासवर्ड spreadsheet किंवा chat मध्ये वाटून घेत. प्रत्येकजण सर्वशक्तिमान; कोणीही जबाबदार नाही ("bucket कोणी हटवले?" — शांतता); कर्मचारी सोडून गेला की सगळ्यांसाठी "तो" पासवर्ड बदलावा लागे. त्याआधी on-prem: सामायिक admin खाती आणि चिकट चिठ्ठ्या. IAM ने प्रत्येक व्यक्तीला ओळख, प्रत्येक कृतीला परवानगी, आणि audit trail आणले.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="every person/robot has its own checked identity">प्रत्येक व्यक्ती/रोबोटला स्वतःची तपासलेली ओळख</li>
+<li data-en="least privilege possible at all (slips per action)">least privilege मुळात शक्य (प्रत्येक कृतीसाठी चिठ्ठी)</li>
+<li data-en="audit: every call attributable (with CloudTrail)">audit: प्रत्येक कॉल कोणाचा ते सांगता येते (CloudTrail सह)</li>
+<li data-en="free — no excuse not to use it fully">मोफत — पूर्ण न वापरण्याला सबब नाही</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="policy JSON gets complex fast (ARNs, conditions)">policy JSON पटकन गुंतागुंतीचे होते (ARNs, conditions)</li>
+<li data-en='debugging "AccessDenied" can eat an afternoon'>"AccessDenied" debug करण्यात दुपार जाऊ शकते</li>
+<li data-en="easy to over-grant out of frustration (Admin*)">वैतागून जास्त परवानगी देणे सोपे (Admin*)</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li data-en="always — from your first day on AWS">नेहमी — AWS वरच्या तुमच्या पहिल्या दिवसापासून</li>
+<li data-en="separate identities even for a solo account (you + CI)">एकट्याच्या खात्यातही वेगळ्या ओळखी (तुम्ही + CI)</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="…never. But DO avoid: daily root use, shared users,
+          and one mega-policy for everything">…कधीच नाही. पण टाळा: रोज root वापर, सामायिक users, आणि सगळ्यासाठी एक महा-policy</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l01"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l01">आकृती ↗</a></p>
 </section>
-
 <section class="term" id="roles" style="--c:#7c3aed">
-  <h2>🎩 Roles (temporary credentials) vs long-lived access keys (lessons 04–05)</h2>
-  <div class="hist"><b>⏮️ Before roles &amp; STS</b>
-    <p>Machines authenticated with <b>AKIA… access keys</b> — permanent passwords pasted into config
+<h2 data-en="🎩 Roles (temporary credentials) vs long-lived access keys (lessons 04–05)">🎩 Roles (तात्पुरती credentials) विरुद्ध दीर्घकालीन access keys (धडे 04–05)</h2>
+<div class="hist"><b data-en="⏮️ Before roles &amp;amp; STS">⏮️ roles &amp; STS च्या आधी</b>
+<p data-en="Machines authenticated with &lt;b&gt;AKIA… access keys&lt;/b&gt; — permanent passwords pasted into config
     files, CI settings, and (tragically often) git repos. Key leaks are still the #1 cause of AWS
     account compromises; the crypto-mining bill arrives before the apology. Roles flipped the
-    model: identities you <i>wear</i> briefly, credentials that expire in an hour.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits (roles)</h4><ul>
-      <li>credentials expire — a leak has a 1-hour blast radius</li>
-      <li>nothing to store: EC2/EKS get theirs from metadata</li>
-      <li>CI via OIDC: zero secrets in pipeline settings</li>
-      <li>audit shows person AND hat worn</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>trust policies are one more document to reason about</li>
-      <li>role-chaining/debugging takes practice</li>
-      <li>local laptops still need SSO or (careful) keys</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Roles, when</h4><ul>
-      <li>every machine: EC2, EKS, Lambda, CI — no exceptions</li>
-      <li>humans via IAM Identity Center (SSO) sessions</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Keys only when</h4><ul>
-      <li>a third-party tool truly can't assume roles</li>
-      <li>…then: minimal policy, rotation, and regret 😄</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l04">Diagrams ↗</a></p>
+    model: identities you &lt;i&gt;wear&lt;/i&gt; briefly, credentials that expire in an hour.">मशीन <b>AKIA… access keys</b> ने ओळख पटवत — config फाइल्स, CI settings आणि (दुर्दैवाने अनेकदा) git रेपोंमध्ये चिकटवलेले कायमचे पासवर्ड. key गळणे हे अजूनही AWS खाते हॅक होण्याचे #1 कारण आहे; माफीआधी crypto-mining चे बिल येते. Roles ने मॉडेल उलटे केले: ओळखी ज्या तुम्ही थोडा वेळ <i>घालता</i>, credentials जी तासाभरात संपतात.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits (roles)">✅ फायदे (roles)</h4><ul>
+<li data-en="credentials expire — a leak has a 1-hour blast radius">credentials संपतात — गळतीचा परिणाम 1 तासापुरता</li>
+<li data-en="nothing to store: EC2/EKS get theirs from metadata">साठवायला काही नाही: EC2/EKS ना त्यांची metadata मधून मिळतात</li>
+<li data-en="CI via OIDC: zero secrets in pipeline settings">OIDC ने CI: pipeline settings मध्ये शून्य secrets</li>
+<li data-en="audit shows person AND hat worn">audit व्यक्ती आणि घातलेली टोपी दोन्ही दाखवते</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="trust policies are one more document to reason about">trust policies म्हणजे विचार करायचा आणखी एक दस्तऐवज</li>
+<li data-en="role-chaining/debugging takes practice">role-chaining/debugging ला सराव लागतो</li>
+<li data-en="local laptops still need SSO or (careful) keys">स्थानिक लॅपटॉपना अजूनही SSO किंवा (काळजीपूर्वक) keys लागतात</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Roles, when">👍 Roles, जेव्हा</h4><ul>
+<li data-en="every machine: EC2, EKS, Lambda, CI — no exceptions">प्रत्येक मशीन: EC2, EKS, Lambda, CI — अपवाद नाही</li>
+<li data-en="humans via IAM Identity Center (SSO) sessions">माणसे IAM Identity Center (SSO) सत्रांद्वारे</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Keys only when">👎 Keys फक्त जेव्हा</h4><ul>
+<li data-en="a third-party tool truly can't assume roles">तृतीय-पक्ष साधन खरोखर roles घेऊ शकत नाही</li>
+<li data-en="…then: minimal policy, rotation, and regret 😄">…मग: किमान policy, rotation, आणि पश्चात्ताप 😄</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l04"&gt;Diagrams ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l04">आकृत्या ↗</a></p>
 </section>
-
 <section class="term" id="ec2" style="--c:#ea580c">
-  <h2>🖥️ EC2 — rented computers (lessons 07–12)</h2>
-  <div class="hist"><b>⏮️ Before EC2 (2006)</b>
-    <p><b>Buying servers.</b> Capacity planning a year ahead, purchase orders, waiting weeks for
+<h2 data-en="🖥️ EC2 — rented computers (lessons 07–12)">🖥️ EC2 — भाड्याचे संगणक (धडे 07–12)</h2>
+<div class="hist"><b data-en="⏮️ Before EC2 (2006)">⏮️ EC2 च्या आधी (2006)</b>
+<p data-en="&lt;b&gt;Buying servers.&lt;/b&gt; Capacity planning a year ahead, purchase orders, waiting weeks for
     delivery, racking hardware, and paying for it whether used or not. A startup's first expense
     was a server room. EC2's radical idea: a computer in minutes, by the hour, hand it back
-    anytime — compute as a utility, like electricity.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul>
-      <li>minutes to get one, seconds-based billing</li>
-      <li>every size from scooter to truck, GPUs included</li>
-      <li>full control: your OS, your software, your kernel</li>
-      <li>the substrate everything else (EKS!) runs on</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>YOU patch, secure and babysit the OS</li>
-      <li>idle instances bill silently (the classic bill shock)</li>
-      <li>pets accumulate unless you enforce cattle discipline</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul>
-      <li>you need full OS control or special software</li>
-      <li>steady, predictable workloads (with savings plans)</li>
-      <li>as managed-service underlay (EKS nodes) — mostly invisible</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
-      <li>an event-driven script → Lambda (no server at all)</li>
-      <li>a containerized web app → Fargate/Cloud Run style</li>
-      <li>you'd rather never SSH again → managed everything</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l07">Diagram ↗</a></p>
+    anytime — compute as a utility, like electricity."><b>सर्व्हर विकत घेणे.</b> वर्षभर आधी क्षमता-नियोजन, purchase orders, delivery साठी आठवडे वाट, हार्डवेअर rack मध्ये लावणे, आणि वापरले किंवा नाही तरी पैसे भरणे. startup चा पहिला खर्च म्हणजे सर्व्हर रूम. EC2 ची क्रांतिकारी कल्पना: मिनिटांत संगणक, तासाने, कधीही परत द्या — compute ही विजेसारखी सुविधा.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="minutes to get one, seconds-based billing">मिळायला मिनिटे, सेकंदांवर बिलिंग</li>
+<li data-en="every size from scooter to truck, GPUs included">स्कूटरपासून ट्रकपर्यंत प्रत्येक आकार, GPU सह</li>
+<li data-en="full control: your OS, your software, your kernel">पूर्ण नियंत्रण: तुमचे OS, तुमचे सॉफ्टवेअर, तुमचा kernel</li>
+<li data-en="the substrate everything else (EKS!) runs on">बाकी सगळे (EKS!) ज्यावर चालते तो पाया</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="YOU patch, secure and babysit the OS">तुम्ही OS patch, सुरक्षित आणि सांभाळता</li>
+<li data-en="idle instances bill silently (the classic bill shock)">रिकामे instances गुपचूप बिल लावतात (क्लासिक बिल-धक्का)</li>
+<li data-en="pets accumulate unless you enforce cattle discipline">cattle शिस्त पाळली नाही तर pets साचतात</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li data-en="you need full OS control or special software">तुम्हाला पूर्ण OS नियंत्रण किंवा खास सॉफ्टवेअर हवे</li>
+<li data-en="steady, predictable workloads (with savings plans)">स्थिर, अंदाजे workloads (savings plans सह)</li>
+<li data-en="as managed-service underlay (EKS nodes) — mostly invisible">managed-सेवेचा पाया म्हणून (EKS nodes) — बहुतेक अदृश्य</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="an event-driven script → Lambda (no server at all)">event-driven स्क्रिप्ट → Lambda (सर्व्हरच नाही)</li>
+<li data-en="a containerized web app → Fargate/Cloud Run style">containerized web ॲप → Fargate/Cloud Run शैली</li>
+<li data-en="you'd rather never SSH again → managed everything">तुम्हाला पुन्हा कधीच SSH करायचे नाही → सगळे managed</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l07"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l07">आकृती ↗</a></p>
 </section>
-
 <section class="term" id="spot" style="--c:#ea580c">
-  <h2>🎟️ Spot instances (lesson 08)</h2>
-  <div class="hist"><b>⏮️ Before spot</b>
-    <p>AWS's spare desks sat empty; your batch jobs paid full price. Spot (2009) auctions the
+<h2 data-en="🎟️ Spot instances (lesson 08)">🎟️ Spot instances (धडा 08)</h2>
+<div class="hist"><b data-en="⏮️ Before spot">⏮️ spot च्या आधी</b>
+<p data-en="AWS's spare desks sat empty; your batch jobs paid full price. Spot (2009) auctions the
     empty seats: up to ~90% off, with one catch — AWS may take the seat back with a two-minute
-    warning when a full-fare customer arrives.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul>
-      <li>~60–90% cheaper than on-demand</li>
-      <li>perfect for k8s: pods just reschedule (lesson 03 of ☸️)</li>
-      <li>huge scale available in bursts</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>can vanish with 2 minutes' notice</li>
-      <li>capacity varies by type/AZ/time</li>
-      <li>needs interruption-tolerant design (checkpoints, queues)</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul>
-      <li>batch jobs, CI runners, rendering, big data</li>
-      <li>stateless k8s workers mixed with on-demand base</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
-      <li>databases or anything stateful-and-singular</li>
-      <li>latency-critical singletons that can't move</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l08">Diagram ↗</a></p>
+    warning when a full-fare customer arrives.">AWS चे रिकामे बाक रिकामेच बसत; तुमचे batch jobs पूर्ण किंमत देत. Spot (2009) रिकाम्या जागांचा लिलाव करते: ~90% पर्यंत स्वस्त, एका अटीवर — पूर्ण भाडे देणारा ग्राहक आला की AWS दोन मिनिटांच्या सूचनेने जागा परत घेऊ शकते.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="~60–90% cheaper than on-demand">on-demand पेक्षा ~60–90% स्वस्त</li>
+<li data-en="perfect for k8s: pods just reschedule (lesson 03 of ☸️)">k8s साठी उत्तम: pods फक्त पुन्हा schedule होतात (☸️ चा धडा 03)</li>
+<li data-en="huge scale available in bursts">झटक्यांत प्रचंड प्रमाण उपलब्ध</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="can vanish with 2 minutes' notice">2 मिनिटांच्या सूचनेने गायब होऊ शकते</li>
+<li data-en="capacity varies by type/AZ/time">क्षमता type/AZ/वेळेनुसार बदलते</li>
+<li data-en="needs interruption-tolerant design (checkpoints, queues)">व्यत्यय सहन करणारी रचना लागते (checkpoints, queues)</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li>batch jobs, CI runners, rendering, big data</li>
+<li data-en="stateless k8s workers mixed with on-demand base">on-demand पायासोबत मिसळलेले stateless k8s workers</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="databases or anything stateful-and-singular">डेटाबेस किंवा stateful-आणि-एकमेव काहीही</li>
+<li data-en="latency-critical singletons that can't move">हलू न शकणारे latency-critical singletons</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l08"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l08">आकृती ↗</a></p>
 </section>
-
 <section class="term" id="ssm" style="--c:#ea580c">
-  <h2>🛗 SSM Session Manager vs SSH (lesson 09)</h2>
-  <div class="hist"><b>⏮️ Before SSM</b>
-    <p>Everyone SSH'd: port 22 open to the office IP (or worse, the world), key files passed
+<h2 data-en="🛗 SSM Session Manager vs SSH (lesson 09)">🛗 SSM Session Manager विरुद्ध SSH (धडा 09)</h2>
+<div class="hist"><b data-en="⏮️ Before SSM">⏮️ SSM च्या आधी</b>
+<p data-en="Everyone SSH'd: port 22 open to the office IP (or worse, the world), key files passed
     around when people joined and left, bastion hosts to maintain, and zero record of who typed
     what. Session Manager (2018) routes the shell through AWS's API — no open port, no shared
-    keys, every session loggable.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ SSM merits</h4><ul>
-      <li>no inbound port at all — nothing to scan</li>
-      <li>access via IAM (revoke a person, not a key file)</li>
-      <li>sessions auditable/recordable</li>
-      <li>works without public IPs or bastions</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ SSM demerits</h4><ul>
-      <li>needs the agent + instance role set up</li>
-      <li>a hair slower; file transfer is clunkier</li>
-      <li>one more AWS-specific thing to learn</li>
-    </ul></div>
-    <div class="q use"><h4>👍 SSH still fine when</h4><ul>
-      <li>quick personal labs (like this course's — from YOUR IP only)</li>
-      <li>rsync/scp-heavy workflows</li>
-      <li>non-AWS machines (SSM is AWS-shaped)</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Avoid entirely</h4><ul>
-      <li>port 22 open to 0.0.0.0/0 — the classic honeypot</li>
-      <li>team-shared private key files</li>
-      <li>long-lived bastions nobody patches</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l09">Diagram ↗</a></p>
-</section>
-
-<section class="term" id="rds" style="--c:#0d9488">
-  <h2>🗃️ RDS — managed database vs running your own (lesson 17)</h2>
-  <div class="hist"><b>⏮️ Before managed databases</b>
-    <p>Every team ran Postgres/MySQL on its own machine: a DBA (or an unlucky developer) owned
-    backups, patches, replication, and 3 AM failovers. RDS (2009) rents you the database WITH
-    the clerk — the craft parts come tested and boring.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul>
-      <li>backups that actually restore (point-in-time)</li>
-      <li>Multi-AZ failover in ~a minute, no drama</li>
-      <li>patching, metrics, read replicas — included</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>bills hourly, idle or not (lesson 20!)</li>
-      <li>no OS access; extension list is curated</li>
-      <li>easy to outgrow the wallet before the engine</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul>
-      <li>state that must survive — almost always</li>
-      <li>small teams: buy the boring, build the special</li>
-      <li>k8s apps too: stateless in-cluster, state in RDS</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
-      <li>exotic engines/extensions RDS doesn't offer</li>
-      <li>DB-per-tenant fleets where cost explodes</li>
-      <li>you truly have the team to run it (rare)</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l17">Diagram ↗</a></p>
-</section>
-
-<section class="term" id="lambda" style="--c:#0d9488">
-  <h2>⚡ Lambda — serverless vs renting desks (lesson 19)</h2>
-  <div class="hist"><b>⏮️ Before serverless</b>
-    <p>Even a once-a-day errand needed a desk running 24/7 — patched, monitored, and billed
-    while idle. Lambda (2014) flipped the unit of compute from "a machine" to "an errand":
-    code appears when called, vanishes after, and idle costs zero.</p>
-  </div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul>
-      <li>idle = $0 · a million errands/month are free</li>
-      <li>scaling is implicit: one helper per errand</li>
-      <li>no OS to patch, no fleet to manage</li>
-    </ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul>
-      <li>cold starts (~100ms–2s) sting latency-critical APIs</li>
-      <li>15-minute cap; steady heavy load costs MORE than desks</li>
-      <li>local dev/debug is clunkier; vendor-shaped</li>
-    </ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul>
-      <li>event glue: uploads, webhooks, queues, schedules</li>
-      <li>spiky or rare workloads (the once-a-day report)</li>
-      <li>ops automation — lesson 12's scripts, serverless</li>
-    </ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul>
-      <li>constant high traffic (desks/k8s win on cost)</li>
-      <li>long-running jobs, websockets held for hours</li>
-      <li>special hardware (GPUs) or huge memory</li>
-    </ul></div>
-  </div>
-  <p class="foot"><a href="lesson-diagrams.html#l19">Diagram ↗</a></p>
-</section>
-
-<footer>
-  Learn AWS School · <a href="index.html">Course home</a> ·
-  <a href="lesson-diagrams.html">Lesson diagrams</a> ·
-  <a href="https://github.com/BaluRaut/learn-aws-school">github.com/BaluRaut/learn-aws-school</a>
- ·
-  <a href="https://baluraut.github.io/school/">🏫 all schools</a>
- ·
-  <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 found a mistake?</a>
-</footer>
-
+    keys, every session loggable.">सगळे SSH करत: port 22 ऑफिसच्या IP साठी (किंवा वाईट, जगासाठी) उघडा, लोक येताना-जाताना key फाइल्स हातोहात, सांभाळायला bastion hosts, आणि कोणी काय टाइप केले याची शून्य नोंद. Session Manager (2018) shell AWS च्या API मधून नेतो — उघडा port नाही, सामायिक keys नाहीत, प्रत्येक सत्र log करता येणारे.</p>
 </div>
-</body>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ SSM merits">✅ SSM चे फायदे</h4><ul>
+<li data-en="no inbound port at all — nothing to scan">आत येणारा port अजिबात नाही — scan करायला काही नाही</li>
+<li data-en="access via IAM (revoke a person, not a key file)">IAM द्वारे प्रवेश (key फाइल नव्हे, व्यक्ती रद्द करा)</li>
+<li data-en="sessions auditable/recordable">सत्रे audit/record करता येणारी</li>
+<li data-en="works without public IPs or bastions">public IP किंवा bastion शिवाय चालते</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ SSM demerits">❌ SSM चे तोटे</h4><ul>
+<li data-en="needs the agent + instance role set up">agent + instance role setup लागते</li>
+<li data-en="a hair slower; file transfer is clunkier">किंचित हळू; फाइल हस्तांतरण अवघड</li>
+<li data-en="one more AWS-specific thing to learn">शिकायला आणखी एक AWS-विशिष्ट गोष्ट</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 SSH still fine when">👍 SSH अजूनही ठीक जेव्हा</h4><ul>
+<li data-en="quick personal labs (like this course's — from YOUR IP only)">झटपट वैयक्तिक प्रयोग (या कोर्ससारखे — फक्त तुमच्या IP वरून)</li>
+<li data-en="rsync/scp-heavy workflows">rsync/scp-भरपूर workflows</li>
+<li data-en="non-AWS machines (SSM is AWS-shaped)">AWS नसलेली मशीन (SSM AWS-आकाराचे आहे)</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Avoid entirely">👎 पूर्ण टाळा</h4><ul>
+<li data-en="port 22 open to 0.0.0.0/0 — the classic honeypot">port 22 0.0.0.0/0 साठी उघडा — क्लासिक honeypot</li>
+<li data-en="team-shared private key files">टीमने वाटून घेतलेल्या खाजगी key फाइल्स</li>
+<li data-en="long-lived bastions nobody patches">कोणीही patch न करणारे दीर्घकालीन bastions</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l09"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l09">आकृती ↗</a></p>
+</section>
+<section class="term" id="rds" style="--c:#0d9488">
+<h2 data-en="🗃️ RDS — managed database vs running your own (lesson 17)">🗃️ RDS — managed डेटाबेस विरुद्ध स्वतः चालवणे (धडा 17)</h2>
+<div class="hist"><b data-en="⏮️ Before managed databases">⏮️ managed डेटाबेसच्या आधी</b>
+<p data-en="Every team ran Postgres/MySQL on its own machine: a DBA (or an unlucky developer) owned
+    backups, patches, replication, and 3 AM failovers. RDS (2009) rents you the database WITH
+    the clerk — the craft parts come tested and boring.">प्रत्येक टीम स्वतःच्या मशीनवर Postgres/MySQL चालवत असे: DBA (किंवा दुर्दैवी डेव्हलपर) backups, patches, replication आणि पहाटे 3 च्या failovers चा मालक. RDS (2009) तुम्हाला कारकुनासह डेटाबेस भाड्याने देते — कौशल्याचे भाग तपासलेले आणि कंटाळवाणे येतात.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="backups that actually restore (point-in-time)">खरोखर restore होणारे backups (point-in-time)</li>
+<li data-en="Multi-AZ failover in ~a minute, no drama">~एका मिनिटात Multi-AZ failover, नाट्य नाही</li>
+<li data-en="patching, metrics, read replicas — included">patching, metrics, read replicas — समाविष्ट</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="bills hourly, idle or not (lesson 20!)">तासाने बिल, रिकामे असो वा नसो (धडा 20!)</li>
+<li data-en="no OS access; extension list is curated">OS प्रवेश नाही; extension यादी निवडक</li>
+<li data-en="easy to outgrow the wallet before the engine">engine आधी पाकीट संपणे सोपे</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li data-en="state that must survive — almost always">टिकलीच पाहिजे अशी state — जवळपास नेहमी</li>
+<li data-en="small teams: buy the boring, build the special">छोट्या टीम: कंटाळवाणे विकत घ्या, खास बनवा</li>
+<li data-en="k8s apps too: stateless in-cluster, state in RDS">k8s ॲप्ससाठीही: cluster मध्ये stateless, state RDS मध्ये</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="exotic engines/extensions RDS doesn't offer">RDS देत नाही असे खास engines/extensions</li>
+<li data-en="DB-per-tenant fleets where cost explodes">प्रत्येक tenant साठी DB चे ताफे जिथे खर्च फुटतो</li>
+<li data-en="you truly have the team to run it (rare)">तुमच्याकडे ते चालवायला खरोखर टीम आहे (दुर्मीळ)</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l17"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l17">आकृती ↗</a></p>
+</section>
+<section class="term" id="lambda" style="--c:#0d9488">
+<h2 data-en="⚡ Lambda — serverless vs renting desks (lesson 19)">⚡ Lambda — serverless विरुद्ध बाक भाड्याने घेणे (धडा 19)</h2>
+<div class="hist"><b data-en="⏮️ Before serverless">⏮️ serverless च्या आधी</b>
+<p data-en='Even a once-a-day errand needed a desk running 24/7 — patched, monitored, and billed
+    while idle. Lambda (2014) flipped the unit of compute from "a machine" to "an errand":
+    code appears when called, vanishes after, and idle costs zero.'>दिवसातून एकदाच्या कामासाठीही 24/7 चालणारा बाक लागे — patched, monitored, आणि रिकामा असतानाही बिल. Lambda (2014) ने compute चे एकक "एक मशीन" वरून "एक काम" केले: कोड बोलावल्यावर येतो, नंतर नाहीसा होतो, आणि रिकामेपणाचा खर्च शून्य.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="idle = $0 · a million errands/month are free">रिकामे = $0 · महिन्याला दहा लाख कामे मोफत</li>
+<li data-en="scaling is implicit: one helper per errand">scaling अंगभूत: प्रत्येक कामाला एक मदतनीस</li>
+<li data-en="no OS to patch, no fleet to manage">patch करायला OS नाही, सांभाळायला ताफा नाही</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="cold starts (~100ms–2s) sting latency-critical APIs">cold starts (~100ms–2s) latency-critical API ना टोचतात</li>
+<li data-en="15-minute cap; steady heavy load costs MORE than desks">15 मिनिटांची मर्यादा; स्थिर जड load बाकांपेक्षा जास्त महाग</li>
+<li data-en="local dev/debug is clunkier; vendor-shaped">स्थानिक dev/debug अवघड; vendor-आकाराचे</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li data-en="event glue: uploads, webhooks, queues, schedules">event glue: uploads, webhooks, queues, वेळापत्रके</li>
+<li data-en="spiky or rare workloads (the once-a-day report)">तुरळक किंवा दुर्मीळ workloads (दिवसातून एकदाचा अहवाल)</li>
+<li data-en="ops automation — lesson 12's scripts, serverless">ops automation — धडा 12 च्या स्क्रिप्ट, serverless</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="constant high traffic (desks/k8s win on cost)">सतत जास्त traffic (खर्चात बाक/k8s जिंकतात)</li>
+<li data-en="long-running jobs, websockets held for hours">दीर्घकाळ चालणारी jobs, तासन्‌तास धरलेले websockets</li>
+<li data-en="special hardware (GPUs) or huge memory">खास हार्डवेअर (GPU) किंवा प्रचंड memory</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l19"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l19">आकृती ↗</a></p>
+</section>
+<footer data-en='
+  Learn AWS School · &lt;a href="index.html"&gt;Course home&lt;/a&gt; ·
+  &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; ·
+  &lt;a href="https://github.com/BaluRaut/learn-aws-school"&gt;github.com/BaluRaut/learn-aws-school&lt;/a&gt;
+ ·
+  &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt;
+ ·
+  &lt;a href="https://github.com/BaluRaut/learn-aws-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'>Learn AWS School · <a href="index.html">कोर्स मुख्य पान</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://github.com/BaluRaut/learn-aws-school">github.com/BaluRaut/learn-aws-school</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 चूक सापडली?</a></footer>
+</div>
+
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>
