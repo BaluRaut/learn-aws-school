@@ -168,7 +168,7 @@
 
   <!-- ═══ BAND 3: THE CAMPUS ═══ -->
   <rect class="band3" x="40" y="1185" width="1840" height="475" rx="20"/>
-  <text class="bandt" x="70" y="1227" fill="#0d9488">🏫 PART 3 — the campus &amp; the services (lessons 13–20)</text>
+  <text class="bandt" x="70" y="1227" fill="#0d9488">🏫 PART 3 — the campus &amp; core services (lessons 13–20)</text>
 
   <rect class="bxt" x="70" y="1255" width="430" height="150" rx="14"/>
   <text class="t m" x="285" y="1288">🏫 VPC — the campus walls (L13)</text>
@@ -186,15 +186,15 @@
 
   <rect class="bxt" x="540" y="1255" width="430" height="150" rx="14"/>
   <text class="t m" x="755" y="1288">🗄️ S3 — the locker room (L14)</text>
-  <text class="s m" x="755" y="1316">boxes with labels, photocopied to three</text>
-  <text class="s m" x="755" y="1340">buildings · visitor passes that expire ·</text>
+  <text class="s m" x="755" y="1316">boxes with labels, stored redundantly across</text>
+  <text class="s m" x="755" y="1340">buildings, automatically · visitor passes ·</text>
   <text class="s m" x="755" y="1364">strangers blocked by default 🛡️</text>
   <g transform="translate(540,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">2</text></g>
 
   <rect class="bxt" x="1460" y="1255" width="390" height="150" rx="14"/>
   <text class="t m" x="1655" y="1288">🗃️ RDS — the record office (L17)</text>
   <text class="s m" x="1655" y="1316">rented WITH the clerk: nightly photocopies,</text>
-  <text class="s m" x="1655" y="1340">a synced mirror next building, and an</text>
+  <text class="s m" x="1655" y="1340">a failover standby next building, and an</text>
   <text class="s m" x="1655" y="1364">endpoint NAME that never changes</text>
   <g transform="translate(1460,1255)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">4</text></g>
 
@@ -224,7 +224,7 @@
 
   <!-- ═══ BAND 4: DOORS, ROUTES & GUARDS ═══ -->
   <rect class="band4" x="40" y="1725" width="1840" height="435" rx="20"/>
-  <text class="bandt" x="70" y="1767" fill="#be123c">🛡️ PART 4 — doors, routes &amp; guards (lessons 21–25)</text>
+  <text class="bandt" x="70" y="1767" fill="#be123c">🛡️ PART 4 — the edge: doors, routes &amp; guards (lessons 21–25)</text>
 
   <rect class="bxs" x="70" y="1795" width="330" height="150" rx="14"/>
   <text class="t m" x="235" y="1828">🪧 subnet networking (L21)</text>
@@ -235,7 +235,7 @@
   <rect class="bxs" x="430" y="1795" width="330" height="150" rx="14"/>
   <text class="t m" x="595" y="1828">📮 NAT gateway (L22)</text>
   <text class="s m" x="595" y="1856">the postbox rewrites the return address;</text>
-  <text class="s m" x="595" y="1880">one per building, never cross-AZ;</text>
+  <text class="s m" x="595" y="1880">often one per building for resilience;</text>
   <text class="s m" x="595" y="1904">~$32/mo + 4¢/GB — endpoints first</text>
   <g transform="translate(430,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">2</text></g>
   <rect class="bxs" x="790" y="1795" width="330" height="150" rx="14"/>

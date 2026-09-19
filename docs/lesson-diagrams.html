@@ -67,8 +67,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
 <h1 data-en="📐 The 25 lessons as diagrams">📐 25 धडे आकृत्यांमध्ये</h1>
 <p class="sub" data-en="Part 1: IAM — who may do what (purple, lessons 1–6) · Part 2: EC2 — the rented
-  computers (orange, lessons 7–12) · Part 3: the campus &amp;amp; the services (teal,
-  lessons 13–20). Follow the circled numbers &lt;b&gt;1 → 2 → 3&lt;/b&gt;.">भाग 1: IAM — कोण काय करू शकते (जांभळा, धडे 1–6) · भाग 2: EC2 — भाड्याचे संगणक (नारिंगी, धडे 7–12) · भाग 3: कॅम्पस &amp; सेवा (हिरवट-निळा, धडे 13–20). वर्तुळातील क्रमांक <b>1 → 2 → 3</b> अनुसरा.</p>
+  computers (orange, lessons 7–12) · Part 3: the campus &amp;amp; core services (teal, lessons 13–20) · Part 4: the edge — doors, routes &amp;amp; guards (rose, lessons 21–25). Follow the circled numbers &lt;b&gt;1 → 2 → 3&lt;/b&gt;.">भाग 1: IAM — कोण काय करू शकते (जांभळा, धडे 1–6) · भाग 2: EC2 — भाड्याचे संगणक (नारिंगी, धडे 7–12) · भाग 3: कॅम्पस &amp; मुख्य सेवा (हिरवट-निळा, धडे 13–20) · भाग 4: कड — दारे, मार्ग &amp; पहारेकरी (गुलाबी, धडे 21–25). वर्तुळातील क्रमांक <b>1 → 2 → 3</b> अनुसरा.</p>
 <nav class="toc" data-en='
 &lt;a href="#l01"&gt;1 Why IAM&lt;/a&gt;&lt;a href="#l02"&gt;2 Users/groups&lt;/a&gt;&lt;a href="#l03"&gt;3 Policies&lt;/a&gt;
 &lt;a href="#l04"&gt;4 Roles&lt;/a&gt;&lt;a href="#l05"&gt;5 Machine IDs&lt;/a&gt;&lt;a href="#l06"&gt;6 Hygiene&lt;/a&gt;
@@ -503,9 +502,9 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </section>
 <!-- 14 -->
 <section class="dsec" id="l14" style="--c:#0d9488">
-<h2 data-en='&lt;span class="ln"&gt;14&lt;/span&gt; 🗄️ S3 — the infinite locker room'><span class="ln">14</span> 🗄️ S3 — अमर्याद लॉकर रूम</h2>
-<p class="d" data-en="Boxes with labels, photocopied to three buildings, opened by ID card — or by a visitor pass that expires.">लेबल असलेले डबे, तीन इमारतींत फोटोकॉपी केलेले, ओळखपत्राने उघडणारे — किंवा संपणाऱ्या पाहुण्यांच्या पासने.</p>
-<svg aria-label="An app puts an object into a bucket; S3 replicates it across three availability zones; a presigned URL lets a visitor fetch it until it expires" role="img" viewbox="0 0 940 330">
+<h2 data-en='&lt;span class="ln"&gt;14&lt;/span&gt; 🗄️ S3 — the infinite locker room (object storage)'><span class="ln">14</span> 🗄️ S3 — अमर्याद लॉकर रूम (object storage)</h2>
+<p class="d" data-en="Boxes with labels, stored redundantly across Availability Zones by default, opened by ID card — or by a visitor pass that expires.">लेबल असलेले डबे, मुळातच अनेक Availability Zones मध्ये redundant साठवलेले, ओळखपत्राने उघडणारे — किंवा संपणाऱ्या पाहुण्यांच्या पासने.</p>
+<svg aria-label="An app puts an object into a bucket; S3 stores it redundantly across multiple Availability Zones; a presigned URL lets a visitor fetch it until it expires" role="img" viewbox="0 0 940 330">
 <rect class="box" height="80" rx="12" width="180" x="40" y="60"></rect>
 <text class="t m" data-en="🖥️ app / CLI" x="130" y="95">🖥️ ॲप / CLI</text>
 <text class="s m" data-en="signs every call 🪪" x="130" y="118">प्रत्येक कॉलवर सही 🪪</text>
@@ -517,8 +516,8 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <line class="arr" x1="220" x2="296" y1="100" y2="100"></line>
 <g transform="translate(258,83)"><circle class="nc" r="11"></circle><text class="nt" dy="4">1</text></g>
 <rect class="soft" height="90" rx="12" width="260" x="640" y="50"></rect>
-<text class="t m" data-en="🏢🏢🏢 three buildings" x="770" y="85">🏢🏢🏢 तीन इमारती</text>
-<text class="s m" data-en="every box photocopied — 11 nines" x="770" y="110">प्रत्येक डब्याची फोटोकॉपी — 11 nines</text>
+<text class="t m" data-en="🏢🏢🏢 multiple buildings" x="770" y="85">🏢🏢🏢 अनेक इमारती</text>
+<text class="s m" data-en="stored redundantly — 11 nines, automatic" x="770" y="110">redundant साठवलेले — 11 nines, आपोआप</text>
 <line class="arr" x1="560" x2="636" y1="95" y2="95"></line>
 <g transform="translate(598,78)"><circle class="nc" r="11"></circle><text class="nt" dy="4">2</text></g>
 <rect class="box" height="80" rx="12" width="260" x="300" y="210"></rect>
@@ -537,7 +536,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </section>
 <!-- 15 -->
 <section class="dsec" id="l15" style="--c:#0d9488">
-<h2 data-en='&lt;span class="ln"&gt;15&lt;/span&gt; 🛎️ Load balancers — the reception that splits crowds'><span class="ln">15</span> 🛎️ लोड बॅलन्सर — गर्दी वाटणारे रिसेप्शन</h2>
+<h2 data-en='&lt;span class="ln"&gt;15&lt;/span&gt; 🛎️ Load balancers — the reception that splits crowds (Layer 7 load balancer)'><span class="ln">15</span> 🛎️ लोड बॅलन्सर — गर्दी वाटणारे रिसेप्शन (Layer 7 लोड बॅलन्सर)</h2>
 <p class="d" data-en="One address for the whole town; a signboard routes by path; only desks that answer the health check get visitors.">संपूर्ण गावासाठी एक पत्ता; फलक path नुसार वाट दाखवतो; फक्त health check ला उत्तर देणाऱ्या बाकांना पाहुणे मिळतात.</p>
 <svg aria-label="The town connects to the ALB in public subnets; listener rules route to target groups; health checks decide which private instances receive traffic" role="img" viewbox="0 0 940 330">
 <rect class="soft" height="80" rx="12" width="150" x="40" y="60"></rect>
@@ -581,7 +580,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </section>
 <!-- 16 -->
 <section class="dsec" id="l16" style="--c:#0d9488">
-<h2 data-en="&lt;span class=&quot;ln&quot;&gt;16&lt;/span&gt; ☎️ Route 53 — the school's phonebook"><span class="ln">16</span> ☎️ Route 53 — शाळेचे फोनबुक</h2>
+<h2 data-en="&lt;span class=&quot;ln&quot;&gt;16&lt;/span&gt; ☎️ Route 53 — the school's phonebook (DNS)"><span class="ln">16</span> ☎️ Route 53 — शाळेचे फोनबुक (DNS)</h2>
 <p class="d" data-en="Names become reception desks; the phonebook health-checks reception and answers with the backup campus when it must.">नावे रिसेप्शन डेस्क बनतात; फोनबुक रिसेप्शन तपासते आणि गरज पडल्यास backup कॅम्पसने उत्तर देते.</p>
 <svg aria-label="A browser asks Route 53 for school.com; an ALIAS record answers with the ALB; health checks watch it and fail over to a backup" role="img" viewbox="0 0 940 330">
 <rect class="soft" height="90" rx="12" width="170" x="40" y="60"></rect>
@@ -616,9 +615,9 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </section>
 <!-- 17 -->
 <section class="dsec" id="l17" style="--c:#0d9488">
-<h2 data-en='&lt;span class="ln"&gt;17&lt;/span&gt; 🗃️ RDS — the record office you rent'><span class="ln">17</span> 🗃️ RDS — भाड्याने घेतलेले दप्तर कार्यालय</h2>
-<p class="d" data-en="A database with the clerk included: nightly photocopies, a synced mirror in the next building, and an endpoint name that never changes.">कारकुनासह डेटाबेस: रोज रात्री फोटोकॉपी, शेजारच्या इमारतीत sync केलेला आरसा, आणि कधीच न बदलणारे endpoint नाव.</p>
-<svg aria-label="The app dials the endpoint DNS which points at the primary; a standby mirrors it synchronously in another AZ; backups and read replicas hang off the primary" role="img" viewbox="0 0 940 330">
+<h2 data-en='&lt;span class="ln"&gt;17&lt;/span&gt; 🗃️ RDS — the record office you rent (managed database)'><span class="ln">17</span> 🗃️ RDS — भाड्याने घेतलेले दप्तर कार्यालय (managed डेटाबेस)</h2>
+<p class="d" data-en="A database with the clerk included: nightly photocopies, a standby in the next building for automatic failover (not for reads — read replicas are separate), and an endpoint name that never changes.">कारकुनासह डेटाबेस: रोज रात्री फोटोकॉपी, आपोआप failover साठी शेजारच्या इमारतीत standby (वाचनासाठी नव्हे — read replicas वेगळ्या असतात), आणि कधीच न बदलणारे endpoint नाव.</p>
+<svg aria-label="The app dials the endpoint DNS which points at the primary; a Multi-AZ standby in another AZ takes over on failover; backups hang off the primary and read replicas are separate copies for read scaling" role="img" viewbox="0 0 940 330">
 <rect class="box" height="80" rx="12" width="160" x="40" y="60"></rect>
 <text class="t m" data-en="🖥️ app" x="120" y="95">🖥️ ॲप</text>
 <text class="s m" data-en="private wing" x="120" y="118">खाजगी विभाग</text>
@@ -636,7 +635,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <rect class="box" height="110" rx="14" width="150" x="760" y="40"></rect>
 <text class="t m" x="835" y="72">🪞 standby</text>
 <text class="s m" x="835" y="95">AZ-b · synced</text>
-<text class="s m" data-en="invisible until needed" x="835" y="117">गरज पडेपर्यंत अदृश्य</text>
+<text class="s m" data-en="failover only — no reads" x="835" y="117">फक्त failover — वाचन नाही</text>
 <line class="arr" x1="720" x2="756" y1="95" y2="95"></line>
 <g transform="translate(738,78)"><circle class="nc" r="11"></circle><text class="nt" dy="4">3</text></g>
 <rect class="soft" height="80" rx="12" width="180" x="540" y="210"></rect>
@@ -646,7 +645,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <g transform="translate(647,178)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
 <rect class="dead" height="80" rx="12" width="150" x="760" y="210"></rect>
 <text class="t m" x="835" y="242">📚 read replicas</text>
-<text class="s m" data-en="async · for reports" x="835" y="265">async · अहवालांसाठी</text>
+<text class="s m" data-en="async · read scaling, separate" x="835" y="265">async · read scaling, वेगळ्या</text>
 <line class="arr dash" x1="740" x2="810" y1="150" y2="206"></line>
 <text class="s m" data-en="failover drill: primary floods →" x="240" y="220">failover सराव: primary बुडतो →</text>
 <text class="s m" data-en="the NAME flips to the mirror ~1 min" x="240" y="242">नाव ~1 मि. मध्ये आरशाकडे वळते</text>
@@ -699,7 +698,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </section>
 <!-- 19 -->
 <section class="dsec" id="l19" style="--c:#0d9488">
-<h2 data-en='&lt;span class="ln"&gt;19&lt;/span&gt; ⚡ Lambda — the helper who exists only while called'><span class="ln">19</span> ⚡ Lambda — फक्त बोलावल्यावर अस्तित्वात असणारा मदतनीस</h2>
+<h2 data-en='&lt;span class="ln"&gt;19&lt;/span&gt; ⚡ Lambda — the helper who exists only while called (serverless functions)'><span class="ln">19</span> ⚡ Lambda — फक्त बोलावल्यावर अस्तित्वात असणारा मदतनीस (serverless functions)</h2>
 <p class="d" data-en="An event happens, a helper appears wearing exactly one hat, does one errand, and vanishes. Idle cost: zero.">एक घटना घडते, नेमकी एक टोपी घातलेला मदतनीस येतो, एक काम करतो, आणि नाहीसा होतो. रिकामेपणाचा खर्च: शून्य.</p>
 <svg aria-label="Events from S3, schedules or URLs invoke the function; it runs with its execution role, returns a result, and disappears" role="img" viewbox="0 0 940 330">
 <rect class="soft" height="110" rx="14" width="200" x="40" y="50"></rect>
@@ -814,7 +813,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <p class="foot" data-en='&lt;a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-21-subnet-networking/lessons/21-subnet-networking/README.md"&gt;Read full lesson 21 →&lt;/a&gt;'><a href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-21-subnet-networking/lessons/21-subnet-networking/README.md">संपूर्ण धडा 21 वाचा →</a></p>
 </section><section class="dsec" id="l22" style="--c:#be123c">
 <h2 data-en='&lt;span class="ln"&gt;22&lt;/span&gt; 📮 The NAT gateway — the one-way postbox, in depth'><span class="ln">22</span> 📮 NAT gateway — एकमार्गी पोस्टबॉक्स, खोलात</h2>
-<p class="d" data-en="The postbox rewrites the return address, walks the letter out the gate, and hands the reply back — one per building, and the most-billed box on the map.">पोस्टबॉक्स परतीचा पत्ता बदलतो, पत्र गेटबाहेर नेतो, आणि उत्तर परत आणून देतो — प्रत्येक इमारतीला एक, आणि नकाशावरचा सर्वात जास्त बिल लावणारा बॉक्स.</p>
+<p class="d" data-en="The postbox rewrites the return address, walks the letter out the gate, and hands the reply back — often one per building for resilience, and the most-billed box on the map.">पोस्टबॉक्स परतीचा पत्ता बदलतो, पत्र गेटबाहेर नेतो, आणि उत्तर परत आणून देतो — लवचिकतेसाठी अनेकदा प्रत्येक इमारतीला एक, आणि नकाशावरचा सर्वात जास्त बिल लावणारा बॉक्स.</p>
 <svg aria-label="A private instance sends traffic to a NAT gateway with an Elastic IP in the public subnet which forwards through the internet gateway; replies come back through the NAT; nothing can reach the private IP directly" role="img" viewbox="0 0 940 330">
 <rect class="box" height="80" rx="12" width="180" x="40" y="60"></rect>
 <text class="t m" data-en="🖥️ private desk AZ-a" x="130" y="95">🖥️ खाजगी बाक AZ-a</text>
@@ -841,8 +840,8 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <text class="t m" x="835" y="232">✗ 10.0.101.7</text>
 <text class="s m" data-en="unreachable from outside" x="835" y="255">बाहेरून पोहोचता येत नाही</text>
 <rect class="soft" height="90" rx="12" width="230" x="280" y="200"></rect>
-<text class="t m" data-en="🏢 one postbox PER building" x="395" y="228">🏢 प्रत्येक इमारतीला एक पोस्टबॉक्स</text>
-<text class="s m" data-en="AZ-b desks → NAT-b, never NAT-a" x="395" y="251">AZ-b बाक → NAT-b, कधीच NAT-a नाही</text>
+<text class="t m" data-en="🏢 often one postbox per building" x="395" y="228">🏢 अनेकदा प्रत्येक इमारतीला एक पोस्टबॉक्स</text>
+<text class="s m" data-en="AZ-b desks → NAT-b (recommended)" x="395" y="251">AZ-b बाक → NAT-b (शिफारस)</text>
 <text class="s m" data-en="shared NAT = SPOF + cross-AZ $" x="395" y="273">सामायिक NAT = SPOF + cross-AZ $</text>
 <g transform="translate(280,200)"><circle class="nc" r="11"></circle><text class="nt" dy="4">4</text></g>
 <rect class="dead" height="100" rx="12" width="180" x="40" y="190"></rect>

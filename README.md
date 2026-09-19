@@ -51,7 +51,7 @@ git checkout lesson-02-users-groups     # ...keep going, one branch at a time
 | 12 | `lesson-12-ec2-in-real-life` | user-data, metadata, ASGs, EKS nodes | The robot janitor's checklist 🤖📋 |
 
 
-### Part 3 — the campus & the services 🏫
+### Part 3 — the campus & core services 🏫
 
 | # | Branch | You learn | Analogy |
 |---|---|---|---|
@@ -65,7 +65,7 @@ git checkout lesson-02-users-groups     # ...keep going, one branch at a time
 | 20 | `lesson-20-the-bill` | The four meters, budgets, cost hygiene | Reading the meter 🧾 |
 
 
-### Part 4 — doors, routes & guards 🛡️
+### Part 4 — the edge: doors, routes & guards 🛡️
 
 | # | Branch | You learn | Analogy |
 |---|---|---|---|

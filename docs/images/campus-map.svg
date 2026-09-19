@@ -112,8 +112,8 @@
   <text class="bdg" x="820" y="698">REQUIRED</text>
   <rect class="nd" x="1000" y="695" width="220" height="120" rx="12"/>
   <text class="t m" x="1110" y="728">🪞 RDS standby</text>
-  <text class="s m" x="1110" y="753">synced every second,</text>
-  <text class="s m" x="1110" y="773">invisible until the flood —</text>
+  <text class="s m" x="1110" y="753">synced · failover only,</text>
+  <text class="s m" x="1110" y="773">serves no reads — until the flood,</text>
   <text class="s m" x="1110" y="793">then the NAME flips here</text>
   <rect class="opt" x="1020" y="681" width="120" height="24" rx="12"/>
   <text class="bdg" x="1080" y="698">OPTIONAL</text>
@@ -130,7 +130,7 @@
 
   <rect class="svc" x="1340" y="330" width="520" height="130" rx="14"/>
   <text class="t" x="1365" y="366">🗄️ S3 — the locker room (L14)</text>
-  <text class="s" x="1365" y="392">boxes photocopied to 3 buildings · visitor passes ⏰</text>
+  <text class="s" x="1365" y="392">stored redundantly across buildings · visitor passes ⏰</text>
   <text class="s" x="1365" y="414">🧒 not IN the campus — call it like a website, 🪪-signed</text>
   <rect class="req" x="1720" y="346" width="120" height="24" rx="12"/>
   <text class="bdg" x="1780" y="363">REQUIRED</text>
