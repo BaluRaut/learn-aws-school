@@ -7,7 +7,7 @@
 ## 📦 What's in this branch
 
 Lessons 01–04, **plus**: how machines authenticate — the pattern that
-removes passwords from your infrastructure entirely. Real files:
+removes long-lived secrets from your infrastructure. Real files:
 
 - [iam/ec2-role-trust-policy.json](../../iam/ec2-role-trust-policy.json) — the EC2 hat's trust document
 - [iam/ecr-push-policy.json](../../iam/ecr-push-policy.json) — the exact slips a CI robot needs
@@ -94,7 +94,7 @@ cat iam/ecr-push-policy.json           # WHAT the wearer may do
 ## ⏭️ Next
 
 Part 1 closes with the poster on the ID-office wall: the **hygiene
-checklist** that prevents 90% of AWS incidents.
+checklist** that prevents the most common AWS security mistakes.
 
 ```bash
 git checkout lesson-06-iam-hygiene
