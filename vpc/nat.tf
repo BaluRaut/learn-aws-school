@@ -35,5 +35,5 @@ resource "aws_route_table_association" "private_a" {
   route_table_id = aws_route_table.private_a[0].id
 }
 
-# a real campus repeats this block per AZ (nat_b in public_b → private_b), never cross-AZ.
+# a resilient campus usually repeats this block per AZ (nat_b in public_b → private_b) — cross-AZ works, but it is a SPOF and bills data transfer.
 output "postbox_ip" { value = var.enable_nat ? aws_eip.nat_a[0].public_ip : "NAT disabled (good — it bills hourly)" }

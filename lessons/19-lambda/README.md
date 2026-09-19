@@ -1,4 +1,4 @@
-# ⚡ Lesson 19 — Lambda: the helper who exists only while called
+# ⚡ Lesson 19 — Lambda: the helper who exists only while called (serverless functions)
 
 **📍 You are here:** Lesson **19** of 20 · Previous: `lesson-18-cloudwatch` · Next: `lesson-20-the-bill`
 
