@@ -89,6 +89,20 @@ aws ssm start-session --target $(aws ec2 describe-instances \
 terraform destroy -var my_ip=$(curl -s ifconfig.me)/32
 ```
 
+## ✅ Verify — what you should see
+
+`aws ssm start-session --target i-…` drops you into a shell with **no port 22 open** in the security group.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy`; delete the key pair if you created one for comparison
+
+## ⚠️ Common mistakes
+
+- port 22 open to 0.0.0.0/0 — the classic honeypot
+- one team-shared private key file
+- SSM 'not working' because the instance role lacks the SSM policy — it's IAM, not networking
+
 ## ⏭️ Next
 
 That "only from YOUR IP" door rule deserves its own lesson: **security
