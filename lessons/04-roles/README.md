@@ -99,6 +99,20 @@ aws iam detach-role-policy --role-name lab-hat --policy-arn arn:aws:iam::aws:pol
 aws iam delete-role --role-name lab-hat
 ```
 
+## ✅ Verify — what you should see
+
+`aws sts assume-role` returns credentials with an `Expiration` about an hour away; `get-caller-identity` afterwards shows the **role** ARN, not your user.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- a trust policy that lets `*` assume the role — the hat anyone can wear
+- pasting the temporary credentials into a config file (they expire; that's the point)
+- role-chaining three deep and then wondering who did what — read CloudTrail
+
 ## ⏭️ Next
 
 Hats on ROBOTS: how EC2 instances and CI pipelines get powers with no

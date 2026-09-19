@@ -93,6 +93,20 @@ aws ec2 describe-security-groups --filters Name=group-name,Values=school-desk-sg
 terraform destroy -var my_ip=$(curl -s ifconfig.me)/32     # 🧹
 ```
 
+## ✅ Verify — what you should see
+
+`nc -zv PUBLIC_IP 80` connects; `nc -zv PUBLIC_IP 22` from a different IP times out (silence, not refusal).
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy`
+
+## ⚠️ Common mistakes
+
+- allowing 0.0.0.0/0 on every port 'to make it work'
+- expecting outbound rules to block replies — SGs are stateful
+- two SGs referencing each other and forgetting which one is the reception's
+
 ## ⏭️ Next
 
 What happens to the desk's *stuff* when the desk goes away? Drawers,
