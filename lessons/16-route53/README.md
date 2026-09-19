@@ -84,6 +84,20 @@ No domain needed: `dig` any site twice and watch the TTL drop between
 answers — you're reading someone's phonebook cache in real time. Then
 `dig +trace school.com` to walk the full chain root → TLD → zone.
 
+## ✅ Verify — what you should see
+
+`dig school.com` twice a minute apart: the TTL counts down; `dig +trace` walks root → TLD → your zone.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- a CNAME at the zone apex (illegal) — use ALIAS
+- cutting over with a 24-hour TTL still cached everywhere
+- registering the domain and forgetting the hosted zone is a separate thing
+
 ## ⏭️ Next
 
 Crowd handled, name resolved. But the school's *records* — grades,
