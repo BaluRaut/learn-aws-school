@@ -26,9 +26,9 @@ need to *send* letters: fetch updates, call an API, pull an image. The
 - It's **managed**: AWS keeps it running and scales it to ~100 Gbps.
 - It lives in **one building** (AZ). If building A burns, the postbox in
   A goes with it — and desks in building B that were told *"mail via the
-  postbox in A"* are suddenly mute. Real campuses put **one postbox per
-  building** and point each private wing at its *own* building's postbox
-  (that's what nat.tf does).
+  postbox in A"* are suddenly mute. Real campuses *usually* put **a postbox in every
+  building** — not a rule, a resilience recommendation — and point each
+  private wing at its *own* building's postbox (that's what nat.tf does).
 
 Now the bill 🧾 (lesson 20's classic): a postbox costs **~$32/month for
 existing** plus **~4¢ per GB** that passes through — *both ways*. Two
@@ -60,7 +60,7 @@ flowchart LR
 
 - **Needs**: a public subnet, an Elastic IP, and a route `0.0.0.0/0 →
   nat-xxxx` in each private subnet's table.
-- **HA pattern**: one NAT per AZ; each private subnet routes to its own
+- **HA pattern (recommended, not required)**: one NAT per AZ; each private subnet routes to its own
   AZ's NAT. One shared NAT = cheaper, single point of failure, cross-AZ
   charges.
 - **Cost levers**: gateway endpoints for S3/DynamoDB (free), interface
