@@ -204,7 +204,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <!-- 05 -->
 <section class="dsec" id="l05" style="--c:#7c3aed">
 <h2 data-en='&lt;span class="ln"&gt;5&lt;/span&gt; 🤖 Machine identities — badges for robots, keys for nobody'><span class="ln">5</span> 🤖 मशीनच्या ओळखी — रोबोटसाठी बॅज, कोणालाच keys नाहीत</h2>
-<p class="d" data-en="Machines never get passwords: EC2 wears an instance role; CI assumes a role via OIDC. Long-lived keys are the last resort.">मशीनना कधीच पासवर्ड मिळत नाहीत: EC2 instance role घालतो; CI OIDC ने role घेतो. दीर्घकालीन keys हा शेवटचा पर्याय.</p>
+<p class="d" data-en="Machines should use temporary credentials, not human passwords or long-lived access keys: EC2 wears an instance role; CI assumes a role via OIDC. A stored key is the last resort.">मशीनने तात्पुरती credentials वापरावीत, माणसांचे पासवर्ड किंवा दीर्घकालीन access keys नव्हे: EC2 instance role घालतो; CI OIDC ने role घेतो. साठवलेली key हा शेवटचा पर्याय.</p>
 <svg aria-label="An EC2 instance gets temporary credentials from its instance role; CI gets them via OIDC federation; stored access keys are the anti-pattern" role="img" viewbox="0 0 940 300">
 <rect class="box" height="110" rx="14" width="280" x="40" y="50"></rect>
 <text class="t m" x="180" y="82">🖥️ EC2 instance</text>
@@ -236,7 +236,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <!-- 06 -->
 <section class="dsec" id="l06" style="--c:#7c3aed">
 <h2 data-en='&lt;span class="ln"&gt;6&lt;/span&gt; 📋 IAM hygiene — the ID-office rules poster'><span class="ln">6</span> 📋 IAM स्वच्छता — ओळखपत्र कार्यालयाचे नियम-फलक</h2>
-<p class="d" data-en="Four habits that prevent 90% of AWS security incidents.">90% AWS सुरक्षा घटना टाळणाऱ्या चार सवयी.</p>
+<p class="d" data-en="Four habits that prevent common AWS security mistakes.">सामान्य AWS सुरक्षा चुका टाळणाऱ्या चार सवयी.</p>
 <svg aria-label="Four rules: MFA everywhere, least privilege, no root and no long-lived keys, CloudTrail audit" role="img" viewbox="0 0 940 300">
 <rect class="box" height="100" rx="12" width="410" x="50" y="50"></rect>
 <text class="t m" data-en="📱 1 · MFA everywhere" x="255" y="82">📱 1 · सगळीकडे MFA</text>

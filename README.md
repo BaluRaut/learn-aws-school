@@ -88,7 +88,8 @@ learn-aws-school/
 └── docs/                           # the GitHub Pages site
 ```
 
-⚠️ **Costs:** IAM is free. EC2 labs use a `t3.micro` (free-tier eligible; otherwise ~$0.01/hour) —
+⚠️ **Costs:** IAM is free. EC2 labs use a small `t3.micro` that may be Free Tier eligible depending on
+your AWS account, region and current AWS terms. If charged, EC2 is billed while the instance is running —
 every lesson ends with cleanup. Never leave a lab instance running overnight.
 
 ## 🚀 Quickest possible taste (3 min, free)

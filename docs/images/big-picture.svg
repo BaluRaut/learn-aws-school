@@ -84,7 +84,7 @@
   <rect class="tip" x="990" y="390" width="430" height="110" rx="14"/>
   <text class="t m" x="1205" y="430">🎩 roles over keys</text>
   <text class="s m" x="1205" y="460">temporary beats forever —</text>
-  <text class="s m" x="1205" y="484">machines never get passwords</text>
+  <text class="s m" x="1205" y="484">machines get short-lived credentials, not stored keys</text>
   <rect class="tip" x="1450" y="390" width="400" height="110" rx="14"/>
   <text class="t m" x="1650" y="430">🧾 CloudTrail on</text>
   <text class="s m" x="1650" y="460">every API call logged:</text>
@@ -160,7 +160,7 @@
   <text class="s m" x="950" y="1074">rebuild them; drawers &amp; snapshots hold what's precious</text>
   <rect class="win" x="1270" y="980" width="580" height="110" rx="14"/>
   <text class="t m" x="1560" y="1020">🧹 the lab rule</text>
-  <text class="s m" x="1560" y="1050">IAM is free · a lab t3.micro is ~1¢/hour —</text>
+  <text class="s m" x="1560" y="1050">IAM is free · EC2 bills while a desk runs —</text>
   <text class="s m" x="1560" y="1074">ALWAYS terraform destroy before you sleep</text>
 
   <!-- ═══ divider ═══ -->

@@ -99,7 +99,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <li data-en="lock away the root master key 🗝️">root ची मास्टर किल्ली कुलूपबंद करा 🗝️</li>
 <li data-en="ID cards (users), staff lists (groups), slips (policies)">ओळखपत्रे (users), स्टाफ याद्या (groups), चिठ्ठ्या (policies)</li>
 <li data-en="hats, not people: roles &amp;amp; temporary credentials 🎩">माणसे नव्हे, टोप्या: roles &amp; तात्पुरती credentials 🎩</li>
-<li data-en="badges for robots — machines never get passwords 🤖">रोबोटसाठी बॅज — मशीनना कधीच पासवर्ड मिळत नाहीत 🤖</li>
+<li data-en="badges for robots — temporary credentials, not passwords or long-lived keys 🤖">रोबोटसाठी बॅज — तात्पुरती credentials, पासवर्ड किंवा दीर्घकालीन keys नव्हे 🤖</li>
 </ul>
 </div>
 <div class="vcol" style="border-top: 5px solid #ea580c">
@@ -154,8 +154,7 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">6</span><h3 data-en="📋 IAM hygiene">📋 IAM स्वच्छता</h3></div><span class="ana" data-en="The ID-office rules poster — MFA, least privilege, audit.">ओळखपत्र कार्यालयाचे नियम-फलक — MFA, least privilege, audit.</span><code>lesson-06-iam-hygiene</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-06-iam-hygiene/lessons/06-iam-hygiene/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l06">आकृती पहा ↗</a></div>
 </div><div class="callout" data-en="🎯 &lt;b&gt;After Part 1 you should be able to explain:&lt;/b&gt; user vs group vs role · why an application never uses access keys · how EC2 and CI obtain temporary credentials · what least privilege means · why root lives in the safe.">🎯 <b>भाग 1 नंतर तुम्हाला समजावता आले पाहिजे:</b> user विरुद्ध group विरुद्ध role · ॲप कधीच access keys का वापरत नाही · EC2 आणि CI तात्पुरती credentials कशी मिळवतात · least privilege म्हणजे काय · root तिजोरीत का राहतो.</div>
 <h2 data-en="🖥️ Part 2 — EC2: the rented computers (lessons 7–12)" id="part2">🖥️ भाग 2 — EC2: भाड्याचे संगणक (धडे 7–12)</h2>
-<p class="sub" data-en="Labs use a free-tier-eligible &lt;code&gt;t3.micro&lt;/code&gt; (otherwise ~1¢/hour) — and every
-  lesson ends with &lt;code&gt;terraform destroy&lt;/code&gt;. Never leave a lab desk running overnight.">प्रयोग free-tier-पात्र <code>t3.micro</code> वापरतात (नाहीतर ~1¢/तास) — आणि प्रत्येक धडा <code>terraform destroy</code> ने संपतो. प्रयोगाचा बाक रात्रभर कधीच चालू ठेवू नका.</p>
+<p class="sub" data-en="Labs use a small EC2 instance (&lt;code&gt;t3.micro&lt;/code&gt;) that may be Free Tier eligible depending on your AWS account, region and current AWS terms. If charged, EC2 is billed while the instance is running — so every lesson ends with &lt;code&gt;terraform destroy&lt;/code&gt;. Never leave a lab desk running overnight.">प्रयोग एक छोटा EC2 instance (<code>t3.micro</code>) वापरतात, जो तुमचे AWS खाते, region आणि AWS च्या सध्याच्या अटींनुसार Free Tier-पात्र असू शकतो. शुल्क लागल्यास, instance चालू असेपर्यंत EC2 चे बिल लागते — म्हणून प्रत्येक धडा <code>terraform destroy</code> ने संपतो. प्रयोगाचा बाक रात्रभर कधीच चालू ठेवू नका.</p>
 <div class="grid">
 <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">7</span><h3 data-en="🖥️ What is EC2">🖥️ EC2 म्हणजे काय</h3></div><span class="ana" data-en="A rented desk-computer with no screen, paid by the second.">स्क्रीन नसलेला भाड्याचा बाक-संगणक, सेकंदाने पैसे.</span><code>lesson-07-what-is-ec2</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-07-what-is-ec2/lessons/07-what-is-ec2/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l07">आकृती पहा ↗</a></div>
 <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">8</span><h3 data-en="🛵 Types &amp;amp; pricing">🛵 प्रकार &amp; किंमत</h3></div><span class="ana" data-en="Scooter vs truck vs race car — and spot's standby seats.">स्कूटर विरुद्ध ट्रक विरुद्ध रेस कार — आणि spot च्या standby जागा.</span><code>lesson-08-types-pricing</code><a class="go" data-en="Read lesson →" href="https://github.com/BaluRaut/learn-aws-school/blob/lesson-08-types-pricing/lessons/08-types-pricing/README.md">धडा वाचा →</a><a class="go" data-en="See the diagram ↗" href="lesson-diagrams.html#l08">आकृती पहा ↗</a></div>
@@ -327,7 +326,7 @@ git checkout lesson-01-why-iam          # then open lessons/01-why-iam/README.md
 <!-- 05 -->
 <section class="dsec" id="l05" style="--c:#7c3aed">
 <h2 data-en='&lt;span class="ln"&gt;5&lt;/span&gt; 🤖 Machine identities — badges for robots, keys for nobody'><span class="ln">5</span> 🤖 मशीनच्या ओळखी — रोबोटसाठी बॅज, कोणालाच keys नाहीत</h2>
-<p class="d" data-en="Machines never get passwords: EC2 wears an instance role; CI assumes a role via OIDC. Long-lived keys are the last resort.">मशीनना कधीच पासवर्ड मिळत नाहीत: EC2 instance role घालतो; CI OIDC ने role घेतो. दीर्घकालीन keys हा शेवटचा पर्याय.</p>
+<p class="d" data-en="Machines should use temporary credentials, not human passwords or long-lived access keys: EC2 wears an instance role; CI assumes a role via OIDC. A stored key is the last resort.">मशीनने तात्पुरती credentials वापरावीत, माणसांचे पासवर्ड किंवा दीर्घकालीन access keys नव्हे: EC2 instance role घालतो; CI OIDC ने role घेतो. साठवलेली key हा शेवटचा पर्याय.</p>
 <svg aria-label="An EC2 instance gets temporary credentials from its instance role; CI gets them via OIDC federation; stored access keys are the anti-pattern" role="img" viewbox="0 0 940 300">
 <rect class="box" height="110" rx="14" width="280" x="40" y="50"></rect>
 <text class="t m" x="180" y="82">🖥️ EC2 instance</text>
@@ -359,7 +358,7 @@ git checkout lesson-01-why-iam          # then open lessons/01-why-iam/README.md
 <!-- 06 -->
 <section class="dsec" id="l06" style="--c:#7c3aed">
 <h2 data-en='&lt;span class="ln"&gt;6&lt;/span&gt; 📋 IAM hygiene — the ID-office rules poster'><span class="ln">6</span> 📋 IAM स्वच्छता — ओळखपत्र कार्यालयाचे नियम-फलक</h2>
-<p class="d" data-en="Four habits that prevent 90% of AWS security incidents.">90% AWS सुरक्षा घटना टाळणाऱ्या चार सवयी.</p>
+<p class="d" data-en="Four habits that prevent common AWS security mistakes.">सामान्य AWS सुरक्षा चुका टाळणाऱ्या चार सवयी.</p>
 <svg aria-label="Four rules: MFA everywhere, least privilege, no root and no long-lived keys, CloudTrail audit" role="img" viewbox="0 0 940 300">
 <rect class="box" height="100" rx="12" width="410" x="50" y="50"></rect>
 <text class="t m" data-en="📱 1 · MFA everywhere" x="255" y="82">📱 1 · सगळीकडे MFA</text>
