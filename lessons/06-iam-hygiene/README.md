@@ -82,6 +82,20 @@ aws cloudtrail lookup-events --max-results 3 \
   --query 'Events[].{when:EventTime,who:Username,what:EventName}'
 ```
 
+## ✅ Verify — what you should see
+
+`aws iam get-credential-report` shows MFA true for every human and no active access key older than 90 days.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- MFA on root only — every human gets it
+- 'we'll rotate the keys next quarter'
+- CloudTrail off to save pennies — audit is the cheapest insurance on AWS
+
 ## ⏭️ Next — Part 2 begins 🖥️
 
 Identity solved. Now the OTHER foundation: the rented computers everything
