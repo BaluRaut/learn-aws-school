@@ -28,8 +28,11 @@ The three renter's perks:
 - **The mirror office** 🪞 — **Multi-AZ**: an exact standby in the *next
   building*, synced every second. Primary floods → AWS flips the
   phonebook entry to the mirror in ~a minute. Your app just… reconnects.
+  The mirror is for *surviving*, not for reading — it serves no traffic
+  until the failover.
 - **Photocopy desks for readers** 📚 — **read replicas**: heavy report
-  season? Add read-only copies; writers keep the real office.
+  season? Add read-only copies; writers keep the real office. These are
+  *separate* copies built for read scaling — not the Multi-AZ standby.
 
 And one detail that ties the whole course: your app never learns the
 office's number — it dials the **endpoint** (a DNS name, lesson 16's
@@ -43,7 +46,7 @@ flowchart LR
     app["🖥️ app (private wing)"]
     ep["☎️ endpoint DNS<br/>school-db.xyz.rds.amazonaws.com"]
     p["🗃️ primary office (AZ-a)<br/>private subnet, SG: app only"]
-    m["🪞 standby mirror (AZ-b)<br/>synced, invisible"]
+    m["🪞 standby mirror (AZ-b)<br/>synced · failover only, no reads"]
     bak["📸 nightly photocopies<br/>+ point-in-time restore"]
     rr["📚 read replica(s)<br/>reports go here"]
     app -->|"1 dial the name"| ep -->|"2"| p
