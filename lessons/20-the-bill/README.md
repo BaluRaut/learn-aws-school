@@ -1,6 +1,6 @@
 # 🧾 Lesson 20 — The bill: reading the meter
 
-**📍 You are here:** Lesson **20** of 20 — the final lesson! 🎓 · Previous: `lesson-19-lambda`
+**📍 You are here:** Lesson **20** of 25 — Part 3 ends here · Previous: `lesson-19-lambda` · Next: `lesson-21-subnet-networking`
 
 ---
 
