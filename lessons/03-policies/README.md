@@ -88,6 +88,20 @@ aws iam simulate-custom-policy \
 # → PutImage: allowed · DeleteRepository: implicitDeny (no slip = no!) 🎉
 ```
 
+## ✅ Verify — what you should see
+
+the policy simulator (`aws iam simulate-principal-policy`) returns **allowed** for the one action you granted and **implicitDeny** for a neighbour — silence is a NO.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- `"Resource": "*"` because the ARN was annoying to find
+- forgetting an explicit Deny beats every Allow — the door stays slammed
+- debugging AccessDenied by adding Admin* 'temporarily'
+
 ## ⏭️ Next
 
 Slips attached to people is half the story. The other half wears hats:
