@@ -96,6 +96,20 @@ aws ssm start-session --target $(aws ec2 describe-instances \
 terraform destroy -var my_ip=$(curl -s ifconfig.me)/32
 ```
 
+## ✅ Verify — what you should see
+
+terminate one desk in the Auto Scaling Group; within minutes `describe-auto-scaling-groups` shows a replacement — the fleet manager did its job.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` — an ASG left at desired=2 is two desks billing all night
+
+## ⚠️ Common mistakes
+
+- user-data that assumes packages exist — it runs on a fresh box every time
+- hand-configuring one instance in an ASG (it will be replaced by a clean one)
+- min = desired = max = 1 and calling it high availability
+
 ## 🎓 The foundations are laid
 
 IAM: cards, slips, hats, badges. EC2: desks, guest lists, drawers,
