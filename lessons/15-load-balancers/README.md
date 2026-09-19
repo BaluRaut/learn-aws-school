@@ -1,4 +1,4 @@
-# 🛎️ Lesson 15 — Load balancers: the reception that splits crowds
+# 🛎️ Lesson 15 — Load balancers: the reception that splits crowds (Layer 7 load balancer)
 
 **📍 You are here:** Lesson **15** of 20 · Previous: `lesson-14-s3` · Next: `lesson-16-route53`
 
