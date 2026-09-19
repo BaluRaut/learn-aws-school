@@ -1,4 +1,4 @@
-# 🗄️ Lesson 14 — S3: the infinite locker room
+# 🗄️ Lesson 14 — S3: the infinite locker room (object storage)
 
 **📍 You are here:** Lesson **14** of 20 · Previous: `lesson-13-vpc` · Next: `lesson-15-load-balancers`
 
@@ -22,9 +22,9 @@ desk plans, remember?). The school rents the **infinite locker room**: **S3**.
 - An **object** 📦 is a box in a locker: the stuff + a label (**key**)
   like `2026/class-3A/photo.jpg`. Those slashes are *part of the label* —
   there are no real folders, just labels that look tidy.
-- **Durability** 🏢🏢🏢: every box is instantly photocopied to **three
-  buildings** (AZs). Eleven nines — you will lose your keys before S3
-  loses your box.
+- **Durability** 🏢🏢🏢: every box is stored redundantly across **multiple
+  buildings** (AZs) — automatically, nothing for you to configure. Eleven
+  nines — you will lose your keys before S3 loses your box.
 - **The visitor pass** 🎟️ (**presigned URL**): "this link may open THIS
   box until 3 pm." Anyone holding the pass gets in — no account needed.
   It's how apps let users download private files safely.
@@ -41,7 +41,7 @@ Cold boxes move to the **basement** (Infrequent Access, cheaper) or the
 flowchart LR
     app["🖥️ your app / CLI"]
     b["🪣 bucket: school-files<br/>📦 2026/class-3A/photo.jpg"]
-    az["🏢🏢🏢 photocopied to 3 buildings<br/>(11 nines durability)"]
+    az["🏢🏢🏢 stored redundantly across AZs<br/>(11 nines durability, automatic)"]
     guest["🧑 visitor with presigned URL<br/>works until it expires ⏰"]
     app -->|"1 PUT (IAM-checked 🪪)"| b
     b -->|"2 automatic"| az
