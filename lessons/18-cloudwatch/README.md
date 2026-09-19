@@ -87,6 +87,20 @@ create an alarm at CPU > 50% wired to an SNS topic your email subscribes
 to, and wait for the mail. Read the same spike as a graph. Destroy —
 and notice the alarm itself is free to keep, but the desk isn't.
 
+## ✅ Verify — what you should see
+
+the alarm goes `OK → ALARM` during the stress test and the SNS email arrives; the metric graph shows the spike.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` the desk; the alarm itself is free to keep
+
+## ⚠️ Common mistakes
+
+- alarming on averages over 1 hour — the spike averages away
+- expecting a memory metric without the CloudWatch agent
+- `INSUFFICIENT_DATA` ignored — the desk stopped reporting, that's an incident
+
 ## ⏭️ Next
 
 Everything so far assumed a desk waiting for work. But some work is one

@@ -90,6 +90,20 @@ aws ec2 describe-route-tables --filters Name=vpc-id,Values=$(terraform output -r
 terraform destroy                               # tear the campus down (free, but tidy)
 ```
 
+## ✅ Verify — what you should see
+
+`describe-route-tables` for the public subnet shows a `0.0.0.0/0 → igw-…` route; the private subnet's table shows only `local`.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- a NAT gateway in the lab 'to be realistic' — ~$32/month for existing
+- putting app servers in the public wing
+- one subnet in one AZ and calling it a campus
+
 ## ⏭️ Next
 
 The desks have a campus. But where does the school keep *stuff* — files,

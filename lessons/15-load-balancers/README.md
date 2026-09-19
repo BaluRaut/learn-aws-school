@@ -87,6 +87,20 @@ Spin two `t3.micro` desks with lesson 12's user-data (each serves its own
 hostname), put an ALB in front, then `watch curl` the ALB address — the
 hostname alternates. Stop one desk: traffic flows on, unbroken. Destroy all.
 
+## ✅ Verify — what you should see
+
+`describe-target-health` shows both desks `healthy`; `watch curl ALB_DNS` alternates hostnames; stop one desk and traffic continues.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` — an idle ALB bills hourly (~$16/month) whether anyone visits or not
+
+## ⚠️ Common mistakes
+
+- health check path that returns 404 — every desk 'unhealthy', reception empty
+- desks' SG allowing 0.0.0.0/0 instead of 'from the ALB's SG only'
+- ALB in one AZ only — it needs two public subnets
+
 ## ⏭️ Next
 
 Reception has a long ugly address (`my-alb-1234.elb.amazonaws.com`). How

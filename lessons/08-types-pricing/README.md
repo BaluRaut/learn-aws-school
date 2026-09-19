@@ -91,6 +91,20 @@ aws ec2 describe-spot-price-history --instance-types t3.micro \
 aws ec2 describe-instances --query 'Reservations[].Instances[].State.Name' --output text | sort | uniq -c
 ```
 
+## ✅ Verify — what you should see
+
+`aws ec2 describe-spot-price-history --instance-types t3.micro` shows spot at a fraction of the on-demand price you see in the console.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- committing to a savings plan before the workload is steady
+- spot for a database — reclaimed with a 2-minute warning
+- a `t` burstable type for a steady CPU-heavy job — credits run out, it crawls
+
 ## ⏭️ Next
 
 You rented the desk — now walk up to it: **key pairs, SSH, and the modern

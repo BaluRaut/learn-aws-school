@@ -94,6 +94,20 @@ the one cold start vs four warm ones, in milliseconds.
 aws lambda delete-function --function-name hello   # tidy, as always
 ```
 
+## ✅ Verify — what you should see
+
+`aws lambda invoke` writes `{"greeting": "hello, class 3A"}`; the CloudWatch log group shows one cold `Init Duration` and four warm invocations.
+
+## 🧹 Clean up — do not leave running
+
+`aws lambda delete-function --function-name hello` — a million invocations are free, but tidy anyway
+
+## ⚠️ Common mistakes
+
+- a 15-minute job in a 15-minute-capped helper
+- giving the execution role `*` — hats are least-privilege too
+- expecting state between invocations — helpers forget
+
 ## ⏭️ Next
 
 You now rent desks, lockers, receptions, offices, and helpers. One
