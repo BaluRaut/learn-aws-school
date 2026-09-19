@@ -84,6 +84,20 @@ curl http://$(terraform output -raw public_ip)
 terraform destroy -var my_ip=$(curl -s ifconfig.me)/32
 ```
 
+## ✅ Verify — what you should see
+
+`aws ec2 describe-instances` shows `running`; `curl http://PUBLIC_IP` returns the welcome page from user-data.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` — then `describe-instances` must show **terminated** (a stopped desk still bills its drawer)
+
+## ⚠️ Common mistakes
+
+- forgetting the desk overnight — the ~1¢/hour that becomes $7
+- stop instead of terminate, then paying for the EBS drawer forever
+- picking a region far from you and wondering why SSH lags
+
 ## ⏭️ Next
 
 Desks come in sizes and payment plans — scooters, trucks, season tickets

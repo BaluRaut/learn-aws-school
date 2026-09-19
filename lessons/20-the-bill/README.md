@@ -90,6 +90,20 @@ Set the $5 budget tripwire. Run the audit walk above. Delete what it
 finds. Tomorrow, open Cost Explorer and read this course's total —
 you'll find the whole 20 lessons cost less than one coffee. ☕
 
+## ✅ Verify — what you should see
+
+AWS Budgets shows the $5 budget; Cost Explorer (tomorrow) lists this course's total under a coffee.
+
+## 🧹 Clean up — do not leave running
+
+run the audit walk: no `available` volumes, no stray snapshots, no NAT gateways, no ALBs, no DB instances
+
+## ⚠️ Common mistakes
+
+- a stopped instance's EBS drawer billing for months
+- 'free tier' assumed after the 12 months ran out
+- never opening Cost Explorer until the email
+
 ## 🎓 You made it
 
 Identity, desks, campus, lockers, reception, phonebook, record office,
