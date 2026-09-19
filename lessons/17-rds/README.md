@@ -94,6 +94,20 @@ Create a `db.t4g.micro` Postgres in your lab VPC's private subnets,
 Then delete it (skip the final snapshot in a lab, and check it's gone —
 lesson 20 explains why).
 
+## ✅ Verify — what you should see
+
+`psql -h ENDPOINT` connects from a private desk; after `reboot-db-instance --force-failover` the **same endpoint** answers again from the other AZ.
+
+## 🧹 Clean up — do not leave running
+
+delete the DB instance (skip the final snapshot in a lab) and confirm `describe-db-instances` is empty — RDS bills hourly
+
+## ⚠️ Common mistakes
+
+- a publicly accessible database 'for testing'
+- assuming the Multi-AZ standby serves reads — it doesn't
+- deleting with a final snapshot and paying for it forever
+
 ## ⏭️ Next
 
 Desks, files, crowds, names, records — running. But who's *watching* it

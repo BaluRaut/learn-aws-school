@@ -91,6 +91,20 @@ cat iam/ecr-push-policy.json           # WHAT the wearer may do
 #  curl the metadata service from inside it!)
 ```
 
+## ✅ Verify — what you should see
+
+from the instance, `curl` on the metadata endpoint (IMDSv2 token first) returns temporary credentials with an expiry; `aws sts get-caller-identity` shows the instance role.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` the lab instance; delete any access keys you created 'to compare'
+
+## ⚠️ Common mistakes
+
+- AKIA… access keys in CI settings — use OIDC → role
+- an instance role with `ecr:*` when it only pulls — least privilege applies to robots too
+- IMDSv1 left enabled — require the token (`http_tokens = "required"`)
+
 ## ⏭️ Next
 
 Part 1 closes with the poster on the ID-office wall: the **hygiene

@@ -96,6 +96,20 @@ aws ec2 describe-route-tables --filters Name=vpc-id,Values=$(terraform output -r
 terraform destroy
 ```
 
+## ✅ Verify — what you should see
+
+the private route table shows a route for the S3 **prefix list** pointing at `vpce-…`; `aws s3 ls` from a private desk works with NAT disabled.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- NACL allows 443 in but not the ephemeral ports out — stateless bites
+- peering A↔B, B↔C and expecting A↔C — not transitive
+- paying NAT for S3 traffic an endpoint would carry free
+
 ## ⏭️ Next
 
 The sign said *"0.0.0.0/0 → postbox"* for everything that isn't S3. Time
