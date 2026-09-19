@@ -10,6 +10,8 @@ The **foundations course** of the school series — the two AWS ideas every othe
 🌐 **Interactive site:** **<https://baluraut.github.io/learn-aws-school/>** — lesson cards,
 every lesson as a numbered diagram, the big-picture 4K, and the Before &amp; trade-offs page.
 
+🎒 **New here?** Do [Day 0](https://baluraut.github.io/learn-aws-school/day-0.html) first (account, root lockdown, IAM user, CLI, Terraform, the $5 budget alarm), keep the [cheat sheet](https://baluraut.github.io/learn-aws-school/cheat-sheet.html) open, and see [CONTRIBUTING.md](CONTRIBUTING.md) if you spot a mistake or want to improve the Marathi.
+
 **The series:** 0️⃣ this course (foundations) · 1️⃣ [Docker & ECR](https://github.com/BaluRaut/learn-docker-school) ·
 2️⃣ [Kubernetes](https://github.com/BaluRaut/learn-kubernetes-school) · 3️⃣ [ArgoCD](https://github.com/BaluRaut/learn-argocd-school)
 

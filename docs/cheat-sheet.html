@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="mr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Cheat sheet — the five comparison tables · Learn AWS School">Cheat sheet — पाच तुलना-तक्ते · Learn AWS School</title>
+<meta content="The five comparisons every AWS learner mixes up, on one page: user vs group vs role · SG vs NACL · S3 vs EBS · Multi-AZ standby vs read replica · ALB vs NLB vs API Gateway." name="description"/>
+<meta content="Cheat sheet — the five comparison tables · Learn AWS School" property="og:title"/>
+<meta content="user vs group vs role · SG vs NACL · S3 vs EBS · Multi-AZ vs read replica · ALB vs NLB vs API Gateway — with the school analogies attached." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<style>
+:root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#7c3aed; --blue:#2563eb; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+.wrap { max-width:1100px; margin:0 auto; padding:28px 20px 60px; }
+a { color:var(--blue); } h1 { font-size:1.9rem; } h2 { font-size:1.2rem; margin:34px 0 6px; }
+.sub { color:var(--muted); max-width:78ch; }
+.tbl { overflow-x:auto; background:var(--card); border:1px solid var(--line); border-left:6px solid var(--c,var(--accent)); border-radius:14px; padding:10px 14px; margin-top:10px; }
+table { border-collapse:collapse; width:100%; font-size:.9rem; }
+th, td { border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top; } th { background:var(--bg); white-space:nowrap; }
+td:first-child { font-weight:600; white-space:nowrap; }
+.foot { margin-top:6px; font-size:.88rem; }
+footer { margin-top:44px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:.88rem; }
+@media print { .sub, footer { display:none; } .tbl { break-inside:avoid; border-left-width:2px; } }
+</style>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
+<div class="wrap">
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="📊 Cheat sheet — the five comparisons everyone mixes up">📊 Cheat sheet — सगळे गोंधळतात त्या पाच तुलना</h1>
+<p class="sub" data-en='One page, five tables, the school analogy attached to every row. Print it; pin it next to the
+&lt;a href="lesson-diagrams.html"&gt;diagrams&lt;/a&gt;. Each table links to the lesson that teaches it.'>एक पान, पाच तक्ते, प्रत्येक ओळीला शाळेची उपमा जोडलेली. प्रिंट करा; <a href="lesson-diagrams.html">आकृत्यांशेजारी</a> लावा. प्रत्येक तक्ता तो शिकवणाऱ्या धड्याशी जोडलेला आहे.</p>
+<h2 data-en="🪪 User vs group vs role (lessons 02–04)">🪪 User विरुद्ध group विरुद्ध role (धडे 02–04)</h2>
+<div class="tbl" style="--c:#7c3aed"><table>
+<tr><th></th><th>User</th><th>Group</th><th>Role</th></tr>
+<tr><td data-en="Analogy">उपमा</td><td data-en="a person's ID card">एका व्यक्तीचे ओळखपत्र</td><td data-en="the staff list">स्टाफची यादी</td><td data-en="a hat anyone approved may wear">मंजूर कोणीही घालू शकेल अशी टोपी</td></tr>
+<tr><td data-en="Who is it for">कोणासाठी</td><td data-en="one human (or a legacy tool)">एक माणूस (किंवा जुने साधन)</td><td data-en="many humans with the same job">एकाच कामाची अनेक माणसे</td><td data-en="machines, CI, other accounts, humans temporarily">मशीन, CI, इतर खाती, माणसे तात्पुरती</td></tr>
+<tr><td>Credentials</td><td data-en="password / long-lived keys">पासवर्ड / दीर्घकालीन keys</td><td data-en="none — it's a list">काहीच नाही — ती यादी आहे</td><td data-en="temporary, ~1 hour, via STS">तात्पुरती, ~1 तास, STS द्वारे</td></tr>
+<tr><td data-en="Where policies attach">policies कुठे जोडतात</td><td data-en="directly (avoid)">थेट (टाळा)</td><td data-en="here — members inherit">इथे — सदस्यांना वारशाने</td><td data-en="permission policy + a trust policy (who may wear it)">permission policy + trust policy (कोण घालू शकते)</td></tr>
+<tr><td data-en="Rule of thumb">अंगठ्याचा नियम</td><td data-en="one per person, MFA on">प्रत्येक व्यक्तीला एक, MFA चालू</td><td data-en="attach permissions here">परवानग्या इथे जोडा</td><td data-en="everything non-human wears one">माणूस नसलेले सगळे एक घालतात</td></tr>
+</table><p class="foot" data-en='&lt;a href="lesson-diagrams.html#l04"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l04">आकृती ↗</a></p></div>
+<h2 data-en="🚦 Security group vs NACL (lessons 10 &amp;amp; 21)">🚦 Security group विरुद्ध NACL (धडे 10 &amp; 21)</h2>
+<div class="tbl" style="--c:#ea580c"><table>
+<tr><th></th><th>Security group</th><th>NACL</th></tr>
+<tr><td data-en="Analogy">उपमा</td><td data-en="the guest list at the desk">बाकावरची पाहुण्यांची यादी</td><td data-en="the hallway rules at the wing door">विभागाच्या दारावरचे हॉलवेचे नियम</td></tr>
+<tr><td data-en="Applies to">लागू होते</td><td data-en="an instance / ENI">instance / ENI ला</td><td data-en="a subnet">subnet ला</td></tr>
+<tr><td>Stateful?</td><td data-en="yes — replies flow back automatically">हो — उत्तरे आपोआप परत जातात</td><td data-en="no — allow ephemeral ports out yourself">नाही — ephemeral ports बाहेर स्वतः allow करा</td></tr>
+<tr><td data-en="Rules">नियम</td><td data-en="allow only (a set)">फक्त allow (संच)</td><td data-en="allow AND deny (numbered, first match wins)">allow आणि deny (क्रमांकित, पहिला जुळणारा जिंकतो)</td></tr>
+<tr><td data-en="Default">मूळ</td><td data-en="deny all inbound">सगळे inbound नाकारले</td><td data-en="allow everything">सगळे allow</td></tr>
+<tr><td data-en="Use it for">कशासाठी</td><td data-en="almost everything — first">जवळपास सगळ्यासाठी — आधी</td><td data-en='blunt blocks: "this range never enters the wing"'>ढोबळ बंदी: "ही range विभागात कधीच येत नाही"</td></tr>
+</table><p class="foot" data-en='&lt;a href="lesson-diagrams.html#l21"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l21">आकृती ↗</a></p></div>
+<h2 data-en="🗄️ S3 vs EBS (lessons 11 &amp;amp; 14)">🗄️ S3 विरुद्ध EBS (धडे 11 &amp; 14)</h2>
+<div class="tbl" style="--c:#0d9488"><table>
+<tr><th></th><th>S3</th><th>EBS</th></tr>
+<tr><td data-en="Analogy">उपमा</td><td data-en="the infinite locker room">अमर्याद लॉकर रूम</td><td data-en="the drawer bolted to one desk">एका बाकाला बोल्ट केलेला ड्रॉवर</td></tr>
+<tr><td data-en="What it is">ते काय आहे</td><td data-en="object storage — files by key, over HTTPS">object storage — key ने फाइल्स, HTTPS वरून</td><td data-en="block storage — a disk attached to an instance">block storage — instance ला जोडलेली डिस्क</td></tr>
+<tr><td data-en="Reachable from">कुठून पोहोचता येते</td><td data-en="anywhere with an ID card (IAM)">ओळखपत्र (IAM) असलेल्या कुठूनही</td><td data-en="one instance, in one AZ">एका instance वरून, एका AZ मध्ये</td></tr>
+<tr><td data-en="Durability">टिकाऊपणा</td><td data-en="stored redundantly across AZs by default">मुळातच अनेक AZ मध्ये redundant साठवलेले</td><td data-en="one AZ — snapshot it to S3">एक AZ — S3 वर snapshot घ्या</td></tr>
+<tr><td data-en="Pay for">पैसे कशाचे</td><td data-en="GB-month + requests + egress">GB-महिना + विनंत्या + egress</td><td data-en="GB-month whether the desk runs or not">बाक चालू असो वा नसो, GB-महिना</td></tr>
+<tr><td data-en="Use it for">कशासाठी</td><td data-en="files, backups, images, static sites, data lakes">फाइल्स, backups, इमेज, static साइट, data lakes</td><td data-en="the OS disk, databases you run yourself">OS ची डिस्क, तुम्ही स्वतः चालवता ते डेटाबेस</td></tr>
+</table><p class="foot" data-en='&lt;a href="lesson-diagrams.html#l14"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l14">आकृती ↗</a></p></div>
+<h2 data-en="🪞 Multi-AZ standby vs read replica (lesson 17)">🪞 Multi-AZ standby विरुद्ध read replica (धडा 17)</h2>
+<div class="tbl" style="--c:#0d9488"><table>
+<tr><th></th><th>Multi-AZ standby</th><th>Read replica</th></tr>
+<tr><td data-en="Analogy">उपमा</td><td data-en="the mirror office in the next building">शेजारच्या इमारतीतले आरसा-कार्यालय</td><td data-en="photocopy desks for readers">वाचकांसाठी फोटोकॉपी बाक</td></tr>
+<tr><td data-en="Purpose">उद्देश</td><td data-en="surviving — automatic failover">टिकून राहणे — आपोआप failover</td><td data-en="read scaling — reports, analytics">read scaling — अहवाल, analytics</td></tr>
+<tr><td>Replication</td><td>synchronous</td><td data-en="asynchronous (may lag)">asynchronous (मागे पडू शकते)</td></tr>
+<tr><td data-en="Serves traffic?">traffic घेते?</td><td data-en="no — invisible until failover">नाही — failover पर्यंत अदृश्य</td><td data-en="yes — reads only, its own endpoint">हो — फक्त वाचन, स्वतःचा endpoint</td></tr>
+<tr><td data-en="On primary failure">primary बिघडल्यावर</td><td data-en="the endpoint NAME flips to it in ~1 min">endpoint चे नाव ~1 मि. मध्ये तिकडे वळते</td><td data-en="nothing automatic (can be promoted by hand)">आपोआप काही नाही (हाताने promote करता येते)</td></tr>
+<tr><td data-en="Where">कुठे</td><td data-en="another AZ, same region">दुसरा AZ, तोच region</td><td data-en="same AZ, another AZ, or another region">तोच AZ, दुसरा AZ, किंवा दुसरा region</td></tr>
+</table><p class="foot" data-en='&lt;a href="lesson-diagrams.html#l17"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l17">आकृती ↗</a></p></div>
+<h2 data-en="🛎️ ALB vs NLB vs API Gateway (lessons 15 &amp;amp; 25)">🛎️ ALB विरुद्ध NLB विरुद्ध API Gateway (धडे 15 &amp; 25)</h2>
+<div class="tbl" style="--c:#be123c"><table>
+<tr><th></th><th>ALB</th><th>NLB</th><th>API Gateway</th></tr>
+<tr><td data-en="Analogy">उपमा</td><td data-en="the reception desk">रिसेप्शन डेस्क</td><td data-en="the pneumatic tube">हवेची नळी</td><td data-en="the front desk for programs">प्रोग्रामसाठी फ्रंट डेस्क</td></tr>
+<tr><td data-en="Layer">थर</td><td data-en="7 — reads HTTP, routes by path/host">7 — HTTP वाचतो, path/host नुसार वाट</td><td data-en="4 — raw TCP/UDP at wire speed">4 — कच्चे TCP/UDP वायरच्या वेगाने</td><td data-en="7 — HTTP APIs, with auth &amp;amp; quotas built in">7 — HTTP APIs, auth &amp; quotas अंगभूत</td></tr>
+<tr><td data-en="Targets">लक्ष्ये</td><td data-en="instances, IPs, Lambdas, containers">instances, IPs, Lambdas, कंटेनर</td><td data-en="instances, IPs, an ALB">instances, IPs, एक ALB</td><td>Lambda, HTTP URLs, VPC link → ALB/NLB</td></tr>
+<tr><td data-en="Built-in extras">अंगभूत जादा</td><td data-en="health checks, TLS, WAF attach">health checks, TLS, WAF जोडणी</td><td data-en="fixed IP, extreme throughput">स्थिर IP, प्रचंड throughput</td><td>JWT/IAM auth, throttling, keys, stages, CORS</td></tr>
+<tr><td data-en="Billing">बिलिंग</td><td data-en="hourly + capacity units">तासाने + capacity units</td><td data-en="hourly + capacity units">तासाने + capacity units</td><td data-en="per request — idle = $0">प्रत्येक विनंतीला — रिकामे = $0</td></tr>
+<tr><td data-en="Pick it for">कशासाठी निवडा</td><td data-en="websites and APIs to a fleet of desks">बाकांच्या ताफ्याकडे जाणाऱ्या websites आणि APIs</td><td data-en="databases, game servers, non-HTTP">डेटाबेस, गेम सर्व्हर, HTTP नसलेले</td><td>serverless backends, partner APIs, webhooks</td></tr>
+</table><p class="foot" data-en='&lt;a href="lesson-diagrams.html#l25"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l25">आकृती ↗</a></p></div>
+<footer data-en='Learn AWS School · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="day-0.html"&gt;Day 0 setup&lt;/a&gt; · &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-aws-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;'>Learn AWS School · <a href="index.html">कोर्स मुख्य पान</a> · <a href="day-0.html">दिवस 0 तयारी</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 चूक सापडली?</a></footer>
+</div>
+
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
+</html>

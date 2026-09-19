@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="mr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Day 0 — set up before lesson 01 · Learn AWS School">दिवस 0 — धडा 01 आधीची तयारी · Learn AWS School</title>
+<meta content="Day 0 for the AWS school: create the account, lock root, make an IAM user, configure the CLI, install Terraform, set the $5 budget alarm — 30 minutes, once." name="description"/>
+<meta content="Day 0 — set up before lesson 01 · Learn AWS School" property="og:title"/>
+<meta content="Account, root lockdown, IAM user, CLI, Terraform, $5 budget alarm — the 30-minute setup that makes every lab safe and cheap." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-aws-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<style>
+:root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#7c3aed; --ok:#16a34a; --blue:#2563eb; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+.wrap { max-width:1000px; margin:0 auto; padding:28px 20px 60px; }
+a { color:var(--blue); } h1 { font-size:1.9rem; } h2 { font-size:1.2rem; margin:0 0 6px; }
+.sub { color:var(--muted); max-width:76ch; }
+.step { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--accent); border-radius:14px; padding:16px 18px; margin-top:14px; }
+.step .n { display:inline-flex; width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; align-items:center; justify-content:center; font-weight:800; margin-right:8px; }
+.step p, .step li { color:var(--muted); font-size:.95rem; } .step ul { margin:6px 0 0 18px; }
+pre { background:#0f172a; color:#e2e8f0; padding:12px 14px; border-radius:10px; overflow-x:auto; font-size:.85rem; margin-top:8px; }
+.check { margin-top:10px; font-size:.9rem; color:var(--ok); font-weight:600; }
+.cost { background:var(--card); border:1px dashed var(--line); border-radius:14px; padding:14px 18px; margin-top:22px; }
+table { border-collapse:collapse; width:100%; margin-top:10px; font-size:.9rem; }
+th, td { border:1px solid var(--line); padding:7px 10px; text-align:left; } th { background:var(--bg); }
+footer { margin-top:44px; border-top:1px solid var(--line); padding-top:16px; color:var(--muted); font-size:.88rem; }
+</style>
+
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
+<div class="wrap">
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="🎒 Day 0 — set up once, before lesson 01">🎒 दिवस 0 — एकदाच तयारी, धडा 01 आधी</h1>
+<p class="sub" data-en="Thirty minutes, done once, and every lab in this course becomes safe and cheap. Every step here
+is something the course itself will later explain — today you just do it. Tick the ✅ line before moving on.">तीस मिनिटे, एकदाच, आणि या कोर्समधला प्रत्येक प्रयोग सुरक्षित आणि स्वस्त होतो. इथली प्रत्येक पायरी कोर्स नंतर समजावणार आहे — आज फक्त करा. पुढे जाण्याआधी ✅ ओळीवर खूण करा.</p>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;1&lt;/span&gt;Create the AWS account — and lock the master key'><span class="n">1</span>AWS खाते तयार करा — आणि मास्टर किल्ली कुलूपबंद करा</h2>
+<p data-en="Sign up at aws.amazon.com with an email you control. This login is the &lt;b&gt;root&lt;/b&gt; account (lesson 01's master key).
+Do three things and then never use it again for daily work:">तुमच्या ताब्यातल्या ईमेलने aws.amazon.com वर नोंदणी करा. हे login म्हणजे <b>root</b> खाते (धडा 01 ची मास्टर किल्ली). तीन गोष्टी करा आणि मग रोजच्या कामासाठी ते पुन्हा कधीच वापरू नका:</p>
+<ul><li data-en="enable &lt;b&gt;MFA&lt;/b&gt; on root (Security credentials → MFA)">root वर <b>MFA</b> चालू करा (Security credentials → MFA)</li><li data-en="do &lt;b&gt;not&lt;/b&gt; create root access keys">root साठी access keys बनवू <b>नका</b></li><li data-en="note the 12-digit account ID — you'll need it for ARNs">12-अंकी account ID लिहून ठेवा — ARN साठी लागेल</li></ul>
+<p class="check" data-en="✅ root has MFA, and you are about to log out of it.">✅ root ला MFA आहे, आणि तुम्ही त्यातून logout करणार आहात.</p></div>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;2&lt;/span&gt;Make yourself an IAM user (not root) — or better, an Identity Center user'><span class="n">2</span>स्वतःसाठी IAM user बनवा (root नव्हे) — किंवा अजून चांगले, Identity Center user</h2>
+<p data-en="IAM → Users → create &lt;code&gt;you&lt;/code&gt; with console access and MFA. Attach &lt;code&gt;AdministratorAccess&lt;/code&gt; &lt;i&gt;for the course only&lt;/i&gt;
+(lesson 06 will make you feel bad about it, which is the point). If your account has IAM Identity Center (SSO), use that instead — it hands out temporary credentials, exactly what lesson 04 teaches.">IAM → Users → console प्रवेश आणि MFA सह <code>you</code> बनवा. <i>फक्त कोर्ससाठी</i> <code>AdministratorAccess</code> जोडा (धडा 06 तुम्हाला याबद्दल वाईट वाटायला लावेल, हाच मुद्दा). तुमच्या खात्यात IAM Identity Center (SSO) असेल तर त्याऐवजी ते वापरा — ते तात्पुरती credentials देते, नेमके जे धडा 04 शिकवतो.</p>
+<p class="check" data-en="✅ you can log in as the IAM user with MFA; root is logged out.">✅ तुम्ही MFA सह IAM user म्हणून login करू शकता; root logout झाले आहे.</p></div>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;3&lt;/span&gt;Install and configure the AWS CLI'><span class="n">3</span>AWS CLI install आणि configure करा</h2>
+<pre># macOS: brew install awscli      · Windows: winget install Amazon.AWSCLI      · Linux: see docs.aws.amazon.com/cli
+aws configure sso        # Identity Center users — preferred (temporary credentials)
+aws configure            # IAM user — creates an access key for YOUR laptop only; rotate it after the course
+aws sts get-caller-identity   # must show your IAM user or SSO role, never "root"</pre>
+<p data-en="Pick one region for the whole course (the labs default to &lt;code&gt;us-east-1&lt;/code&gt;; &lt;code&gt;ap-south-1&lt;/code&gt; Mumbai works too — set it consistently).">संपूर्ण कोर्ससाठी एक region निवडा (प्रयोग मुळात <code>us-east-1</code> वापरतात; <code>ap-south-1</code> मुंबईही चालते — सगळीकडे तेच ठेवा).</p>
+<p class="check" data-en="✅ &lt;code&gt;get-caller-identity&lt;/code&gt; prints an ARN with &lt;code&gt;user/&lt;/code&gt; or &lt;code&gt;assumed-role/&lt;/code&gt;.">✅ <code>get-caller-identity</code> <code>user/</code> किंवा <code>assumed-role/</code> असलेला ARN छापते.</p></div>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;4&lt;/span&gt;Install Terraform'><span class="n">4</span>Terraform install करा</h2>
+<pre># macOS: brew install terraform      · Windows: winget install Hashicorp.Terraform      · Linux: see developer.hashicorp.com/terraform/install
+terraform version</pre>
+<p data-en="Every paid lab in this course is a folder with a &lt;code&gt;.tf&lt;/code&gt; file and two commands: &lt;code&gt;terraform apply&lt;/code&gt; and, always, &lt;code&gt;terraform destroy&lt;/code&gt;.">या कोर्समधला प्रत्येक पैसे लागणारा प्रयोग म्हणजे एक <code>.tf</code> फाइल असलेला फोल्डर आणि दोन commands: <code>terraform apply</code> आणि, नेहमी, <code>terraform destroy</code>.</p>
+<p class="check" data-en="✅ &lt;code&gt;terraform version&lt;/code&gt; prints 1.x.">✅ <code>terraform version</code> 1.x छापते.</p></div>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;5&lt;/span&gt;Set the $5 budget alarm — the tripwire'><span class="n">5</span>$5 चा budget अलार्म लावा — तारेचा सापळा</h2>
+<p data-en="Billing → Budgets → create a &lt;b&gt;cost budget&lt;/b&gt; of &lt;b&gt;$5/month&lt;/b&gt; with an email alert at 80% and 100%. Lesson 20 explains why this is the most valuable feature on AWS; today you just switch it on. Also enable &lt;b&gt;Cost Explorer&lt;/b&gt; now — it only records forward.">Billing → Budgets → <b>$5/महिना</b> चे <b>cost budget</b> बनवा, 80% आणि 100% वर ईमेल सूचनेसह. AWS वरची ही सर्वात मौल्यवान सुविधा का हे धडा 20 समजावतो; आज फक्त चालू करा. <b>Cost Explorer</b> ही आत्ताच चालू करा — ते फक्त पुढच्या नोंदी ठेवते.</p>
+<p class="check" data-en="✅ the budget exists and you received the confirmation email.">✅ budget अस्तित्वात आहे आणि तुम्हाला पुष्टीचा ईमेल आला.</p></div>
+<div class="step"><h2 data-en='&lt;span class="n"&gt;6&lt;/span&gt;Clone the course'><span class="n">6</span>कोर्स clone करा</h2>
+<pre>git clone https://github.com/BaluRaut/learn-aws-school.git
+cd learn-aws-school
+git checkout lesson-01-why-iam        # open lessons/01-why-iam/README.md — Part 1 is entirely free</pre>
+<p class="check" data-en="✅ you are on branch &lt;code&gt;lesson-01-why-iam&lt;/code&gt;. Day 0 is done.">✅ तुम्ही <code>lesson-01-why-iam</code> ब्रँचवर आहात. दिवस 0 पूर्ण.</p></div>
+<div class="cost">
+<h2 data-en="⏱️💰 Time &amp;amp; cost per Part — honest estimates">⏱️💰 प्रत्येक भागाचा वेळ &amp; खर्च — प्रामाणिक अंदाज</h2>
+<table>
+<tr><th data-en="Part">भाग</th><th data-en="Lessons">धडे</th><th data-en="Reading + labs">वाचन + प्रयोग</th><th data-en="Cost if you destroy same day">त्याच दिवशी destroy केल्यास खर्च</th><th data-en="What bills by the hour">तासाने बिल लावणारे</th></tr>
+<tr><td>🪪 1 — IAM</td><td>1–6</td><td data-en="~4 h">~4 तास</td><td data-en="$0 — IAM is free">$0 — IAM मोफत आहे</td><td data-en="nothing">काहीच नाही</td></tr>
+<tr><td>🖥️ 2 — EC2</td><td>7–12</td><td data-en="~4 h">~4 तास</td><td>&lt; $1</td><td data-en="the t3.micro desk (~1¢/h), EBS, an ASG">t3.micro बाक (~1¢/तास), EBS, ASG</td></tr>
+<tr><td data-en="🏫 3 — the campus">🏫 3 — कॅम्पस</td><td>13–20</td><td data-en="~5.5 h">~5.5 तास</td><td>~$1–2</td><td data-en="ALB, RDS (free-tier eligible), the desks">ALB, RDS (free-tier पात्र), बाक</td></tr>
+<tr><td data-en="🛡️ 4 — the edge">🛡️ 4 — कड</td><td>21–25</td><td data-en="~3.5 h">~3.5 तास</td><td>&lt; $1</td><td data-en="NAT gateway (~4.5¢/h!), WAF, the ALB">NAT gateway (~4.5¢/तास!), WAF, ALB</td></tr>
+</table>
+<p class="sub" data-en="The one rule that makes these numbers true: &lt;b&gt;every lab ends with &lt;code&gt;terraform destroy&lt;/code&gt;&lt;/b&gt;, and each lesson's 🧹 Clean-up section lists exactly what must be gone." style="margin-top:8px">हे आकडे खरे ठरवणारा एकमेव नियम: <b>प्रत्येक प्रयोग <code>terraform destroy</code> ने संपतो</b>, आणि प्रत्येक धड्याचा 🧹 Clean-up विभाग नेमके काय गेले पाहिजे ते सांगतो.</p>
+</div>
+<footer data-en='Learn AWS School · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="study-plan.html"&gt;Study plan&lt;/a&gt; · &lt;a href="cheat-sheet.html"&gt;Cheat sheet&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-aws-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;'>Learn AWS School · <a href="index.html">कोर्स मुख्य पान</a> · <a href="study-plan.html">अभ्यास योजना</a> · <a href="cheat-sheet.html">Cheat sheet</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-aws-school/issues">🐛 चूक सापडली?</a></footer>
+</div>
+
+<script id="i18n-js">
+function schoolSetLang(l){
+  try{localStorage.setItem('school-lang',l)}catch(e){}
+  document.documentElement.setAttribute('lang',l);
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    el.innerHTML = (l==='en') ? el.getAttribute('data-en') : el.getAttribute('data-mr');
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : el.getAttribute('data-mr-ph'));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='mr'; try{ l=localStorage.getItem('school-lang')||'mr'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
+</html>
