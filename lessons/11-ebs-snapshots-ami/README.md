@@ -100,6 +100,20 @@ terraform destroy -var my_ip=$(curl -s ifconfig.me)/32
 aws ec2 delete-snapshot --snapshot-id $SNAP
 ```
 
+## ✅ Verify — what you should see
+
+after stop/start the file you wrote in the EBS volume is still there; `aws ec2 describe-snapshots --owner-ids self` lists your photocopy.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy`, then **delete the snapshot and deregister the AMI** — orphan photocopies bill by the GB-month
+
+## ⚠️ Common mistakes
+
+- assuming instance store survives a stop — it doesn't
+- snapshots piling up with no lifecycle — check `describe-snapshots` monthly
+- an AMI baked with secrets inside (lesson 06 applies to images too)
+
 ## ⏭️ Next
 
 The finale: desks that set THEMSELVES up, badge themselves, and multiply

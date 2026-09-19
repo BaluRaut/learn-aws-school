@@ -90,6 +90,20 @@ curl -i $ALB_URL/                                  # → 403 from the bouncer, f
 terraform destroy
 ```
 
+## ✅ Verify — what you should see
+
+`curl -i ALB_URL` returns 200; after the flood loop it returns **403** for a while; the WAF sampled requests show the rate rule firing.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` here AND lesson 15's ALB — both bill hourly
+
+## ⚠️ Common mistakes
+
+- managed rules in block mode on day one — a legit form post gets 403
+- forgetting WAF only sees what reaches the ALB/API Gateway/CloudFront
+- no logging enabled, so no way to tune false positives
+
 ## ⏭️ Next
 
 Websites have reception. APIs deserve their own front desk — one that
