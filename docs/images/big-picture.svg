@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1700" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 2200" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
     <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
@@ -8,6 +8,9 @@
     .band1 { fill: #fff; stroke: #7c3aed; stroke-width: 3; }
     .band2 { fill: #fff; stroke: #ea580c; stroke-width: 3; }
     .band3 { fill: #fff; stroke: #0d9488; stroke-width: 3; }
+    .band4 { fill: #fff; stroke: #be123c; stroke-width: 3; }
+    .bxs { fill: #fff; stroke: #be123c; stroke-width: 2.5; }
+    .tips { fill: #fff1f2; stroke: #be123c; stroke-width: 1.5; }
     .bxt { fill: #fff; stroke: #0d9488; stroke-width: 2.5; }
     .tipt { fill: #f0fdfa; stroke: #0d9488; stroke-width: 1.5; }
     .bx  { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; }
@@ -26,8 +29,8 @@
     .ntb { font-size: 15px; font-weight: 700; fill: #fff; text-anchor: middle; }
   </style>
 
-  <rect x="0" y="0" width="1920" height="1700" fill="#ffffff"/>
-  <text class="title m" x="960" y="52">The Big Picture — IAM: IF you may · EC2: WHERE it runs · Part 3: the CAMPUS around it</text>
+  <rect x="0" y="0" width="1920" height="2200" fill="#ffffff"/>
+  <text class="title m" x="960" y="52">The Big Picture — IAM: IF you may · EC2: WHERE it runs · the CAMPUS around it · and its DOORS</text>
 
   <!-- ═══ BAND 1: IAM ═══ -->
   <rect class="band1" x="40" y="80" width="1840" height="460" rx="20"/>
@@ -215,4 +218,48 @@
   <text class="s m" x="1430" y="1525">classics: the NAT postbox · the stopped desk's drawer · orphan snapshots · idle ALB/RDS</text>
   <text class="s m" x="1430" y="1549">set the $5 Budget tripwire TODAY — then labs stay cheaper than coffee ☕</text>
   <g transform="translate(1010,1440)"><circle r="13" fill="#0d9488"/><text class="ntb" dy="5">7</text></g>
+
+  <!-- ═══ divider ═══ -->
+  <text class="t m" x="960" y="1705" fill="#475569">and finally the doors: how packets really walk, who mails out, who answers the phone, who guards the gate 🛡️</text>
+
+  <!-- ═══ BAND 4: DOORS, ROUTES & GUARDS ═══ -->
+  <rect class="band4" x="40" y="1725" width="1840" height="435" rx="20"/>
+  <text class="bandt" x="70" y="1767" fill="#be123c">🛡️ PART 4 — doors, routes &amp; guards (lessons 21–25)</text>
+
+  <rect class="bxs" x="70" y="1795" width="330" height="150" rx="14"/>
+  <text class="t m" x="235" y="1828">🪧 subnet networking (L21)</text>
+  <text class="s m" x="235" y="1856">corridor signs (route tables), hallway</text>
+  <text class="s m" x="235" y="1880">rules (NACLs, stateless), private corridors</text>
+  <text class="s m" x="235" y="1904">(endpoints) — S3 without the postbox, free</text>
+  <g transform="translate(70,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">1</text></g>
+  <rect class="bxs" x="430" y="1795" width="330" height="150" rx="14"/>
+  <text class="t m" x="595" y="1828">📮 NAT gateway (L22)</text>
+  <text class="s m" x="595" y="1856">the postbox rewrites the return address;</text>
+  <text class="s m" x="595" y="1880">one per building, never cross-AZ;</text>
+  <text class="s m" x="595" y="1904">~$32/mo + 4¢/GB — endpoints first</text>
+  <g transform="translate(430,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">2</text></g>
+  <rect class="bxs" x="790" y="1795" width="330" height="150" rx="14"/>
+  <text class="t m" x="955" y="1828">☎️ Route 53 routing (L23)</text>
+  <text class="s m" x="955" y="1856">the receptionist's moods: weighted</text>
+  <text class="s m" x="955" y="1880">canary, latency, failover, geo · private</text>
+  <text class="s m" x="955" y="1904">zone: db.school.internal, desks only</text>
+  <g transform="translate(790,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">3</text></g>
+  <rect class="bxs" x="1150" y="1795" width="330" height="150" rx="14"/>
+  <text class="t m" x="1315" y="1828">🛡️ WAF &amp; Shield (L24)</text>
+  <text class="s m" x="1315" y="1856">the bouncer opens every envelope:</text>
+  <text class="s m" x="1315" y="1880">managed rule books, rate limits, geo ·</text>
+  <text class="s m" x="1315" y="1904">count mode first, then block</text>
+  <g transform="translate(1150,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">4</text></g>
+  <rect class="bxs" x="1510" y="1795" width="330" height="150" rx="14"/>
+  <text class="t m" x="1675" y="1828">🎟️ API Gateway (L25)</text>
+  <text class="s m" x="1675" y="1856">the front desk for programs: routes,</text>
+  <text class="s m" x="1675" y="1880">JWT check, throttling &amp; keys, stages ·</text>
+  <text class="s m" x="1675" y="1904">Lambda or VPC link · idle = $0</text>
+  <g transform="translate(1510,1795)"><circle r="13" fill="#be123c"/><text class="ntb" dy="5">5</text></g>
+
+  <rect class="tips" x="70" y="1980" width="1780" height="150" rx="14"/>
+  <text class="t m" x="960" y="2015">🧭 one request, end to end — the whole course in one sentence</text>
+  <text class="s m" x="960" y="2045">phonebook (L16/L23) → bouncer (L24) → reception (L15) or API desk (L25) → corridor sign + NACL + SG (L21/L10) → desk (L07) or helper (L19)</text>
+  <text class="s m" x="960" y="2069">→ record office (L17) · replies mail out through the postbox (L22) only when they must · every hop wears an IAM hat (L04) · every hop is on the meter (L20)</text>
+  <text class="s m" x="960" y="2093">read any AWS architecture diagram now — you know every box, and what it costs 🎓</text>
 </svg>

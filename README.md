@@ -17,7 +17,7 @@ every lesson as a numbered diagram, the big-picture 4K, and the Before &amp; tra
 
 ![The big picture: IAM (who may do what) and EC2 (the rented computers)](docs/images/big-picture-4k.png)
 
-## 🎓 The 20 lessons
+## 🎓 The 25 lessons
 
 Each numbered branch adds ONE lesson folder (`lessons/NN-topic/README.md`) with an
 explain-like-I'm-5 story, a school analogy, a diagram, **What / Why / How**, and hands-on
@@ -63,6 +63,17 @@ git checkout lesson-02-users-groups     # ...keep going, one branch at a time
 | 18 | `lesson-18-cloudwatch` | Metrics, logs, alarms → actions | Report cards, diaries, alarm bells 📈🔔 |
 | 19 | `lesson-19-lambda` | Serverless functions, events, cold starts | The on-call helper ⚡ |
 | 20 | `lesson-20-the-bill` | The four meters, budgets, cost hygiene | Reading the meter 🧾 |
+
+
+### Part 4 — doors, routes & guards 🛡️
+
+| # | Branch | You learn | Analogy |
+|---|---|---|---|
+| 21 | `lesson-21-subnet-networking` | Route tables, NACLs, VPC endpoints, peering | Corridor signs, hallway rules, private corridors 🪧🚦🚇 |
+| 22 | `lesson-22-nat-gateway` | NAT gateway per AZ, Elastic IPs, egress cost | The one-way postbox, in depth 📮 |
+| 23 | `lesson-23-route53-routing` | Weighted/latency/failover/geo policies, private zones | The receptionist's moods ☎️ |
+| 24 | `lesson-24-waf-shield` | Web ACLs, managed rules, rate limits, Shield | The bouncer at the gate 🛡️ |
+| 25 | `lesson-25-api-gateway` | HTTP/REST APIs, authorizers, throttling, stages | The front desk for APIs 🎟️ |
 
 ## 📦 What's in this repo (main branch)
 

@@ -287,6 +287,68 @@ html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari 
 </div>
 <p class="foot" data-en='&lt;a href="lesson-diagrams.html#l19"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l19">आकृती ↗</a></p>
 </section>
+<section class="term" id="waf" style="--c:#be123c">
+<h2 data-en="🛡️ WAF — a web firewall vs security groups alone (lesson 24)">🛡️ WAF — फक्त security groups विरुद्ध web firewall (धडा 24)</h2>
+<div class="hist"><b data-en="⏮️ Before web firewalls">⏮️ web firewalls च्या आधी</b>
+<p data-en="The perimeter was a port list: SGs decided who could knock on 443, and everything that
+arrived on 443 reached the app — injections, scanners, floods included. Application-layer
+attacks were the app's problem; every team wrote its own (partial) defenses.">सीमा म्हणजे port ची यादी: 443 वर कोण ठोठावू शकते हे SG ठरवत, आणि 443 वर आलेले सगळे ॲपपर्यंत पोहोचे — injections, scanners, पूर सगळे. Application-थरातले हल्ले ही ॲपची समस्या होती; प्रत्येक टीम स्वतःचे (अर्धवट) बचाव लिहीत असे.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul>
+<li data-en="managed rule books that update themselves">स्वतःहून update होणारी managed नियमपुस्तके</li>
+<li data-en="rate limits stop floods before reception">rate limits रिसेप्शनआधी पूर थांबवतात</li>
+<li data-en='logs turn "we got hammered" into a graph'>logs "आमच्यावर हल्ला झाला" चे graph मध्ये रूपांतर करतात</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="false positives — block on day one, break a form">खोटे positives — पहिल्या दिवशी block, एखादा फॉर्म मोडतो</li>
+<li data-en="per-ACL, per-rule, per-request costs">प्रत्येक ACL, नियम, विनंतीचे पैसे</li>
+<li data-en="can't fix auth bugs or business-logic abuse">auth bugs किंवा business-logic गैरवापर दुरुस्त करू शकत नाही</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul>
+<li data-en="anything public-facing on ALB/API Gateway/CloudFront">ALB/API Gateway/CloudFront वरचे सार्वजनिक काहीही</li>
+<li data-en="you've been probed or flooded even once">तुमची एकदाही चाचपणी किंवा पूर झाला असेल</li>
+<li data-en='compliance asks "where is your WAF?"'>compliance विचारते "तुमचा WAF कुठे आहे?"</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul>
+<li data-en="internal-only services behind a VPN">VPN मागच्या फक्त-अंतर्गत सेवा</li>
+<li data-en="you can't spend a day in count mode first">तुम्ही आधी count mode मध्ये एक दिवस घालवू शकत नाही</li>
+<li data-en="protocols WAF can't read (raw TCP behind an NLB)">WAF वाचू शकत नाही असे प्रोटोकॉल (NLB मागचे कच्चे TCP)</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l24"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l24">आकृती ↗</a></p>
+</section>
+<section class="term" id="apigw" style="--c:#be123c">
+<h2 data-en="🎟️ API Gateway vs an ALB in front of your API (lesson 25)">🎟️ API Gateway विरुद्ध तुमच्या API समोरचा ALB (धडा 25)</h2>
+<div class="hist"><b data-en="⏮️ Before API gateways">⏮️ API gateways च्या आधी</b>
+<p data-en="Auth, throttling, API keys, staging and metering were code inside every service — or a
+hand-run nginx/Kong box someone patched at midnight. API Gateway (2015) made the front desk
+a configuration, billed per request.">Auth, throttling, API keys, staging आणि metering हा प्रत्येक सेवेच्या आतला कोड होता — किंवा मध्यरात्री कोणीतरी patch करणारा हाताने चालवलेला nginx/Kong बॉक्स. API Gateway (2015) ने फ्रंट डेस्कला configuration बनवले, प्रत्येक विनंतीला बिल.</p>
+</div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ API Gateway merits">✅ API Gateway चे फायदे</h4><ul>
+<li data-en="auth, throttling, keys, stages as config — no code">auth, throttling, keys, stages config म्हणून — कोड नाही</li>
+<li data-en="idle = $0; pairs natively with Lambda">रिकामे = $0; Lambda सोबत नैसर्गिक जोडी</li>
+<li data-en="per-route metrics, logs, transformations">प्रत्येक route चे metrics, logs, transformations</li>
+</ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul>
+<li data-en="per-request pricing hurts at steady high volume">स्थिर जास्त volume वर प्रत्येक-विनंती किंमत दुखते</li>
+<li data-en="29-second integration timeout, 10 MB payloads">29 सेकंदांचा integration timeout, 10 MB payloads</li>
+<li data-en="another layer to reason about on incidents">incidents मध्ये विचार करायचा आणखी एक थर</li>
+</ul></div>
+<div class="q use"><h4 data-en="👍 API Gateway when">👍 API Gateway जेव्हा</h4><ul>
+<li>serverless backends, partner APIs, webhooks</li>
+<li data-en="you need JWT/keys/quotas without writing them">तुम्हाला JWT/keys/quotas लिहिल्याशिवाय हवेत</li>
+<li data-en="spiky or low traffic (idle should be free)">तुरळक किंवा कमी traffic (रिकामे मोफत असावे)</li>
+</ul></div>
+<div class="q avoid"><h4 data-en="👎 ALB instead when">👎 त्याऐवजी ALB जेव्हा</h4><ul>
+<li data-en="steady heavy traffic to desks — hourly beats per-request">बाकांकडे स्थिर जड traffic — तासाने प्रत्येक-विनंतीला हरवते</li>
+<li data-en="WebSockets held for hours, big uploads, long jobs">तासन्‌तास धरलेले WebSockets, मोठे uploads, लांब jobs</li>
+<li data-en="you already have an ingress with auth in the app">तुमच्याकडे आधीच ॲपमध्ये auth असलेले ingress आहे</li>
+</ul></div>
+</div>
+<p class="foot" data-en='&lt;a href="lesson-diagrams.html#l25"&gt;Diagram ↗&lt;/a&gt;'><a href="lesson-diagrams.html#l25">आकृती ↗</a></p>
+</section>
 <footer data-en='
   Learn AWS School · &lt;a href="index.html"&gt;Course home&lt;/a&gt; ·
   &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; ·
