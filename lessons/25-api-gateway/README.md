@@ -93,6 +93,20 @@ curl -si "$(terraform output -raw api_url)/nope"       # 404 from the desk, Lamb
 terraform destroy
 ```
 
+## ✅ Verify — what you should see
+
+`curl API_URL/hello?name=school` returns the greeting; `curl -i API_URL/nope` returns 404 from the desk and the Lambda log shows no invocation.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` — per-request billing means idle costs nothing, but the Lambda and role are still clutter
+
+## ⚠️ Common mistakes
+
+- treating an API key as authentication — it identifies, it doesn't authenticate
+- a 29-second job behind API Gateway (30 s timeout) — go async
+- using API Gateway in front of a steady high-traffic fleet — an ALB is cheaper there
+
 ## 🎓 You made it — again
 
 Identity, desks, campus, lockers, reception, phonebook, record office,

@@ -94,6 +94,20 @@ cd vpc && terraform apply -var enable_nat=true      # adds a postbox in AZ-a + t
 terraform destroy                                    # ⏰ before you do anything else
 ```
 
+## ✅ Verify — what you should see
+
+from a private desk `curl ifconfig.me` prints the NAT's Elastic IP; from outside, the desk's private IP is unreachable.
+
+## 🧹 Clean up — do not leave running
+
+`terraform destroy` **immediately** — the NAT gateway bills ~$0.045 every hour it exists; then confirm `describe-nat-gateways` is empty and release the Elastic IP
+
+## ⚠️ Common mistakes
+
+- one NAT for all AZs — a single point of failure plus cross-AZ charges
+- NAT placed in a private subnet — it needs the public wing
+- forgetting to release the Elastic IP (an unattached EIP bills too)
+
 ## ⏭️ Next
 
 The campus can mail out. Now let's make the *phonebook* smarter than

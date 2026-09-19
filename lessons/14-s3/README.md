@@ -86,6 +86,20 @@ aws s3 presign s3://YOUR_BUCKET/notes/note.txt --expires-in 300   # 5-min visito
 cd s3 && bash presign-lab.sh        # bucket → upload → pass → prove the pass expires → cleanup
 ```
 
+## ✅ Verify — what you should see
+
+`curl` with the presigned URL returns the file; the same URL after expiry returns **403**; the plain object URL returns 403 from the start.
+
+## 🧹 Clean up — do not leave running
+
+`aws s3 rb s3://BUCKET --force` — the lab script does it for you
+
+## ⚠️ Common mistakes
+
+- turning off Block Public Access on the whole bucket for one file
+- thinking `folder/` is a real directory — keys are labels
+- keeping Terraform state or backups in a bucket without versioning
+
 ## ⏭️ Next
 
 Files sorted. But when the whole town visits the school website at once,

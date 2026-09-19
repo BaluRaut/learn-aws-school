@@ -91,6 +91,20 @@ Create `school.internal` attached to lesson 13's VPC, add an A record
 `dig db.school.internal` answers; from your laptop it doesn't exist.
 That asymmetry *is* the lesson. Delete the zone.
 
+## ✅ Verify — what you should see
+
+from a desk inside the VPC `dig db.school.internal` answers; from your laptop it is NXDOMAIN — that asymmetry is the lesson.
+
+## 🧹 Clean up — do not leave running
+
+delete the private hosted zone (~$0.50/month) and any health checks
+
+## ⚠️ Common mistakes
+
+- a weighted canary with a long TTL — callers won't move for hours
+- failover without a health check (there is nothing to fail over on)
+- private zone not associated with the VPC that's asking
+
 ## ⏭️ Next
 
 Callers can now find the right campus, fast. Some of them are not
