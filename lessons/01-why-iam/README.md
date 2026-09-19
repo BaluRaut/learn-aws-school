@@ -79,6 +79,20 @@ aws iam get-account-summary --query 'SummaryMap.{Users:Users,MFADevices:MFADevic
 #   3) sign out of root — ideally forever
 ```
 
+## ✅ Verify — what you should see
+
+`aws sts get-caller-identity` shows an **IAM user ARN**, not `arn:aws:iam::ACCOUNT:root` — and the root account shows MFA enabled in the console.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- using root for daily work — the master key stays in the safe
+- one shared login for the whole team — every person gets a card
+- enabling MFA on root and forgetting it on the humans
+
 ## ⏭️ Next
 
 Cards for people, and lists that make permissions manageable: **users &
