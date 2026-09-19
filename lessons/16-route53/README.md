@@ -1,4 +1,4 @@
-# ☎️ Lesson 16 — Route 53: the school's phonebook
+# ☎️ Lesson 16 — Route 53: the school's phonebook (DNS)
 
 **📍 You are here:** Lesson **16** of 20 · Previous: `lesson-15-load-balancers` · Next: `lesson-17-rds`
 
