@@ -85,6 +85,20 @@ aws iam delete-user --user-name test-student
 aws iam delete-group --group-name learners
 ```
 
+## ✅ Verify — what you should see
+
+`aws iam list-groups-for-user --user-name aarav` lists the group; `aws iam list-attached-group-policies --group-name teachers` shows the policy attached to the **group**, not the user.
+
+## 🧹 Clean up — do not leave running
+
+nothing to clean up — this lesson is free 🎉
+
+## ⚠️ Common mistakes
+
+- attaching policies to users one by one — attach to the group
+- a `developers` group with AdministratorAccess (that's not a group, that's root with extra steps)
+- forgetting that a user with no group and no policy can do nothing — that's correct, not broken
+
 ## ⏭️ Next
 
 What exactly IS a "permission slip"? Reading and writing **policy JSON** —
